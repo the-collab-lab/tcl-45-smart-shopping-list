@@ -4,13 +4,12 @@ import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
 import { getFutureDate } from '../utils';
 
 const firebaseConfig = {
-	apiKey: 'FILL_ME_IN',
-	authDomain: 'FILL_ME_IN',
-	databaseURL: 'FILL_ME_IN',
-	projectId: 'FILL_ME_IN',
-	storageBucket: 'FILL_ME_IN',
-	messagingSenderId: 'FILL_ME_IN',
-	appId: 'FILL_ME_IN',
+	apiKey: "AIzaSyAKhXStVolfPKwMsQCo7KiSePpC_zcJY-4",
+	authDomain: "tcl-45-smart-shopping-list.firebaseapp.com",
+	projectId: "tcl-45-smart-shopping-list",
+	storageBucket: "tcl-45-smart-shopping-list.appspot.com",
+	messagingSenderId: "190905054675",
+	appId: "1:190905054675:web:f970100be58de6cfaeeb26"
 };
 
 const app = initializeApp(firebaseConfig);
