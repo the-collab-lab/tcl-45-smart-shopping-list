@@ -9,6 +9,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
     - [Nadia Zubko](https://github.com/N-Zubko) 🐼👩‍💻
     - [Mira Kinebuchi](https://github.com/mira-kine) 🌸🌱
     - [Trevor Rezac](https://github.com/Trevor-Rezac) 🤓
+    - [Michelle Nygren](https://github.com/michellerenehey) :v: :sparkles:
 
 ## Mentors
 
