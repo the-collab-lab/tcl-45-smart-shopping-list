@@ -9,9 +9,9 @@ export function List({ data }) {
 			</p>
 			<ul>
 				{data.map((item) => (
-					<li key={item.id}>
+					<div key={item.id}>
 						<ListItem name={item.name} />
-					</li>
+					</div>
 				))}
 			</ul>
 		</>
