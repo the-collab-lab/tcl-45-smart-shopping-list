@@ -12,5 +12,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
     - [Michelle Nygren](https://github.com/michellerenehey) :v: :sparkles:
 
 ## Mentors
+
     - [Nick Taylor](https://github.com/nickytonline) 🤣
+
 ## Code of Conduct Contacts
