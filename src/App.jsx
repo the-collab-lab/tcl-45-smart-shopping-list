@@ -5,6 +5,7 @@ import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
+import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 export function App() {
 	const [data, setData] = useState([]);
@@ -22,6 +23,11 @@ export function App() {
 		'null',
 		'tcl-shopping-list-token',
 	);
+
+	function handleClick() {
+		const token = generateToken();
+		setListToken(token);
+	}
 
 	useEffect(() => {
 		if (!listToken) return;
@@ -51,7 +57,7 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={<Home />} />
+					<Route index element={<Home handleClick={handleClick} />} />
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
