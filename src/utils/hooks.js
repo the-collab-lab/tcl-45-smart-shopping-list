@@ -11,6 +11,7 @@ export function useStateWithStorage(initialValue, storageKey) {
 		return currentValue ? currentValue : initialValue;
 	});
 	useEffect(() => {
+		console.log('initialValue', initialValue);
 		if (value === null || value === undefined) {
 			return localStorage.removeItem(storageKey);
 		}
