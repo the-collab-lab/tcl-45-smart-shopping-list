@@ -6,6 +6,13 @@ export function Home() {
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
+			<button
+				onClick={() => {
+					console.log('hello');
+				}}
+			>
+				Create New List
+			</button>
 		</div>
 	);
 }
