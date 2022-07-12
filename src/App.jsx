@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { AddItem, Home, Layout, List } from './views';
 
@@ -8,6 +8,7 @@ import { useStateWithStorage } from './utils';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 export function App() {
+	const navigateTo = useNavigate();
 	const [data, setData] = useState([]);
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
@@ -27,6 +28,7 @@ export function App() {
 	function handleClick() {
 		const token = generateToken();
 		setListToken(token);
+		navigateTo('/list');
 	}
 
 	useEffect(() => {
@@ -54,14 +56,14 @@ export function App() {
 	}, [listToken]);
 
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route index element={<Home handleClick={handleClick} />} />
-					<Route path="/list" element={<List data={data} />} />
-					<Route path="/add-item" element={<AddItem />} />
-				</Route>
-			</Routes>
-		</Router>
+		//<Router>
+		<Routes>
+			<Route path="/" element={<Layout />}>
+				<Route index element={<Home handleClick={handleClick} />} />
+				<Route path="/list" element={<List data={data} />} />
+				<Route path="/add-item" element={<AddItem />} />
+			</Route>
+		</Routes>
+		//</Router>
 	);
 }
