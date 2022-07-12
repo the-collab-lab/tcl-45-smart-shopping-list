@@ -48,15 +48,15 @@ export function App() {
 			 *
 			 * Refer to `api/firebase.js`
 			 */
+			navigateTo('/list');
 			const nextData = getItemData(snapshot);
 
 			/** Finally, we update our React state. */
 			setData(nextData);
 		});
-	}, [listToken]);
+	}, [listToken, navigateTo]);
 
 	return (
-		//<Router>
 		<Routes>
 			<Route path="/" element={<Layout />}>
 				<Route index element={<Home handleClick={handleClick} />} />
@@ -64,6 +64,5 @@ export function App() {
 				<Route path="/add-item" element={<AddItem />} />
 			</Route>
 		</Routes>
-		//</Router>
 	);
 }
