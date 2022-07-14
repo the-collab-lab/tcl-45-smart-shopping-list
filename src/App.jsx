@@ -21,7 +21,7 @@ export function App() {
 	 * to create and join a new list.
 	 */
 	const [listToken, setListToken] = useStateWithStorage(
-		'null',
+		null,
 		'tcl-shopping-list-token',
 	);
 
@@ -32,7 +32,9 @@ export function App() {
 	}
 
 	useEffect(() => {
-		if (!listToken) return;
+		if (listToken) {
+			navigateTo('/list');
+		} else return;
 
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
@@ -48,7 +50,7 @@ export function App() {
 			 *
 			 * Refer to `api/firebase.js`
 			 */
-			navigateTo('/list');
+
 			const nextData = getItemData(snapshot);
 
 			/** Finally, we update our React state. */
