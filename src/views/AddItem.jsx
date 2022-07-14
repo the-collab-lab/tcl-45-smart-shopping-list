@@ -73,9 +73,7 @@ export function AddItem({ listToken }) {
 						Not Soon
 					</label>
 				</div>
-				<button onClick={handleSubmit} type="submit">
-					Add Item
-				</button>
+				<button type="submit">Add Item</button>
 			</form>
 		</div>
 	);
