@@ -50,7 +50,6 @@ export function App() {
 			 *
 			 * Refer to `api/firebase.js`
 			 */
-
 			const nextData = getItemData(snapshot);
 
 			/** Finally, we update our React state. */
