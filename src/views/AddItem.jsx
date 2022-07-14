@@ -1,19 +1,16 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem() {
-	const [timeFrame, setTimeFrame] = useState('7');
+export function AddItem({ listToken }) {
+	const [daysUntilNextPurchase, setTimeFrame] = useState(7);
 	const [itemName, setItem] = useState('');
-	const [data, setData] = useState({});
+	const [itemData, setData] = useState({});
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setData({ itemName, timeFrame });
-		addItem(data);
-		console.log('working');
-		console.log('timeFrame', timeFrame);
+		setData({ itemName, daysUntilNextPurchase });
+		await addItem(listToken, { itemName, daysUntilNextPurchase });
 	};
-	console.log('data', data);
 
 	const handleName = (e) => {
 		setItem(e.target.value);
@@ -22,14 +19,15 @@ export function AddItem() {
 	const handleTime = (e) => {
 		setTimeFrame(e.target.value);
 	};
-
+	// TODO: require input for item name
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
 				<div>
-					<label for="item-name">
+					<label htmlFor="item-name">
 						Item Name:
 						<input
+							value={itemName}
 							type="text"
 							name="item-name"
 							id="item-name"
@@ -39,11 +37,11 @@ export function AddItem() {
 					</label>
 				</div>
 				<div>
-					<label for="soon">
+					<label htmlFor="soon">
 						<input
 							type="radio"
 							value="7"
-							checked={timeFrame === '7'}
+							checked={daysUntilNextPurchase === 7}
 							name="time-frame"
 							id="soon"
 							onChange={handleTime}
@@ -52,7 +50,7 @@ export function AddItem() {
 					</label>
 				</div>
 				<div>
-					<label for="kind-of-soon">
+					<label htmlFor="kind-of-soon">
 						<input
 							type="radio"
 							name="time-frame"
@@ -64,7 +62,7 @@ export function AddItem() {
 					</label>
 				</div>
 				<div>
-					<label for="not-soon">
+					<label htmlFor="not-soon">
 						<input
 							type="radio"
 							name="time-frame"

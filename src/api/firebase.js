@@ -67,10 +67,15 @@ export function getItemData(snapshot) {
  * @param {number} itemData.daysUntilNextPurchase The number of days until the user thinks they'll need to buy the item again.
  */
 export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
-	const listCollectionRef = await addDoc(collection(db, listId));
+	console.dir({
+		listId,
+		itemName,
+		daysUntilNextPurchase: getFutureDate(daysUntilNextPurchase),
+	});
+	const listCollectionRef = collection(db, listId);
 	// TODO: Replace this call to console.log with the appropriate
 	// Firebase function, so this information is sent to your database!
-	await setDoc(listCollectionRef, {
+	return await addDoc(listCollectionRef, {
 		dateCreated: new Date(),
 		// NOTE: This is null because the item has just been created.
 		// We'll put a Date here when the item is purchased!
@@ -81,7 +86,6 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		name: itemName,
 		totalPurchases: 0,
 	});
-	return console.log('hello');
 }
 
 export async function updateItem() {
