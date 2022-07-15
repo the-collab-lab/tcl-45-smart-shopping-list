@@ -1,0 +1,18 @@
+.timeframe {
+	display: flex;
+	flex-direction: column;
+	border: none;
+	margin-left: 0px;
+}
+
+.button {
+	text-align: center;
+}
+
+.legend {
+	margin-left: -3.5vh;
+}
+
+.item-name {
+	margin-bottom: 2vh;
+}
