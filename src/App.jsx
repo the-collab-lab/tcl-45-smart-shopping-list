@@ -55,7 +55,9 @@ export function App() {
 			/** Finally, we update our React state. */
 			setData(nextData);
 		});
-	}, [listToken, navigateTo]);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [listToken]);
 
 	return (
 		<Routes>
