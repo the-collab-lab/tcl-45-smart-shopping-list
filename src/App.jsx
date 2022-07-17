@@ -32,10 +32,6 @@ export function App() {
 	}
 
 	useEffect(() => {
-		if (listToken) {
-			navigateTo('/list');
-		} else return;
-
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
 		 * with our database; then calls a callback function with
@@ -62,7 +58,10 @@ export function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Layout />}>
-				<Route index element={<Home handleClick={handleClick} />} />
+				<Route
+					index
+					element={<Home handleClick={handleClick} listToken={listToken} />}
+				/>
 				<Route path="/list" element={<List data={data} />} />
 				<Route path="/add-item" element={<AddItem />} />
 			</Route>
