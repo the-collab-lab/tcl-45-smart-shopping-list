@@ -67,11 +67,6 @@ export function getItemData(snapshot) {
  * @param {number} itemData.daysUntilNextPurchase The number of days until the user thinks they'll need to buy the item again.
  */
 export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
-	console.dir({
-		listId,
-		itemName,
-		daysUntilNextPurchase: getFutureDate(daysUntilNextPurchase),
-	});
 	const listCollectionRef = collection(db, listId);
 	// TODO: Replace this call to console.log with the appropriate
 	// Firebase function, so this information is sent to your database!

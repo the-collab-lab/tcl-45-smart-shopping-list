@@ -15,6 +15,8 @@ export function AddItem({ listToken }) {
 			await addItem(listToken, { itemName, daysUntilNextPurchase });
 			setError(false);
 			setSuccess(true);
+			setItem('');
+			setTimeFrame('7');
 		} catch (err) {
 			console.log(err.message);
 			setError(true);
@@ -31,7 +33,6 @@ export function AddItem({ listToken }) {
 		setTimeFrame(e.target.value);
 		setSuccess(false);
 	};
-	// TODO: require input for item name - done [V]
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
@@ -90,7 +91,7 @@ export function AddItem({ listToken }) {
 					</fieldset>
 				</div>
 				{error && <p>The item was not added</p>}
-				{success && <p>The item {itemName} has been added</p>}
+				{success && <p>The item has been added</p>}
 
 				<div className="button">
 					<button type="submit">Add Item</button>
