@@ -32,6 +32,8 @@ export function App() {
 	}
 
 	useEffect(() => {
+		if (!listToken) return;
+
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
 		 * with our database; then calls a callback function with
