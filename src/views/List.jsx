@@ -1,21 +1,34 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 export function List({ data }) {
 	const [searchQuery, setSearchQuery] = useState('');
-	const [searchResults, setSearchResults] = useState([]);
+	const [searchResults, setSearchResults] = useState(data);
+	// user type in search item - query
+	// as letters come in, filters items rendered on page
+	// set query to searchQuery
+	// render onto page search Results -> setting whatever is filtered into searchResults
+	function filterResults(data, searchQuery) {
+		return data.filter((item) => item.name.toLowerCase().includes(searchQuery));
+	}
 
 	function handleSearch(e) {
 		e.preventDefault();
 		setSearchQuery(e.target.value);
-		let filteredResults = [...searchResults];
-		console.log('filteredResults', filteredResults);
-		console.log('data', data);
-
-		filteredResults = data.filter((item) => console.log('item', item));
-
-		setSearchResults(filteredResults);
+		// searchQuery acts as filter parameter
+		const result = filterResults(data, searchQuery);
+		// set as searchResults
+		setSearchResults(result);
+		return searchResults;
 	}
+
+	// useEffect(() => {
+	// 	handleSearch();
+	// }, []);
+
+	console.log('searchQuery', searchQuery);
+	console.log('searchResults', searchResults);
 	return (
 		<>
 			<p>
@@ -35,7 +48,7 @@ export function List({ data }) {
 				</label>
 			</form>
 			<ul>
-				{data.map((item) => (
+				{searchResults.map((item) => (
 					<ListItem key={item.id} name={item.name} />
 				))}
 			</ul>
