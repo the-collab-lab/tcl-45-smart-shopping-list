@@ -6,6 +6,7 @@ import {
 	onSnapshot,
 	addDoc,
 	setDoc,
+	getDocs,
 } from 'firebase/firestore';
 
 import { getFutureDate } from '../utils';
@@ -97,4 +98,15 @@ export async function deleteItem() {
 	 * to delete an existing item! You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+}
+
+export async function findToken(listId) {
+	const querySnapshot = await getDocs(collection(db, listId));
+	querySnapshot.forEach((doc) => {
+		// we need to print the message if no collection exists
+		//redirect to List
+		console.log(doc.id, ' => ', doc.data());
+	});
+	alert('firebase working');
+	return;
 }
