@@ -13,10 +13,30 @@ export function Home({ handleClick, listToken }) {
 
 	return (
 		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
 			<button onClick={handleClick}>Create New List</button>
+
+			<div>
+				<form>
+					<div className="list-name">
+						<label htmlFor="list-name">
+							List Name:{' '}
+							<input
+								required
+								type="text"
+								name="list-name"
+								id="list-name"
+								placeholder="name of list"
+							/>
+						</label>
+					</div>
+					{/* {error && <p>The item was not added</p>}
+				{success && <p>The item has been added</p>} */}
+
+					<div className="button">
+						<button type="submit">Join List</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 }
