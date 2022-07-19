@@ -22,6 +22,10 @@ export function List({ data }) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchQuery]);
 
+	function handleClick() {
+		setSearchResults([]);
+	}
+
 	return (
 		<>
 			<p>
@@ -38,6 +42,11 @@ export function List({ data }) {
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
 					/>
+					{searchQuery ? (
+						<button onClick={handleClick}>Clear search</button>
+					) : (
+						''
+					)}
 				</label>
 			</form>
 			<ul>
