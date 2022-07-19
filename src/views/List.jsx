@@ -28,7 +28,7 @@ export function List({ data }) {
 				Hello from the <code>/list</code> page!
 			</p>
 			<form>
-				<label htmlFor="search-items-input">
+				<label htmlFor="search-items">
 					Search Items:
 					<input
 						name="search-items"
