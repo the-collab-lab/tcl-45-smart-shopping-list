@@ -11,7 +11,9 @@ export function List({ data }) {
 	// render onto page search Results -> setting whatever is filtered into searchResults
 
 	function filterResults(query) {
-		return data.filter((item) => item.name.includes(query));
+		return data.filter((item) =>
+			item.name.toLowerCase().includes(query.toLowerCase()),
+		);
 	}
 
 	useEffect(() => {
