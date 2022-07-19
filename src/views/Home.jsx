@@ -5,8 +5,9 @@ import { db, findToken } from '../api/firebase';
 import { collection, getDocs, query } from 'firebase/firestore';
 
 export function Home({ handleClick, listToken, setListToken }) {
-	const [joinListName, setJoinListName] = useState('');
 	const navigateTo = useNavigate();
+	const [joinListName, setJoinListName] = useState('');
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		if (listToken) {
@@ -16,12 +17,13 @@ export function Home({ handleClick, listToken, setListToken }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setError(false);
 		const querySnapshot = await findToken(joinListName);
 		if (querySnapshot.size >= 1) {
 			setListToken(joinListName);
 			navigateTo('/list');
 		} else if (querySnapshot.empty) {
-			throw new Error('This list does not exist.');
+			setError(true);
 		}
 	};
 
@@ -45,9 +47,7 @@ export function Home({ handleClick, listToken, setListToken }) {
 							/>
 						</label>
 					</div>
-					{/* {error && <p>The item was not added</p>}
-				{success && <p>The item has been added</p>} */}
-
+					{error && <p>That list does not exist.</p>}
 					<div className="button">
 						<button type="submit">Join List</button>
 					</div>
