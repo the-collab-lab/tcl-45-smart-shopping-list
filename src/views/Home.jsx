@@ -48,7 +48,7 @@ export function Home({ handleClick, listToken, setListToken }) {
 						</label>
 					</div>
 					{error && <p>That list does not exist.</p>}
-					<div className="button">
+					<div>
 						<button type="submit">Join List</button>
 					</div>
 				</form>
