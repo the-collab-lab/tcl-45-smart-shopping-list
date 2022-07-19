@@ -1,10 +1,11 @@
 import './Home.css';
-import { findToken } from '../api/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { db, findToken } from '../api/firebase';
+import { collection, getDocs, query } from 'firebase/firestore';
 
-export function Home({ handleClick, listToken }) {
-	const [listName, setListName] = useState('');
+export function Home({ handleClick, listToken, setListToken }) {
+	const [joinListName, setJoinListName] = useState('');
 	const navigateTo = useNavigate();
 
 	useEffect(() => {
@@ -13,18 +14,14 @@ export function Home({ handleClick, listToken }) {
 		} else return;
 	}, [listToken, navigateTo]);
 
-	// const getListName = (e) => {
-	// 	setListName(e.target.value);
-	// 	alert(listName);
-	// };
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			await findToken(listName);
-		} catch (err) {
-			console.log(err.message);
-			// setError(true);
+		const querySnapshot = await findToken(joinListName);
+		if (querySnapshot.size >= 1) {
+			setListToken(joinListName);
+			navigateTo('/list');
+		} else if (querySnapshot.empty) {
+			throw new Error('This list does not exist.');
 		}
 	};
 
@@ -41,10 +38,10 @@ export function Home({ handleClick, listToken }) {
 								required
 								type="text"
 								name="list-name"
-								value={listName}
+								value={joinListName}
 								id="list-name"
 								placeholder="name of list"
-								onChange={(e) => setListName(e.target.value)}
+								onChange={(e) => setJoinListName(e.target.value)}
 							/>
 						</label>
 					</div>

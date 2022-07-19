@@ -7,6 +7,7 @@ import {
 	addDoc,
 	setDoc,
 	getDocs,
+	query,
 } from 'firebase/firestore';
 
 import { getFutureDate } from '../utils';
@@ -21,7 +22,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 /**
  * Subscribe to changes on a specific list in the Firestore database (listId), and run a callback (handleSuccess) every time a change happens.
@@ -101,12 +102,7 @@ export async function deleteItem() {
 }
 
 export async function findToken(listId) {
-	const querySnapshot = await getDocs(collection(db, listId));
-	querySnapshot.forEach((doc) => {
-		// we need to print the message if no collection exists
-		//redirect to List
-		console.log(doc.id, ' => ', doc.data());
-	});
-	alert('firebase working');
-	return;
+	const q = query(collection(db, listId));
+	const querySnapshot = await getDocs(q);
+	return querySnapshot;
 }
