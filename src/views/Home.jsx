@@ -1,8 +1,7 @@
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { db, findToken } from '../api/firebase';
-import { collection, getDocs, query } from 'firebase/firestore';
+import { findToken } from '../api/firebase';
 
 export function Home({ handleClick, listToken, setListToken }) {
 	const navigateTo = useNavigate();
