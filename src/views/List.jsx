@@ -1,6 +1,5 @@
 import { ListItem } from '../components';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function List({ data }) {
 	const [searchQuery, setSearchQuery] = useState('');
