@@ -6,6 +6,8 @@ import {
 	onSnapshot,
 	addDoc,
 	setDoc,
+	getDocs,
+	query,
 } from 'firebase/firestore';
 
 import { getFutureDate } from '../utils';
@@ -97,4 +99,10 @@ export async function deleteItem() {
 	 * to delete an existing item! You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+}
+
+export async function findToken(listId) {
+	const q = query(collection(db, listId));
+	const querySnapshot = await getDocs(q);
+	return querySnapshot;
 }
