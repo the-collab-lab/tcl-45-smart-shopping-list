@@ -14,7 +14,7 @@ export function Home({ handleClick, listToken, setListToken }) {
 		} else return;
 	}, [listToken, navigateTo]);
 
-	const handleSubmit = async (e) => {
+	const handleJoinList = async (e) => {
 		e.preventDefault();
 		setError(false);
 		const querySnapshot = await findToken(joinListName);
@@ -31,7 +31,7 @@ export function Home({ handleClick, listToken, setListToken }) {
 			<button onClick={handleClick}>Create New List</button>
 
 			<div>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleJoinList}>
 					<div className="list-name">
 						<label htmlFor="list-name">
 							List Name:{' '}
