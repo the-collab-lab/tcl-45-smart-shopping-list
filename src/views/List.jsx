@@ -1,12 +1,12 @@
 import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './List.css';
 
 export function List({ data, loading }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
-	console.log('loading', loading);
 	// user type in search item - query
 	// as letters come in, filters items rendered on page
 	// set query to searchQuery
@@ -35,7 +35,7 @@ export function List({ data, loading }) {
 	}
 
 	return (
-		<>
+		<div className="list-container">
 			{loading ? (
 				<p>loading</p>
 			) : (
@@ -45,7 +45,7 @@ export function List({ data, loading }) {
 							<h2>Find what you're looking for!</h2>
 							<form>
 								<label htmlFor="search-items">
-									Search Items:
+									Search Items:{' '}
 									<input
 										name="search-items"
 										id="search-items"
@@ -83,6 +83,6 @@ export function List({ data, loading }) {
 							<ListItem key={item.id} name={item.name} />
 					  ))}
 			</ul>
-		</>
+		</div>
 	);
 }
