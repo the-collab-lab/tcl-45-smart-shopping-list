@@ -10,7 +10,8 @@ export function ListItem({ item, listToken }) {
 		try {
 			setIsPurchased(true);
 			item.totalPurchases++;
-			await updateItem(listToken, { item });
+			item.isChecked = true;
+			await updateItem(listToken, item);
 		} catch (error) {
 			console.log('error', error);
 		}

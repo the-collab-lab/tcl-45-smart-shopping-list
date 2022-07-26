@@ -8,7 +8,7 @@ export function List({ data, listToken }) {
 	// as letters come in, filters items rendered on page
 	// set query to searchQuery
 	// render onto page search Results -> setting whatever is filtered into searchResults
-	console.log('data from List', data);
+	// console.log('data from List', data);
 
 	function filterResults(query) {
 		return data.filter((item) =>
