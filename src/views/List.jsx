@@ -1,10 +1,11 @@
 import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function List({ data }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
-	console.log('data', data);
+	const navigateTo = useNavigate();
 	// user type in search item - query
 	// as letters come in, filters items rendered on page
 	// set query to searchQuery
@@ -26,6 +27,10 @@ export function List({ data }) {
 
 	function handleClearSearchQuery() {
 		setSearchQuery('');
+	}
+
+	function handleNav() {
+		navigateTo('/add-item');
 	}
 
 	return (
@@ -55,7 +60,7 @@ export function List({ data }) {
 					</label>
 				</form>
 			) : (
-				<p>Add</p>
+				<button onClick={handleNav}>Add Item</button>
 			)}
 
 			<ul>
