@@ -2,10 +2,11 @@ import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function List({ data }) {
+export function List({ data, loading }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
+	console.log('loading', loading);
 	// user type in search item - query
 	// as letters come in, filters items rendered on page
 	// set query to searchQuery
@@ -35,37 +36,43 @@ export function List({ data }) {
 
 	return (
 		<>
-			{data.length >= 1 ? (
-				<>
-					<h2>Find what you're looking for!</h2>
-					<form>
-						<label htmlFor="search-items">
-							Search Items:
-							<input
-								name="search-items"
-								id="search-items"
-								type="text"
-								placeholder="Search items"
-								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
-							/>
-							{searchQuery ? (
-								<button type="button" onClick={handleClearSearchQuery}>
-									Clear search
-								</button>
-							) : (
-								''
-							)}
-						</label>
-					</form>
-				</>
+			{loading ? (
+				<p>loading</p>
 			) : (
 				<>
-					<h2>
-						Your list is empty! Click the button below to start building your
-						list.
-					</h2>
-					<button onClick={handleNav}>Add Item</button>
+					{data.length >= 1 ? (
+						<>
+							<h2>Find what you're looking for!</h2>
+							<form>
+								<label htmlFor="search-items">
+									Search Items:
+									<input
+										name="search-items"
+										id="search-items"
+										type="text"
+										placeholder="Search items"
+										value={searchQuery}
+										onChange={(e) => setSearchQuery(e.target.value)}
+									/>
+									{searchQuery ? (
+										<button type="button" onClick={handleClearSearchQuery}>
+											Clear search
+										</button>
+									) : (
+										''
+									)}
+								</label>
+							</form>
+						</>
+					) : (
+						<>
+							<h2>
+								Your list is empty! Click the button below to start building
+								your list.
+							</h2>
+							<button onClick={handleNav}>Add Item</button>
+						</>
+					)}{' '}
 				</>
 			)}
 

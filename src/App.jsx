@@ -10,6 +10,8 @@ import { generateToken } from '@the-collab-lab/shopping-list-utils';
 export function App() {
 	const navigateTo = useNavigate();
 	const [data, setData] = useState([]);
+	const [loading, setLoading] = useState(true);
+
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
 	 * that can be used to update `listToken` later.
@@ -52,6 +54,7 @@ export function App() {
 
 			/** Finally, we update our React state. */
 			setData(nextData);
+			setLoading(false);
 		});
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +73,7 @@ export function App() {
 						/>
 					}
 				/>
-				<Route path="/list" element={<List data={data} />} />
+				<Route path="/list" element={<List data={data} loading={loading} />} />
 				<Route path="/add-item" element={<AddItem listToken={listToken} />} />
 			</Route>
 		</Routes>
