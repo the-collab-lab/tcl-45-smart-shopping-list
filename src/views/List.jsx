@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 export function List({ data }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
+	console.log('data', data);
 	// user type in search item - query
 	// as letters come in, filters items rendered on page
 	// set query to searchQuery
@@ -32,26 +33,31 @@ export function List({ data }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
-			<form>
-				<label htmlFor="search-items">
-					Search Items:
-					<input
-						name="search-items"
-						id="search-items"
-						type="text"
-						placeholder="Search items"
-						value={searchQuery}
-						onChange={(e) => setSearchQuery(e.target.value)}
-					/>
-					{searchQuery ? (
-						<button type="button" onClick={handleClearSearchQuery}>
-							Clear search
-						</button>
-					) : (
-						''
-					)}
-				</label>
-			</form>
+			{data.length > 1 ? (
+				<form>
+					<label htmlFor="search-items">
+						Search Items:
+						<input
+							name="search-items"
+							id="search-items"
+							type="text"
+							placeholder="Search items"
+							value={searchQuery}
+							onChange={(e) => setSearchQuery(e.target.value)}
+						/>
+						{searchQuery ? (
+							<button type="button" onClick={handleClearSearchQuery}>
+								Clear search
+							</button>
+						) : (
+							''
+						)}
+					</label>
+				</form>
+			) : (
+				<p>Add</p>
+			)}
+
 			<ul>
 				{!searchQuery
 					? data.map((item) => <ListItem key={item.id} name={item.name} />)
