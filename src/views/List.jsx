@@ -35,32 +35,38 @@ export function List({ data }) {
 
 	return (
 		<>
-			<p>
-				Hello from the <code>/list</code> page!
-			</p>
-			{data.length > 1 ? (
-				<form>
-					<label htmlFor="search-items">
-						Search Items:
-						<input
-							name="search-items"
-							id="search-items"
-							type="text"
-							placeholder="Search items"
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-						/>
-						{searchQuery ? (
-							<button type="button" onClick={handleClearSearchQuery}>
-								Clear search
-							</button>
-						) : (
-							''
-						)}
-					</label>
-				</form>
+			{data.length >= 1 ? (
+				<>
+					<h2>Find what you're looking for!</h2>
+					<form>
+						<label htmlFor="search-items">
+							Search Items:
+							<input
+								name="search-items"
+								id="search-items"
+								type="text"
+								placeholder="Search items"
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+							/>
+							{searchQuery ? (
+								<button type="button" onClick={handleClearSearchQuery}>
+									Clear search
+								</button>
+							) : (
+								''
+							)}
+						</label>
+					</form>
+				</>
 			) : (
-				<button onClick={handleNav}>Add Item</button>
+				<>
+					<h2>
+						Your list is empty! Click the button below to start building your
+						list.
+					</h2>
+					<button onClick={handleNav}>Add Item</button>
+				</>
 			)}
 
 			<ul>
