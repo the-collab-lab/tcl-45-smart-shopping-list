@@ -55,9 +55,12 @@ export function List({ data, loading }) {
 										onChange={(e) => setSearchQuery(e.target.value)}
 									/>
 									{searchQuery ? (
-										<button type="button" onClick={handleClearSearchQuery}>
-											Clear search
-										</button>
+										<>
+											{' '}
+											<button type="button" onClick={handleClearSearchQuery}>
+												Clear search
+											</button>
+										</>
 									) : (
 										''
 									)}
