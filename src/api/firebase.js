@@ -8,6 +8,9 @@ import {
 	setDoc,
 	getDocs,
 	query,
+	updateDoc,
+	doc,
+	serverTimestamp,
 } from 'firebase/firestore';
 
 import { getFutureDate } from '../utils';
@@ -85,12 +88,19 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem() {
+export async function updateItem(listId, itemData) {
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
 	 * to update an existing item! You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+	console.log('listId in updateItem function', listId);
+	console.log('itemData in updateItem function', itemData);
+	const listCollectionRef = collection(db, listId);
+
+	await updateDoc(listCollectionRef, {
+		itemData,
+	});
 }
 
 export async function deleteItem() {

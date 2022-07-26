@@ -1,13 +1,14 @@
 import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 
-export function List({ data }) {
+export function List({ data, listToken }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	// user type in search item - query
 	// as letters come in, filters items rendered on page
 	// set query to searchQuery
 	// render onto page search Results -> setting whatever is filtered into searchResults
+	console.log('data from List', data);
 
 	function filterResults(query) {
 		return data.filter((item) =>
@@ -54,9 +55,11 @@ export function List({ data }) {
 			</form>
 			<ul>
 				{!searchQuery
-					? data.map((item) => <ListItem key={item.id} name={item.name} />)
+					? data.map((item) => (
+							<ListItem key={item.id} item={item} listToken={listToken} />
+					  ))
 					: searchResults.map((item) => (
-							<ListItem key={item.id} name={item.name} />
+							<ListItem key={item.id} name={item.name} listToken={listToken} />
 					  ))}
 			</ul>
 		</>
