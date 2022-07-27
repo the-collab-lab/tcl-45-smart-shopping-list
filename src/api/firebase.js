@@ -98,6 +98,7 @@ export async function updateItem(listId, itemData) {
 	await updateDoc(itemRef, {
 		totalPurchases: itemData.totalPurchases,
 		isChecked: itemData.isChecked,
+		dateLastPurchased: new Date(),
 	});
 }
 
