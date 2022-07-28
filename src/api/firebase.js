@@ -16,12 +16,13 @@ import {
 import { getFutureDate } from '../utils';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAKhXStVolfPKwMsQCo7KiSePpC_zcJY-4',
-	authDomain: 'tcl-45-smart-shopping-list.firebaseapp.com',
-	projectId: 'tcl-45-smart-shopping-list',
-	storageBucket: 'tcl-45-smart-shopping-list.appspot.com',
-	messagingSenderId: '190905054675',
-	appId: '1:190905054675:web:f970100be58de6cfaeeb26',
+	apiKey: 'AIzaSyDs9zVNAOayuEyqk0r8J_p8U3F-ws7jtws',
+	authDomain: 'tcl-smart-shopping-list2.firebaseapp.com',
+	projectId: 'tcl-smart-shopping-list2',
+	storageBucket: 'tcl-smart-shopping-list2.appspot.com',
+	messagingSenderId: '17954669887',
+	appId: '1:17954669887:web:9ed53bad4550bb871b7f8a',
+	measurementId: 'G-MGC0P57VGG',
 };
 
 const app = initializeApp(firebaseConfig);
