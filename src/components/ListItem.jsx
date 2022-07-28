@@ -1,73 +1,76 @@
 import './ListItem.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { updateItem } from '../api';
-import { useEffect } from 'react';
 
 export function ListItem({ item, listToken }) {
-	const one_day_in_seconds = 24 * 60 * 60;
-	// const one_day_in_seconds = 3;
+	// const one_day_in_ms = 24 * 60 * 60 * 1000;
+	const one_day_in_ms = 60 * 2 * 1000; // 180 seconds for testing the reset timeframe
+	const currentDate = new Date();
+	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
+	const dateLastPurchasedInMilliseconds =
+		item && item.dateLastPurchased
+			? item.dateLastPurchased.seconds * 1000
+			: null;
+	const timeElapsed =
+		currentTimeInMilliseconds - dateLastPurchasedInMilliseconds;
 
-	const [isPurchased, setIsPurchased] = useState(false);
+	const [isPurchased, setIsPurchased] = useState(item.isChecked);
 
 	const handlePurchaseItem = async () => {
 		try {
-			setIsPurchased(true);
 			item.totalPurchases++;
 			item.isChecked = true;
-			// update dateLastPurchased
 			await updateItem(listToken, item);
 		} catch (error) {
 			console.log('error', error);
 		}
-
-		// set 24 hour time function
-		// useEffect or useState ???
-		// update item.isChecked ?
+		console.log('item was purchased');
 	};
-	const convertedDateLastPurchased =
-		item && item.dateLastPurchased ? item.dateLastPurchased.seconds : null;
 
 	useEffect(() => {
-		const updatePurchased = async () => {
-			try {
-				console.log('in updatePurchased');
-				console.log('convertedDateLastPurchased ', convertedDateLastPurchased);
-				console.log(
-					'purchase + 24 h ',
-					convertedDateLastPurchased + one_day_in_seconds,
-				);
-				if (
-					// convertedDateLastPurchased >=
-					// convertedDateLastPurchased + one_day_in_seconds
-					new Date() - convertedDateLastPurchased ===
-					one_day_in_seconds
-				) {
-					console.log('in if-statement updatePurchased');
+		if (timeElapsed > one_day_in_ms) {
+			item.isChecked = false;
+			updateItem(listToken, item);
+			console.log('times up!');
+		}
+	}, [item]);
 
-					item.isChecked = false;
-					setIsPurchased(false);
-					await updateItem(listToken, item);
-				}
-			} catch (error) {
-				console.log('error', error);
-			}
-		};
-		updatePurchased();
-	}, [convertedDateLastPurchased, item, listToken]);
+	const handleCheckItem = (e) => {
+		setIsPurchased(e.target.checked);
+		handlePurchaseItem();
+	};
 
-	console.log(convertedDateLastPurchased, item.isChecked);
+	// useEffect(() => {
+	// 	const updatePurchased = async () => {
+	// 		try {
+	// 			if (
+	// 				timeElapsed > one_day_in_ms
+	// 			) {
+	// 				item.isChecked = false;
+	// 				setIsPurchased(false);
+	// 				await updateItem(listToken, item);
+	// 			}
+	// 		} catch (error) {
+	// 			console.log('error', error);
+	// 		}
+	// 	};
+	// 	updatePurchased();
+	// }, [dateLastPurchasedInMilliseconds, item, listToken]);
+
+	console.log(item.name, dateLastPurchasedInMilliseconds, item.isChecked);
 
 	return (
 		<div className="ListItem">
 			<input
 				type="checkbox"
-				id={`${item.name}-checkbox`}
+				id={`${item.id}-checkbox`}
 				name={item.name}
-				onClick={handlePurchaseItem}
-				defaultChecked={item.isChecked}
+				onChange={handleCheckItem}
+				// defaultChecked={isPurchased}
+				checked={isPurchased}
 				//put the calculation here ??
 			/>
-			<label htmlFor={`${item.name}-checkbox`}>{item.name}</label>
+			<label htmlFor={`${item.id}-checkbox`}>{item.name}</label>
 		</div>
 	);
 }
