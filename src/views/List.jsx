@@ -59,7 +59,7 @@ export function List({ data, listToken }) {
 							<ListItem key={item.id} item={item} listToken={listToken} />
 					  ))
 					: searchResults.map((item) => (
-							<ListItem key={item.id} name={item.name} listToken={listToken} />
+							<ListItem key={item.id} item={item} listToken={listToken} />
 					  ))}
 			</ul>
 		</>

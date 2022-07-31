@@ -37,7 +37,7 @@ export function ListItem({ item, listToken }) {
 			item.isChecked = false;
 			updateItem(listToken, item);
 		}
-	}, []);
+	});
 
 	const handleCheckItem = (e) => {
 		setIsPurchased(e.target.checked);
