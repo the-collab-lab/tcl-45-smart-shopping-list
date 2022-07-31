@@ -5,12 +5,10 @@ import {
 	getFirestore,
 	onSnapshot,
 	addDoc,
-	setDoc,
 	getDocs,
 	query,
 	updateDoc,
 	doc,
-	serverTimestamp,
 } from 'firebase/firestore';
 
 import { getFutureDate } from '../utils';
