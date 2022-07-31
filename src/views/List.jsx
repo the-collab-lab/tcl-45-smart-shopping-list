@@ -37,12 +37,12 @@ export function List({ data, loading }) {
 	return (
 		<div className="list-container">
 			{loading ? (
-				<p>loading</p>
+				<p>Your list is loading...</p>
 			) : (
 				<>
 					{data.length >= 1 ? (
 						<>
-							<h2>Find what you're looking for!</h2>
+							<h3>Find what you're looking for!</h3>
 							<form>
 								<label htmlFor="search-items">
 									Search Items:{' '}
@@ -69,10 +69,10 @@ export function List({ data, loading }) {
 						</>
 					) : (
 						<>
-							<h2>
+							<h3>
 								Your list is empty! Click the button below to start building
 								your list.
-							</h2>
+							</h3>
 							<button onClick={handleNav}>Add Item</button>
 						</>
 					)}{' '}
