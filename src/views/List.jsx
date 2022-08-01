@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './List.css';
 
-export function List({ data, loading }) {
+export function List({ data, listToken, loading }) {
+
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
@@ -11,6 +12,7 @@ export function List({ data, loading }) {
 	// as letters come in, filters items rendered on page
 	// set query to searchQuery
 	// render onto page search Results -> setting whatever is filtered into searchResults
+	// console.log('data from List', data);
 
 	function filterResults(query) {
 		return data.filter((item) =>
@@ -81,9 +83,11 @@ export function List({ data, loading }) {
 
 			<ul>
 				{!searchQuery
-					? data.map((item) => <ListItem key={item.id} name={item.name} />)
+					? data.map((item) => (
+							<ListItem key={item.id} item={item} listToken={listToken} />
+					  ))
 					: searchResults.map((item) => (
-							<ListItem key={item.id} name={item.name} />
+							<ListItem key={item.id} item={item} listToken={listToken} />
 					  ))}
 			</ul>
 		</div>
