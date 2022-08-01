@@ -12,7 +12,10 @@ export function AddItem({ listToken, data }) {
 		e.preventDefault();
 		try {
 			data.find((item) => {
-				if (item.name.toLowerCase() === itemName.toLowerCase()) {
+				if (
+					item.name.toLowerCase().replace(/ /g, '') ===
+					itemName.toLowerCase().replace(/ /g, '')
+				) {
 					setDuplicateError(true);
 					setSuccess(false);
 				} else {
