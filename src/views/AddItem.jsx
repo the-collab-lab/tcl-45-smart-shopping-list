@@ -8,24 +8,37 @@ export function AddItem({ listToken, data }) {
 	const [duplicateError, setDuplicateError] = useState(false);
 	const [success, setSuccess] = useState(false);
 
+	const checkDuplicateItems = (data, itemName) => {
+		const isDuplicate = data.includes((item) => {
+			if (
+				item.name.toLowerCase().replace(/ /g, '') ===
+				itemName.toLowerCase().replace(/ /g, '')
+			)
+				return;
+		});
+		console.log('isDuplicate', isDuplicate);
+		console.log('dataInFunction', data);
+		return isDuplicate;
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setData({ itemName, daysUntilNextPurchase });
+		const duplicateItem = checkDuplicateItems(data, itemName);
+		console.log('data', data);
+		console.log('itemName', itemName);
+		console.log('duplicateItem', duplicateItem);
 		try {
-			data.find((item) => {
-				if (
-					item.name.toLowerCase().replace(/ /g, '') ===
-					itemName.toLowerCase().replace(/ /g, '')
-				) {
-					setDuplicateError(true);
-					setSuccess(false);
-				} else {
-					addItem(listToken, { itemName, daysUntilNextPurchase });
-					setError(false);
-					setSuccess(true);
-					setItem('');
-					setTimeFrame('7');
-				}
-			});
+			if (!duplicateItem) {
+				addItem(listToken, { itemName, daysUntilNextPurchase });
+				setError(false);
+				setSuccess(true);
+				setItem('');
+				setTimeFrame('7');
+			} else {
+				setDuplicateError(true);
+				setSuccess(false);
+			}
 		} catch (err) {
 			console.log(err.message);
 			setError(true);
