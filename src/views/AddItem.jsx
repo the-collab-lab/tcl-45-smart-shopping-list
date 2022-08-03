@@ -8,28 +8,36 @@ export function AddItem({ listToken, data }) {
 	const [duplicateError, setDuplicateError] = useState(false);
 	const [success, setSuccess] = useState(false);
 
-	const checkDuplicateItems = (data, itemName) => {
-		const isDuplicate = data.includes((item) => {
-			if (
-				item.name.toLowerCase().replace(/ /g, '') ===
-				itemName.toLowerCase().replace(/ /g, '')
-			)
-				return;
-		});
-		console.log('isDuplicate', isDuplicate);
-		console.log('dataInFunction', data);
-		return isDuplicate;
-	};
+	// 	const array = [1, 2, 3, 4, 5];
+
+	// // checks whether an element is even
+	// const even = (element) => element % 2 === 0;
+
+	// console.log(array.some(even));
+	// // expected output: true
+
+	const isDuplicate = (data) =>
+		data.name.toLowerCase().replace(/ /g, '') ===
+		itemName.toLowerCase().replace(/ /g, '');
+
+	// const checkDuplicateItems = (data, itemName) => {
+	// 	const isDuplicate = data.some((item) => {
+
+	// 	}
+	// 	// console.log('isDuplicate', isDuplicate);
+	// 	// console.log('dataInFunction', data);
+	// 	return isDuplicate;
+	// };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setData({ itemName, daysUntilNextPurchase });
-		const duplicateItem = checkDuplicateItems(data, itemName);
+		const duplicateItem = data.some(isDuplicate);
 		console.log('data', data);
 		console.log('itemName', itemName);
 		console.log('duplicateItem', duplicateItem);
 		try {
 			if (!duplicateItem) {
+				setData({ itemName, daysUntilNextPurchase });
 				addItem(listToken, { itemName, daysUntilNextPurchase });
 				setError(false);
 				setSuccess(true);
