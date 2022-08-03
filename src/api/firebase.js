@@ -1,3 +1,4 @@
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 import { initializeApp } from 'firebase/app';
 
 import {
@@ -11,7 +12,7 @@ import {
 	doc,
 } from 'firebase/firestore';
 
-import { getFutureDate } from '../utils';
+import { getFutureDate, getDaysBetweenDates } from '../utils';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyAKhXStVolfPKwMsQCo7KiSePpC_zcJY-4',
@@ -83,6 +84,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		isChecked: false,
 		name: itemName,
 		totalPurchases: 0,
+		//get previousEstimate: 7/14/30 from the input and add it when the item is added
 	});
 }
 
@@ -97,6 +99,8 @@ export async function updateItem(listId, itemData) {
 		totalPurchases: itemData.totalPurchases,
 		isChecked: itemData.isChecked,
 		dateLastPurchased: new Date(),
+		dateNextPurchased: calculateEstimate(),
+		//previousEstimate from DB, getDaysBetweenDates for daysSinceLastTransactionUpdate, totalPurchases from DB
 	});
 }
 
