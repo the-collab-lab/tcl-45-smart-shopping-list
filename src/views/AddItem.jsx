@@ -1,33 +1,17 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem({ listToken, data }) {
+export function AddItem({ listToken, data, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
 	const [itemName, setItem] = useState('');
 	const [error, setError] = useState(false);
 	const [duplicateError, setDuplicateError] = useState(false);
 	const [success, setSuccess] = useState(false);
 
-	// 	const array = [1, 2, 3, 4, 5];
-
-	// // checks whether an element is even
-	// const even = (element) => element % 2 === 0;
-
-	// console.log(array.some(even));
-	// // expected output: true
-
+	// check for duplicate item in list
 	const isDuplicate = (data) =>
 		data.name.toLowerCase().replace(/ /g, '') ===
 		itemName.toLowerCase().replace(/ /g, '');
-
-	// const checkDuplicateItems = (data, itemName) => {
-	// 	const isDuplicate = data.some((item) => {
-
-	// 	}
-	// 	// console.log('isDuplicate', isDuplicate);
-	// 	// console.log('dataInFunction', data);
-	// 	return isDuplicate;
-	// };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
