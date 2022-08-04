@@ -56,7 +56,7 @@ export function AddItem({ listToken, data }) {
 
 	const handleName = (e) => {
 		setSuccess(false);
-
+		setDuplicateError(false);
 		setItem(e.target.value);
 	};
 
