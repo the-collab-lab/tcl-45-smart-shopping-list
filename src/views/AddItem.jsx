@@ -4,13 +4,11 @@ import { addItem } from '../api/firebase';
 export function AddItem({ listToken }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
 	const [itemName, setItem] = useState('');
-	const [itemData, setData] = useState({});
 	const [error, setError] = useState(false);
 	const [success, setSuccess] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setData({ itemName, daysUntilNextPurchase });
 		try {
 			await addItem(listToken, { itemName, daysUntilNextPurchase });
 			setError(false);
