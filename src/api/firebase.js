@@ -13,7 +13,6 @@ import {
 } from 'firebase/firestore';
 
 import { getDaysBetweenDates, getFutureDate } from '../utils';
-// import { getFutureDate, getDaysBetweenDates } from '../utils';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyAKhXStVolfPKwMsQCo7KiSePpC_zcJY-4',
@@ -85,7 +84,11 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		isChecked: false,
 		name: itemName,
 		totalPurchases: 0,
+<<<<<<< HEAD
 		previousEstimate: parseInt(daysUntilNextPurchase),
+=======
+		previousEstimate: daysUntilNextPurchase,
+>>>>>>> b6a6a8d (removed redundant itemData, added new field with previousEstimate to be saved to Firestore when an item is added to the list)
 	});
 }
 
