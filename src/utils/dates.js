@@ -11,9 +11,11 @@ export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
 
-export function getDaysBetweenDates() {
-	return;
+export function getDaysBetweenDates({ dateLastPurchased }) {
+	let today = new Date();
+	// get both dates in milliseconds
+	let timeDifference = today.getTime() - dateLastPurchased.toMillis();
+	// change milliseconds into days, rounding up
+	let dayDifference = Math.ceil(timeDifference / ONE_DAY_IN_MILLISECONDS);
+	return dayDifference;
 }
-
-// getDaysBetweenDates (LastPurchasedDate, Date.now()) {
-//  return today(Date.now()) - LastPurchasedDate }

@@ -1,6 +1,7 @@
 import './ListItem.css';
 import { useState, useEffect } from 'react';
 import { updateItem } from '../api';
+import { getDaysBetweenDates } from '../utils';
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
 
@@ -29,6 +30,7 @@ export function ListItem({ item, listToken }) {
 			console.log('error', error);
 		}
 	};
+	// getDaysBetweenDates of lastPurchasedDate and now
 
 	useEffect(() => {
 		if (timeElapsed > one_day_in_ms) {

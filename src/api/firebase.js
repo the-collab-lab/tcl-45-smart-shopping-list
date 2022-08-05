@@ -85,7 +85,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		isChecked: false,
 		name: itemName,
 		totalPurchases: 0,
-		previousEstimate: daysUntilNextPurchase,
+		// previousEstimate: daysUntilNextPurchase,
 	});
 }
 
@@ -100,7 +100,7 @@ export async function updateItem(listId, itemData) {
 		totalPurchases: itemData.totalPurchases,
 		isChecked: itemData.isChecked,
 		dateLastPurchased: new Date(),
-		dateNextPurchased: calculateEstimate(),
+		// dateNextPurchased: calculateEstimate(),
 		//previousEstimate from DB, getDaysBetweenDates for daysSinceLastTransactionUpdate, totalPurchases from DB
 	});
 }
