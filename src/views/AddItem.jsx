@@ -16,9 +16,6 @@ export function AddItem({ listToken, data, setData }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const duplicateItem = data.some(isDuplicate);
-		console.log('data', data);
-		console.log('itemName', itemName);
-		console.log('duplicateItem', duplicateItem);
 		try {
 			if (!duplicateItem) {
 				setData({ itemName, daysUntilNextPurchase });
