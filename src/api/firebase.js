@@ -111,11 +111,11 @@ export async function updateItem(listId, itemData) {
 			totalPurchases: itemData.totalPurchases,
 			isChecked: itemData.isChecked,
 			dateLastPurchased: new Date(),
-			dateNextPurchased: calculateEstimate({
-				previousEstimate: parseInt(itemData.previousEstimate),
-				daysSinceLastTransaction: dayDiff,
-				totalPurchases: itemData.totalPurchases,
-			}),
+			dateNextPurchased: calculateEstimate(
+				previousEstimate,
+				dayDiff,
+				itemData.totalPurchases,
+			),
 		});
 	}
 }
