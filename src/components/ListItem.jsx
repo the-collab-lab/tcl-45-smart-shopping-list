@@ -32,7 +32,7 @@ export function ListItem({ item, listToken }) {
 	// getDaysBetweenDates of lastPurchasedDate and now
 
 	useEffect(() => {
-		if (timeElapsed > one_day_in_ms) {
+		if (timeElapsed > one_day_in_ms && item.isChecked === true) {
 			item.isChecked = false;
 			updateItem(listToken, item);
 		}

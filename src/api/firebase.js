@@ -96,28 +96,27 @@ export async function updateItem(listId, itemData) {
 	 * this function must accept!
 	 */
 	const itemRef = doc(db, listId, itemData.id);
-
+	console.log('in updateItem');
+	let dayDiff;
 	if (itemData.dateLastPurchased) {
-		let dayDiff = getDaysBetweenDates(itemData);
-		// console.log('dayDiff', dayDiff);
-		let previousEstimate = parseInt(itemData.previousEstimate);
-		let estimate = calculateEstimate(
-			previousEstimate,
-			dayDiff,
-			itemData.totalPurchases,
-		);
-		// console.log('estimate', estimate);
-		await updateDoc(itemRef, {
-			totalPurchases: itemData.totalPurchases,
-			isChecked: itemData.isChecked,
-			dateLastPurchased: new Date(),
-			dateNextPurchased: calculateEstimate(
-				previousEstimate,
-				dayDiff,
-				itemData.totalPurchases,
-			),
-		});
+		dayDiff = getDaysBetweenDates(itemData.dateLastPurchased);
+	} else {
+		dayDiff = getDaysBetweenDates(itemData.dateCreated);
 	}
+
+	let previousEstimate = parseInt(itemData.previousEstimate);
+	let newTimeEstimate = calculateEstimate(
+		previousEstimate,
+		dayDiff,
+		itemData.totalPurchases,
+	);
+	await updateDoc(itemRef, {
+		totalPurchases: itemData.totalPurchases,
+		isChecked: itemData.isChecked,
+		dateLastPurchased: new Date(),
+		dateNextPurchased: getFutureDate(newTimeEstimate),
+		previousEstimate: newTimeEstimate,
+	});
 }
 
 //previousEstimate from DB, getDaysBetweenDates for daysSinceLastTransactionUpdate, totalPurchases from DB
