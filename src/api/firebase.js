@@ -12,7 +12,7 @@ import {
 	doc,
 } from 'firebase/firestore';
 
-import { getFutureDate } from '../utils';
+import { getDaysBetweenDates, getFutureDate } from '../utils';
 // import { getFutureDate, getDaysBetweenDates } from '../utils';
 
 const firebaseConfig = {
@@ -85,7 +85,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		isChecked: false,
 		name: itemName,
 		totalPurchases: 0,
-		// previousEstimate: daysUntilNextPurchase,
+		previousEstimate: daysUntilNextPurchase,
 	});
 }
 
@@ -96,14 +96,31 @@ export async function updateItem(listId, itemData) {
 	 * this function must accept!
 	 */
 	const itemRef = doc(db, listId, itemData.id);
-	await updateDoc(itemRef, {
-		totalPurchases: itemData.totalPurchases,
-		isChecked: itemData.isChecked,
-		dateLastPurchased: new Date(),
-		// dateNextPurchased: calculateEstimate(),
-		//previousEstimate from DB, getDaysBetweenDates for daysSinceLastTransactionUpdate, totalPurchases from DB
-	});
+
+	if (itemData.dateLastPurchased) {
+		let dayDiff = getDaysBetweenDates(itemData);
+		// console.log('dayDiff', dayDiff);
+		let previousEstimate = parseInt(itemData.previousEstimate);
+		let estimate = calculateEstimate(
+			previousEstimate,
+			dayDiff,
+			itemData.totalPurchases,
+		);
+		// console.log('estimate', estimate);
+		await updateDoc(itemRef, {
+			totalPurchases: itemData.totalPurchases,
+			isChecked: itemData.isChecked,
+			dateLastPurchased: new Date(),
+			dateNextPurchased: calculateEstimate({
+				previousEstimate: parseInt(itemData.previousEstimate),
+				daysSinceLastTransaction: dayDiff,
+				totalPurchases: itemData.totalPurchases,
+			}),
+		});
+	}
 }
+
+//previousEstimate from DB, getDaysBetweenDates for daysSinceLastTransactionUpdate, totalPurchases from DB
 
 export async function deleteItem() {
 	/**
