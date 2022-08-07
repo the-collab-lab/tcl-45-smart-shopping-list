@@ -33,8 +33,6 @@ export function ListItem({ item, listToken }) {
 	};
 
 	useEffect(() => {
-		console.log('isPurchased', isPurchased);
-		console.log('isChecked', item.isChecked);
 		if (
 			timeElapsed > one_day_in_ms &&
 			isPurchased === true &&
