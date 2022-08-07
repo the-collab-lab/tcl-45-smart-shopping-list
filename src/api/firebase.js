@@ -85,31 +85,28 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		isChecked: false,
 		name: itemName,
 		totalPurchases: 0,
-		previousEstimate: daysUntilNextPurchase,
+		previousEstimate: parseInt(daysUntilNextPurchase),
 	});
 }
 
 export async function updateItem(listId, itemData) {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item! You'll need to figure out what arguments
-	 * this function must accept!
-	 */
 	const itemRef = doc(db, listId, itemData.id);
-	console.log('in updateItem');
-	let dayDiff;
-	if (itemData.dateLastPurchased) {
-		dayDiff = getDaysBetweenDates(itemData.dateLastPurchased);
-	} else {
-		dayDiff = getDaysBetweenDates(itemData.dateCreated);
-	}
+	let daysSinceLastTransaction;
+	itemData.dateLastPurchased
+		? (daysSinceLastTransaction = getDaysBetweenDates(
+				itemData.dateLastPurchased,
+		  ))
+		: (daysSinceLastTransaction = getDaysBetweenDates(itemData.dateCreated));
 
+	// this line with "let previousEstimate = parseInt .." can be removed if the database is reset. This line is required for converting old time frame entriies to numbers.
 	let previousEstimate = parseInt(itemData.previousEstimate);
+
 	let newTimeEstimate = calculateEstimate(
 		previousEstimate,
-		dayDiff,
+		daysSinceLastTransaction,
 		itemData.totalPurchases,
 	);
+
 	await updateDoc(itemRef, {
 		totalPurchases: itemData.totalPurchases,
 		isChecked: itemData.isChecked,

@@ -11,7 +11,7 @@ export function ListItem({ item, listToken }) {
 		? item.dateLastPurchased.seconds * 1000
 		: null;
 	let timeElapsed = currentTimeInMilliseconds - dateLastPurchasedInMilliseconds;
-
+	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
 
 	const handlePurchaseItem = async () => {
@@ -19,20 +19,34 @@ export function ListItem({ item, listToken }) {
 			if (item.isChecked === false) {
 				item.totalPurchases++;
 				item.isChecked = true;
+				setBoxChecked(true);
 				await updateItem(listToken, item);
 			} else {
 				item.totalPurchases--;
 				item.isChecked = false;
+				setBoxChecked(false);
 				await updateItem(listToken, item);
 			}
 		} catch (error) {
 			console.log('error', error);
 		}
 	};
-	// getDaysBetweenDates of lastPurchasedDate and now
 
 	useEffect(() => {
-		if (timeElapsed > one_day_in_ms && item.isChecked === true) {
+		console.log('isPurchased', isPurchased);
+		console.log('isChecked', item.isChecked);
+		if (
+			timeElapsed > one_day_in_ms &&
+			isPurchased === true &&
+			boxChecked === true
+		) {
+			item.isChecked = isPurchased;
+			updateItem(listToken, item);
+		} else if (
+			timeElapsed > one_day_in_ms &&
+			item.isChecked === true &&
+			boxChecked === false
+		) {
 			item.isChecked = false;
 			updateItem(listToken, item);
 		}
