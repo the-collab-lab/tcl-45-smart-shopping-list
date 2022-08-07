@@ -1,20 +1,32 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem({ listToken }) {
+export function AddItem({ listToken, itemList, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
 	const [itemName, setItem] = useState('');
 	const [error, setError] = useState(false);
+	const [duplicateError, setDuplicateError] = useState(false);
 	const [success, setSuccess] = useState(false);
+	// check for duplicate item in list
+	const isDuplicate = (itemList) =>
+		itemList.name.toLowerCase().replace(/ /g, '') ===
+		itemName.toLowerCase().replace(/ /g, '');
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const duplicateItem = itemList.some(isDuplicate);
 		try {
-			await addItem(listToken, { itemName, daysUntilNextPurchase });
-			setError(false);
-			setSuccess(true);
-			setItem('');
-			setTimeFrame('7');
+			if (!duplicateItem) {
+				setData({ itemName, daysUntilNextPurchase });
+				addItem(listToken, { itemName, daysUntilNextPurchase });
+				setError(false);
+				setSuccess(true);
+				setItem('');
+				setTimeFrame('7');
+			} else {
+				setDuplicateError(true);
+				setSuccess(false);
+			}
 		} catch (err) {
 			console.log(err.message);
 			setError(true);
@@ -23,7 +35,7 @@ export function AddItem({ listToken }) {
 
 	const handleName = (e) => {
 		setSuccess(false);
-
+		setDuplicateError(false);
 		setItem(e.target.value);
 	};
 
@@ -89,6 +101,11 @@ export function AddItem({ listToken }) {
 					</fieldset>
 				</div>
 				{error && <p>The item was not added</p>}
+				{duplicateError && (
+					<p>
+						The item already exists on your list! Try adding a different item.
+					</p>
+				)}
 				{success && <p>The item has been added</p>}
 
 				<div className="button">
