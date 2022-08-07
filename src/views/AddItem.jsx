@@ -62,7 +62,7 @@ export function AddItem({ listToken }) {
 								id="soon"
 								onChange={handleTime}
 							/>
-							Soon (7 days)
+							Soon
 						</label>
 
 						<label htmlFor="kind-of-soon">
@@ -73,7 +73,7 @@ export function AddItem({ listToken }) {
 								value="14"
 								onChange={handleTime}
 							/>
-							Kind of Soon (14 days)
+							Kind of Soon
 						</label>
 
 						<label htmlFor="not-soon">
@@ -84,7 +84,7 @@ export function AddItem({ listToken }) {
 								value="30"
 								onChange={handleTime}
 							/>
-							Not Soon (30 days)
+							Not Soon
 						</label>
 					</fieldset>
 				</div>
