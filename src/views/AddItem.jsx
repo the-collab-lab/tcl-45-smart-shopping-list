@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem({ listToken, data, setData }) {
+export function AddItem({ listToken, itemList, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
 	const [itemName, setItem] = useState('');
 	const [error, setError] = useState(false);
 	const [duplicateError, setDuplicateError] = useState(false);
 	const [success, setSuccess] = useState(false);
-
 	// check for duplicate item in list
-	const isDuplicate = (data) =>
-		data.name.toLowerCase().replace(/ /g, '') ===
+	const isDuplicate = (itemList) =>
+		itemList.name.toLowerCase().replace(/ /g, '') ===
 		itemName.toLowerCase().replace(/ /g, '');
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const duplicateItem = data.some(isDuplicate);
+		const duplicateItem = itemList.some(isDuplicate);
 		try {
 			if (!duplicateItem) {
 				setData({ itemName, daysUntilNextPurchase });
