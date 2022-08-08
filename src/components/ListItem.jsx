@@ -1,18 +1,20 @@
 import './ListItem.css';
 import { useState, useEffect } from 'react';
-import { updateItem } from '../api';
+import { updateItem, deleteItem } from '../api';
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
 
 export function ListItem({ item, listToken }) {
+	const [boxChecked, setBoxChecked] = useState(false);
+	const [isPurchased, setIsPurchased] = useState(item.isChecked);
+	const [isDeleting, setIsDeleting] = useState(false);
+
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
 	const dateLastPurchasedInMilliseconds = item.dateLastPurchased
 		? item.dateLastPurchased.seconds * 1000
 		: null;
 	let timeElapsed = currentTimeInMilliseconds - dateLastPurchasedInMilliseconds;
-	const [boxChecked, setBoxChecked] = useState(false);
-	const [isPurchased, setIsPurchased] = useState(item.isChecked);
 
 	const handlePurchaseItem = async () => {
 		try {
@@ -55,11 +57,14 @@ export function ListItem({ item, listToken }) {
 		handlePurchaseItem();
 	};
 
-	const handleDeleteItem = () => {
+	const handleDeleteItem = (e) => {
+		e.preventDefault();
 		if (window.confirm('Do you really want to delete this item?')) {
-			window.open('exit.html', 'Thanks for Visiting!');
+			deleteItem(listToken, item);
+			setIsDeleting(true);
 		}
 	};
+	console.log('isDeleting', isDeleting);
 
 	return (
 		<div className="ListItem">
@@ -71,9 +76,10 @@ export function ListItem({ item, listToken }) {
 				checked={isPurchased}
 			/>
 			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
-			<button type="submit" className="" onClick={handleDeleteItem}>
+			<button type="button" className="" onClick={handleDeleteItem}>
 				Delete
 			</button>
+			{isDeleting && <h1>The item has been deleted.</h1>}
 		</div>
 	);
 }
