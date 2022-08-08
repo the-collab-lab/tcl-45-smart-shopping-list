@@ -55,6 +55,12 @@ export function ListItem({ item, listToken }) {
 		handlePurchaseItem();
 	};
 
+	const handleDeleteItem = () => {
+		if (window.confirm('Do you really want to delete this item?')) {
+			window.open('exit.html', 'Thanks for Visiting!');
+		}
+	};
+
 	return (
 		<div className="ListItem">
 			<input
@@ -65,6 +71,9 @@ export function ListItem({ item, listToken }) {
 				checked={isPurchased}
 			/>
 			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
+			<button type="submit" className="" onClick={handleDeleteItem}>
+				Delete
+			</button>
 		</div>
 	);
 }
