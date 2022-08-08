@@ -1,3 +1,4 @@
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 import { initializeApp } from 'firebase/app';
 
 import {
@@ -11,7 +12,7 @@ import {
 	doc,
 } from 'firebase/firestore';
 
-import { getFutureDate } from '../utils';
+import { getDaysBetweenDates, getFutureDate } from '../utils';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyAKhXStVolfPKwMsQCo7KiSePpC_zcJY-4',
@@ -83,22 +84,38 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		isChecked: false,
 		name: itemName,
 		totalPurchases: 0,
+		previousEstimate: parseInt(daysUntilNextPurchase),
 	});
 }
 
 export async function updateItem(listId, itemData) {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item! You'll need to figure out what arguments
-	 * this function must accept!
-	 */
 	const itemRef = doc(db, listId, itemData.id);
+	let daysSinceLastTransaction;
+	itemData.dateLastPurchased
+		? (daysSinceLastTransaction = getDaysBetweenDates(
+				itemData.dateLastPurchased,
+		  ))
+		: (daysSinceLastTransaction = getDaysBetweenDates(itemData.dateCreated));
+
+	// this line with "let previousEstimate = parseInt .." can be removed if the database is reset. This line is required for converting old time frame entriies to numbers.
+	let previousEstimate = parseInt(itemData.previousEstimate);
+
+	let newTimeEstimate = calculateEstimate(
+		previousEstimate,
+		daysSinceLastTransaction,
+		itemData.totalPurchases,
+	);
+
 	await updateDoc(itemRef, {
 		totalPurchases: itemData.totalPurchases,
 		isChecked: itemData.isChecked,
 		dateLastPurchased: new Date(),
+		dateNextPurchased: getFutureDate(newTimeEstimate),
+		previousEstimate: newTimeEstimate,
 	});
 }
+
+//previousEstimate from DB, getDaysBetweenDates for daysSinceLastTransactionUpdate, totalPurchases from DB
 
 export async function deleteItem() {
 	/**
