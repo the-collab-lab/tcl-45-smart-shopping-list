@@ -57,11 +57,13 @@ export function ListItem({ item, listToken }) {
 		handlePurchaseItem();
 	};
 
-	const handleDeleteItem = (e) => {
-		e.preventDefault();
-		if (window.confirm('Do you really want to delete this item?')) {
-			deleteItem(listToken, item);
+	const handleDeleteItem = () => {
+		const res = window.confirm('Do you really want to delete this item?');
+		if (res) {
 			setIsDeleting(true);
+			setTimeout(() => deleteItem(listToken, item), 2000);
+		} else {
+			setIsDeleting(false);
 		}
 	};
 	console.log('isDeleting', isDeleting);
@@ -79,7 +81,7 @@ export function ListItem({ item, listToken }) {
 			<button type="button" className="" onClick={handleDeleteItem}>
 				Delete
 			</button>
-			{isDeleting && <h1>The item has been deleted.</h1>}
+			{isDeleting && <span>The item is being deleted.</span>}
 		</div>
 	);
 }
