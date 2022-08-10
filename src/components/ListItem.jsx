@@ -7,7 +7,6 @@ const one_day_in_ms = 24 * 60 * 60 * 1000;
 export function ListItem({ item, listToken }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
-	const [isDeleting, setIsDeleting] = useState(false);
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -58,15 +57,16 @@ export function ListItem({ item, listToken }) {
 	};
 
 	const handleDeleteItem = () => {
-		const res = window.confirm('Do you really want to delete this item?');
-		if (res) {
-			setIsDeleting(true);
-			setTimeout(() => deleteItem(listToken, item), 2000);
+		const confirm = window.confirm(
+			`Do you really want to delete ${item.name}?`,
+		);
+		if (confirm) {
+			deleteItem(listToken, item);
+			alert(`${item.name} has been deleted!`);
 		} else {
-			setIsDeleting(false);
+			alert(`${item.name} was not deleted`);
 		}
 	};
-	console.log('isDeleting', isDeleting);
 
 	return (
 		<div className="ListItem">
@@ -81,7 +81,6 @@ export function ListItem({ item, listToken }) {
 			<button type="button" className="" onClick={handleDeleteItem}>
 				Delete
 			</button>
-			{isDeleting && <span>The item is being deleted.</span>}
 		</div>
 	);
 }
