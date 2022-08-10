@@ -130,3 +130,9 @@ export async function findToken(listId) {
 	const querySnapshot = await getDocs(q);
 	return querySnapshot;
 }
+
+export async function comparePurchaseUrgency() {
+	//sort inactive items last
+	//sort items in ascending order in 'days until next purchase'
+	//sort items with same 'days until next purchase' alphabetically
+}
