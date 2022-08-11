@@ -75,6 +75,8 @@ export function List({ data, listToken, loading }) {
 	];
 
 	console.log('groups', groups);
+
+	// get information by index
 	return (
 		<div className="list-container">
 			{loading ? (
@@ -119,8 +121,7 @@ export function List({ data, listToken, loading }) {
 					)}{' '}
 				</>
 			)}
-
-			<ul>
+			{/* <ul>
 				{!searchQuery
 					? data.map((item) => (
 							<ListItem key={item.id} item={item} listToken={listToken} />
@@ -128,6 +129,18 @@ export function List({ data, listToken, loading }) {
 					: searchResults.map((item) => (
 							<ListItem key={item.id} item={item} listToken={listToken} />
 					  ))}
+			</ul> */}
+			<ul>
+				{groups.map((item, index) => {
+					return (
+						<ListItem
+							index={index}
+							key={item.id}
+							item={item}
+							listToken={listToken}
+						/>
+					);
+				})}
 			</ul>
 		</div>
 	);

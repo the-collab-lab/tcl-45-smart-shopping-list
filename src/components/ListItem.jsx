@@ -5,7 +5,7 @@ import { getDaysBetweenDates } from '../utils';
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
 
-export function ListItem({ item, listToken }) {
+export function ListItem({ item, listToken, index }) {
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
 	const dateLastPurchasedInMilliseconds = item.dateLastPurchased
@@ -56,12 +56,19 @@ export function ListItem({ item, listToken }) {
 		handlePurchaseItem();
 	};
 
+	console.log('item', item);
+	function findName() {
+		if (item.filteredData[index]) {
+			return console.log(item.filteredData[index].name);
+		}
+	}
+
 	return (
 		<div className="ListItem">
 			<input
 				type="checkbox"
 				id={`${item.id}-${item.name}-checkbox`}
-				name={item.name}
+				name={findName()}
 				onChange={handleCheckItem}
 				checked={isPurchased}
 			/>
