@@ -14,9 +14,6 @@ export function ListItem({ item, listToken }) {
 	let timeElapsed = currentTimeInMilliseconds - dateLastPurchasedInMilliseconds;
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
-	const daysUntilNextPurchase = Math.abs(
-		getDaysBetweenDates(item.dateNextPurchased),
-	);
 
 	const handlePurchaseItem = async () => {
 		try {

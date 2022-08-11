@@ -136,19 +136,22 @@ export async function findToken(listId) {
 // of ListItem
 function compareActiveandInactive(items) {
 	let sortedActiveAndInactive = items.sort((a, b) => a.value - b.value);
+	console.log('sortedActiveAndInactive', sortedActiveAndInactive);
 	return sortedActiveAndInactive;
 }
 
 // using this function to sort into a new array for display
-export async function comparePurchaseUrgency(items) {
+export function comparePurchaseUrgency(items) {
 	// we start with sorting active vs inactive
 	//sort inactive items last
 	let sortedListOfActiveAndInactive = compareActiveandInactive(items);
+	console.log('sortedListOfActiveAndInactive', sortedListOfActiveAndInactive);
 	// now we have new list of active and inactive sorted
 	//sort items in this new array in ascending order of 'days until next purchase'
 	let ascendingOrder = sortedListOfActiveAndInactive.sort(
 		(a, b) => a.dateNextPurchased - b.dateNextPurchased,
 	);
+	console.log('ascendingOrder', ascendingOrder);
 	//sort items with same 'days until next purchase' alphabetically
 	let alphabeticalOrder = ascendingOrder.sort((a, b) => {
 		// .toLowerCase() to account for case sensitivity
@@ -164,5 +167,6 @@ export async function comparePurchaseUrgency(items) {
 		// if equal, then will stay
 		return 0;
 	});
+	console.log('alphabeticalOrder', alphabeticalOrder);
 	return alphabeticalOrder;
 }

@@ -2,9 +2,11 @@ import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './List.css';
+// import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listToken, loading }) {
-
+	// const sortedData = comparePurchaseUrgency(data)
+	// console.log('sortedData', sortedData)
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
@@ -36,6 +38,43 @@ export function List({ data, listToken, loading }) {
 		navigateTo('/add-item');
 	}
 
+	//based on previousEstimate, decide 'soon', etc..
+	//4 groups, within each group
+	//order items by previousEstimate within the group
+	//then alphabetize
+
+	const groups = [
+		{
+			timeFrame: 'Soon',
+			subLabel: '7 days or less',
+			filteredData: data.filter((item) => {
+				return item.previousEstimate <= 7;
+			}),
+		},
+		{
+			timeFrame: 'Kind of soon',
+			subLabel: 'Between 7 and 30 days',
+			filteredData: data.filter((item) => {
+				return item.previousEstimate > 7 && item.previousEstimate < 30;
+			}),
+		},
+		{
+			timeFrame: 'Not that soon',
+			subLabel: 'Between 30 and 60 days',
+			filteredData: data.filter((item) => {
+				return item.previousEstimate >= 30 && item.previousEstimate < 60;
+			}),
+		},
+		{
+			timeFrame: 'Inactive',
+			subLabel: '60 days or more',
+			filteredData: data.filter((item) => {
+				return item.previousEstimate >= 60;
+			}),
+		},
+	];
+
+	console.log('groups', groups);
 	return (
 		<div className="list-container">
 			{loading ? (
