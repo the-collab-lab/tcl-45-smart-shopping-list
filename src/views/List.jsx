@@ -47,30 +47,30 @@ export function List({ data, listToken, loading }) {
 		{
 			timeFrame: 'Soon',
 			subLabel: '7 days or less',
-			filteredData: data.filter((item) => {
+			filteredData: (item) => {
 				return item.previousEstimate <= 7;
-			}),
+			},
 		},
 		{
 			timeFrame: 'Kind of soon',
 			subLabel: 'Between 7 and 30 days',
-			filteredData: data.filter((item) => {
+			filteredData: (item) => {
 				return item.previousEstimate > 7 && item.previousEstimate < 30;
-			}),
+			},
 		},
 		{
 			timeFrame: 'Not that soon',
 			subLabel: 'Between 30 and 60 days',
-			filteredData: data.filter((item) => {
+			filteredData: (item) => {
 				return item.previousEstimate >= 30 && item.previousEstimate < 60;
-			}),
+			},
 		},
 		{
 			timeFrame: 'Inactive',
 			subLabel: '60 days or more',
-			filteredData: data.filter((item) => {
+			filteredData: (item) => {
 				return item.previousEstimate >= 60;
-			}),
+			},
 		},
 	];
 
@@ -132,20 +132,25 @@ export function List({ data, listToken, loading }) {
 				{/* filter through groups array for each group to display by time frame */}
 				{groups.map((group) => {
 					// within each group's filteredData, map through to each item to pass in as a prop
-					return group.filteredData.map((filteredItem, index) => {
-						return (
-							<ListItem
-								key={filteredItem.id}
-								item={filteredItem}
-								index={index}
-								listToken={listToken}
-							/>
-						);
-					});
+					return (
+						<section className={group.timeFrame}>
+							<h1>{group.timeFrame}</h1>
+							<p>({group.subLabel})</p>
+							{searchResults
+								.filter((item) => group.filteredData(item))
+								.map((filteredItem) => {
+									return (
+										<ListItem
+											key={filteredItem.id}
+											item={filteredItem}
+											listToken={listToken}
+										/>
+									);
+								})}
+						</section>
+					);
 				})}
 			</ul>
 		</div>
 	);
 }
-
-//
