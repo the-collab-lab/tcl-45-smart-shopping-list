@@ -56,19 +56,12 @@ export function ListItem({ item, listToken, index }) {
 		handlePurchaseItem();
 	};
 
-	console.log('item', item);
-	function findName() {
-		if (item.filteredData[index]) {
-			return console.log(item.filteredData[index].name);
-		}
-	}
-
 	return (
 		<div className="ListItem">
 			<input
 				type="checkbox"
 				id={`${item.id}-${item.name}-checkbox`}
-				name={findName()}
+				name={item.name}
 				onChange={handleCheckItem}
 				checked={isPurchased}
 			/>

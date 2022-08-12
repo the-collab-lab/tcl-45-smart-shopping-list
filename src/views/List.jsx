@@ -28,7 +28,7 @@ export function List({ data, listToken, loading }) {
 		// ignoring dependency array warning for now
 		// adding filterResults causes infinite re-render
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchQuery]);
+	}, [searchQuery, data]);
 
 	function handleClearSearchQuery() {
 		setSearchQuery('');
@@ -76,6 +76,13 @@ export function List({ data, listToken, loading }) {
 
 	console.log('groups', groups);
 
+	const filteredGroups = groups.reduce(function (r, a) {
+		r[a.timeFrame] = r[a.timeFrame] || [];
+		r[a.timeFrame].push(a);
+		return r;
+	}, []);
+
+	console.log('filteredGroups', filteredGroups);
 	// get information by index
 	return (
 		<div className="list-container">
@@ -121,27 +128,24 @@ export function List({ data, listToken, loading }) {
 					)}{' '}
 				</>
 			)}
-			{/* <ul>
-				{!searchQuery
-					? data.map((item) => (
-							<ListItem key={item.id} item={item} listToken={listToken} />
-					  ))
-					: searchResults.map((item) => (
-							<ListItem key={item.id} item={item} listToken={listToken} />
-					  ))}
-			</ul> */}
 			<ul>
-				{groups.map((item, index) => {
-					return (
-						<ListItem
-							index={index}
-							key={item.id}
-							item={item}
-							listToken={listToken}
-						/>
-					);
+				{/* filter through groups array for each group to display by time frame */}
+				{groups.map((group) => {
+					// within each group's filteredData, map through to each item to pass in as a prop
+					return group.filteredData.map((filteredItem, index) => {
+						return (
+							<ListItem
+								key={filteredItem.id}
+								item={filteredItem}
+								index={index}
+								listToken={listToken}
+							/>
+						);
+					});
 				})}
 			</ul>
 		</div>
 	);
 }
+
+//
