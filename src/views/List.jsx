@@ -2,11 +2,8 @@ import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './List.css';
-// import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listToken, loading }) {
-	// const sortedData = comparePurchaseUrgency(data)
-	// console.log('sortedData', sortedData)
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
@@ -38,11 +35,8 @@ export function List({ data, listToken, loading }) {
 		navigateTo('/add-item');
 	}
 
-	//based on previousEstimate, decide 'soon', etc..
 	//4 groups, within each group
 	//order items by previousEstimate within the group
-	//then alphabetize
-
 	const groups = [
 		{
 			timeFrame: 'Soon',
@@ -74,8 +68,7 @@ export function List({ data, listToken, loading }) {
 		},
 	];
 
-	console.log('groups', groups);
-
+	//following code might be removed if no longer needed
 	const filteredGroups = groups.reduce(function (r, a) {
 		r[a.timeFrame] = r[a.timeFrame] || [];
 		r[a.timeFrame].push(a);
@@ -131,12 +124,12 @@ export function List({ data, listToken, loading }) {
 			<ul>
 				{/* filter through groups array for each group to display by time frame */}
 				{groups.map((group) => {
-					// within each group's filteredData, map through to each item to pass in as a prop
 					return (
 						<section className={group.timeFrame}>
 							<h1>{group.timeFrame}</h1>
 							<p>({group.subLabel})</p>
 							{searchResults
+								// within each group's filteredData, map through to each item to pass in as a prop
 								.filter((item) => group.filteredData(item))
 								.map((filteredItem) => {
 									return (
