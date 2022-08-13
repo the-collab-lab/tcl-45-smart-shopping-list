@@ -4,7 +4,7 @@ import { updateItem } from '../api';
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
 
-export function ListItem({ item, listToken, index }) {
+export function ListItem({ item, listToken }) {
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
 	const dateLastPurchasedInMilliseconds = item.dateLastPurchased

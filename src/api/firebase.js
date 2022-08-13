@@ -131,6 +131,8 @@ export async function findToken(listId) {
 	return querySnapshot;
 }
 
+//ALL CODE BELOW THIS LINE WILL NEED TO BE REWORKED OR REMOVED!!!
+
 // write compare function to use for .sort()
 // whether active or not is determined by daysUntilNextPurchase in line 17
 // of ListItem
