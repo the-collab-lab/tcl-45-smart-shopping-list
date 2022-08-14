@@ -60,11 +60,15 @@ export function ListItem({ item, listToken }) {
 		const confirm = window.confirm(
 			`Do you really want to delete ${item.name}?`,
 		);
-		if (confirm) {
-			deleteItem(listToken, item);
-			alert(`${item.name} has been deleted!`);
-		} else {
-			alert(`${item.name} was not deleted`);
+		try {
+			if (confirm) {
+				deleteItem(listToken, item);
+				alert(`${item.name} has been deleted!`);
+			} else {
+				alert(`${item.name} was not deleted`);
+			}
+		} catch (error) {
+			console.log('error', error);
 		}
 	};
 
@@ -78,7 +82,7 @@ export function ListItem({ item, listToken }) {
 				checked={isPurchased}
 			/>
 			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
-			<button type="button" className="" onClick={handleDeleteItem}>
+			<button type="button" onClick={handleDeleteItem}>
 				Delete
 			</button>
 		</div>
