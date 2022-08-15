@@ -63,9 +63,10 @@ export function ListItem({ item, listToken }) {
 		try {
 			if (confirm) {
 				deleteItem(listToken, item);
-				alert(`${item.name} has been deleted!`);
-			} else {
-				alert(`${item.name} was not deleted`);
+				// commenting out the lines below but keeping them for a11y dialog window to be implemented later
+				// 	alert(`${item.name} has been deleted!`);
+				// } else {
+				// 	alert(`${item.name} was not deleted`);
 			}
 		} catch (error) {
 			console.log('error', error);
