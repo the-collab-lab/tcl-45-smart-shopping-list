@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import './List.css';
 
 export function List({ data, listToken, loading }) {
-
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
