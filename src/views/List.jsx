@@ -25,7 +25,7 @@ export function List({ data, listToken, loading }) {
 		// ignoring dependency array warning for now
 		// adding filterResults causes infinite re-render
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchQuery]);
+	}, [searchQuery, data]);
 
 	function handleClearSearchQuery() {
 		setSearchQuery('');
@@ -35,6 +35,48 @@ export function List({ data, listToken, loading }) {
 		navigateTo('/add-item');
 	}
 
+	//4 groups, within each group
+	//order items by previousEstimate within the group
+	const groups = [
+		{
+			timeFrame: 'Soon',
+			subLabel: '7 days or less',
+			filteredData: (item) => {
+				return item.previousEstimate <= 7;
+			},
+		},
+		{
+			timeFrame: 'Kind of soon',
+			subLabel: 'Between 7 and 30 days',
+			filteredData: (item) => {
+				return item.previousEstimate > 7 && item.previousEstimate < 30;
+			},
+		},
+		{
+			timeFrame: 'Not that soon',
+			subLabel: 'Between 30 and 60 days',
+			filteredData: (item) => {
+				return item.previousEstimate >= 30 && item.previousEstimate < 60;
+			},
+		},
+		{
+			timeFrame: 'Inactive',
+			subLabel: '60 days or more',
+			filteredData: (item) => {
+				return item.previousEstimate >= 60;
+			},
+		},
+	];
+
+	//following code might be removed if no longer needed
+	const filteredGroups = groups.reduce(function (r, a) {
+		r[a.timeFrame] = r[a.timeFrame] || [];
+		r[a.timeFrame].push(a);
+		return r;
+	}, []);
+
+	console.log('filteredGroups', filteredGroups);
+	// get information by index
 	return (
 		<div className="list-container">
 			{loading ? (
@@ -79,15 +121,28 @@ export function List({ data, listToken, loading }) {
 					)}{' '}
 				</>
 			)}
-
 			<ul>
-				{!searchQuery
-					? data.map((item) => (
-							<ListItem key={item.id} item={item} listToken={listToken} />
-					  ))
-					: searchResults.map((item) => (
-							<ListItem key={item.id} item={item} listToken={listToken} />
-					  ))}
+				{/* filter through groups array for each group to display by time frame */}
+				{groups.map((group) => {
+					return (
+						<section className={group.timeFrame}>
+							<h1>{group.timeFrame}</h1>
+							<p>({group.subLabel})</p>
+							{searchResults
+								// within each group's filteredData, map through to each item to pass in as a prop
+								.filter((item) => group.filteredData(item))
+								.map((filteredItem) => {
+									return (
+										<ListItem
+											key={filteredItem.id}
+											item={filteredItem}
+											listToken={listToken}
+										/>
+									);
+								})}
+						</section>
+					);
+				})}
 			</ul>
 		</div>
 	);

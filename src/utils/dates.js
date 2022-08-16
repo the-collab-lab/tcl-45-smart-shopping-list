@@ -17,5 +17,5 @@ export function getDaysBetweenDates(lastTransaction) {
 	let timeDifference = today.getTime() - lastTransaction.toMillis();
 	// change milliseconds into days, rounding up
 	let dayDifference = Math.ceil(timeDifference / ONE_DAY_IN_MILLISECONDS);
-	return dayDifference;
+	return Math.abs(dayDifference);
 }
