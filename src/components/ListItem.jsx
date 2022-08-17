@@ -1,6 +1,11 @@
 import './ListItem.css';
 import { useState, useEffect } from 'react';
-import { updateItem, deleteItem, updateItemBack } from '../api';
+import {
+	updateItem,
+	deleteItem,
+	updateItemBack,
+	updateItemCheckedStatus,
+} from '../api';
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
 
@@ -40,14 +45,14 @@ export function ListItem({ item, listToken }) {
 			boxChecked === true
 		) {
 			item.isChecked = isPurchased;
-			updateItem(listToken, item);
+			updateItemCheckedStatus(listToken, item);
 		} else if (
 			timeElapsed > one_day_in_ms &&
 			item.isChecked === true &&
 			boxChecked === false
 		) {
 			item.isChecked = false;
-			updateItem(listToken, item);
+			updateItemCheckedStatus(listToken, item);
 		}
 	});
 
