@@ -1,6 +1,6 @@
 import './ListItem.css';
 import { useState, useEffect } from 'react';
-import { updateItem, deleteItem } from '../api';
+import { updateItem, deleteItem, updateItemBack } from '../api';
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
 
@@ -26,7 +26,7 @@ export function ListItem({ item, listToken }) {
 				item.totalPurchases--;
 				item.isChecked = false;
 				setBoxChecked(false);
-				await updateItem(listToken, item);
+				await updateItemBack(listToken, item);
 			}
 		} catch (error) {
 			console.log('error', error);
