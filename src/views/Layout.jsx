@@ -10,7 +10,7 @@ import './Layout.css';
  * defined in `App.jsx`.
  */
 
-export function Layout() {
+export function Layout({ listToken }) {
 	return (
 		<>
 			<div className="Layout">

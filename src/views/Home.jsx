@@ -8,12 +8,6 @@ export function Home({ handleClick, listToken, setListToken }) {
 	const [joinListName, setJoinListName] = useState('');
 	const [error, setError] = useState(false);
 
-	useEffect(() => {
-		if (listToken) {
-			navigateTo('/list');
-		} else return;
-	}, [listToken, navigateTo]);
-
 	const handleJoinList = async (e) => {
 		e.preventDefault();
 		setError(false);

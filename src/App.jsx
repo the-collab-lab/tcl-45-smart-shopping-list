@@ -60,9 +60,19 @@ export function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [listToken]);
 
+	function logOut() {
+		localStorage.clear();
+		navigateTo('/');
+		console.log('hello');
+	}
+
+	useEffect(() => {
+		listToken ? navigateTo('/list') : navigateTo('/');
+	}, [listToken, navigateTo]);
+
 	return (
 		<Routes>
-			<Route path="/" element={<Layout />}>
+			<Route path="/" element={<Layout listToken={listToken} />}>
 				<Route
 					index
 					element={
@@ -76,7 +86,14 @@ export function App() {
 
 				<Route
 					path="/list"
-					element={<List data={data} loading={loading} listToken={listToken} />}
+					element={
+						<List
+							data={data}
+							loading={loading}
+							listToken={listToken}
+							logOut={logOut}
+						/>
+					}
 				/>
 
 				<Route
