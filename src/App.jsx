@@ -44,14 +44,12 @@ export function App() {
 		 * Refer to `api/firebase.js`.
 		 */
 		return streamListItems(listToken, (snapshot) => {
-			/**
-			 * Read the documents in the snapshot and do some work
-			 * on them, so we can save them in our React state.
-			 *
-			 * Refer to `api/firebase.js`
-			 */
 			const nextData = getItemData(snapshot);
-
+			nextData.sort((itemA, itemB) => {
+				let elementA = itemA.id.toLowerCase();
+				let elementB = itemB.id.toLowerCase();
+				return elementA < elementB ? -1 : elementA > elementB ? 1 : 0;
+			});
 			/** Finally, we update our React state. */
 			setData(nextData);
 			setLoading(false);

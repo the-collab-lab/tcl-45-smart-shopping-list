@@ -75,7 +75,6 @@ export function List({ data, listToken, loading }) {
 		return r;
 	}, []);
 
-	console.log('filteredGroups', filteredGroups);
 	// get information by index
 	return (
 		<div className="list-container">
