@@ -5,7 +5,7 @@ import {
 	collection,
 	getFirestore,
 	onSnapshot,
-	addDoc,
+	setDoc,
 	getDocs,
 	query,
 	updateDoc,
@@ -75,7 +75,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	const listCollectionRef = collection(db, listId);
 	// TODO: Replace this call to console.log with the appropriate
 	// Firebase function, so this information is sent to your database!
-	return await addDoc(listCollectionRef, {
+	return await setDoc(doc(db, listId, itemName), {
 		dateCreated: new Date(),
 		// NOTE: This is null because the item has just been created.
 		// We'll put a Date here when the item is purchased!
