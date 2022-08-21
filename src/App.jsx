@@ -62,13 +62,9 @@ export function App() {
 
 	function logOut() {
 		localStorage.clear();
+		setListToken('');
 		navigateTo('/');
-		console.log('hello');
 	}
-
-	useEffect(() => {
-		listToken ? navigateTo('/list') : navigateTo('/');
-	}, [listToken, navigateTo]);
 
 	return (
 		<Routes>
