@@ -86,7 +86,8 @@ export function List({ data, listToken, loading, logOut }) {
 				<>
 					<button onClick={logOut}>Log Out</button>
 					<p>
-						Your list token is <span>{listToken}</span>.
+						Your list name is{' '}
+						<span style={{ color: 'salmon' }}>{listToken}</span>.
 					</p>
 					{data.length >= 1 ? (
 						<>
