@@ -17,6 +17,7 @@
 	height: 9vh;
 	width: 8vw;
 }
+
 .join-list {
 	display: flex;
 	flex-direction: column;
@@ -35,19 +36,39 @@
 .join-list-input > input {
 	background-color: var(--blue);
 	border: 1px solid var(--yellow);
-	margin: 0 0 10px 0;
 	line-height: 3rem;
 }
 
 .join-list > p {
-	margin: 5px;
+	font-size: 2rem;
+	margin: 0px;
 }
 
-.join-list-button {
+.join-list-button,
+.existing-list-button {
 	background: var(--yellow);
 	color: var(--blue);
 	height: 5vh;
 	width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
+}
+
+.existing-list-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.existing-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 4rem;
+	margin: 10px;
+}
+
+.existing-list > p {
+	margin: 0px;
 }

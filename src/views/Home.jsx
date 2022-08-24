@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { findToken } from '../api/firebase';
 import redBlinky from '../../src/assets/red-blinky.png';
+import blueBlinky from '../../src/assets/blue-blinky.png';
 
 export function Home({ handleClick, listToken, setListToken }) {
 	const navigateTo = useNavigate();
@@ -51,7 +52,15 @@ export function Home({ handleClick, listToken, setListToken }) {
 							{error && <p>That list does not exist.</p>}
 						</form>
 					</div>
-					<button onClick={handleClick}>Create New List</button>
+					<div className="existing-list-container">
+						<img src={blueBlinky} alt="Blue character" className="character" />
+						<div className="existing-list">
+							<p>Don't have a list?</p>
+							<button onClick={handleClick} className="existing-list-button">
+								CREATE
+							</button>
+						</div>
+					</div>
 				</>
 			)}
 		</div>
