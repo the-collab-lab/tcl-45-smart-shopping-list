@@ -1,3 +1,5 @@
+import './App.css';
+
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -72,38 +74,44 @@ export function App() {
 	}
 
 	return (
-		<Routes>
-			<Route path="/" element={<Layout listToken={listToken} />}>
-				<Route
-					index
-					element={
-						<Home
-							handleClick={handleClick}
-							listToken={listToken}
-							setListToken={setListToken}
-						/>
-					}
-				/>
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<Layout listToken={listToken} />}>
+					<Route
+						index
+						element={
+							<Home
+								handleClick={handleClick}
+								listToken={listToken}
+								setListToken={setListToken}
+							/>
+						}
+					/>
 
-				<Route
-					path="/list"
-					element={
-						<List
-							data={data}
-							loading={loading}
-							listToken={listToken}
-							logOut={logOut}
-						/>
-					}
-				/>
+					<Route
+						path="/list"
+						element={
+							<List
+								data={data}
+								loading={loading}
+								listToken={listToken}
+								logOut={logOut}
+							/>
+						}
+					/>
 
-				<Route
-					path="/add-item"
-					element={
-						<AddItem listToken={listToken} itemList={data} setData={setData} />
-					}
-				/>
-			</Route>
-		</Routes>
+					<Route
+						path="/add-item"
+						element={
+							<AddItem
+								listToken={listToken}
+								itemList={data}
+								setData={setData}
+							/>
+						}
+					/>
+				</Route>
+			</Routes>
+		</div>
 	);
 }
