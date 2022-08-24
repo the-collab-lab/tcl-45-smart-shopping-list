@@ -50,7 +50,7 @@ html {
 }
 
 body {
-	background-color: #0c105f;
+	background-color: var(--blue);
 	color: var(--color-text);
 	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
 		helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
