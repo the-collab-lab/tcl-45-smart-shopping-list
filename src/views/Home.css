@@ -1,8 +1,43 @@
 .Home {
-	background-color: red;
+	background-color: var(--blue);
 	height: 80vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+}
+
+.join-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.join-list-input {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	font-size: 4rem;
+}
+
+.join-list-input > input {
+	background-color: var(--blue);
+	border: 1px solid var(--yellow);
+	margin: 0 0 10px 0;
+	line-height: 3rem;
+}
+
+.join-list > p {
+	margin: 5px;
+}
+
+.join-list-button {
+	background: var(--yellow);
+	color: var(--blue);
+	height: 5vh;
+	width: 10vw;
+	font-family: 'VT323', monospace;
+	font-size: 2rem;
 }

@@ -26,30 +26,30 @@ export function Home({ handleClick, listToken, setListToken }) {
 				navigateTo('/list')
 			) : (
 				<>
-					<button onClick={handleClick}>Create New List</button>
-
 					<div>
-						<form onSubmit={handleJoinList}>
-							<div className="list-name">
-								<label htmlFor="list-name">
-									List Name:{' '}
-									<input
-										required
-										type="text"
-										name="list-name"
-										value={joinListName}
-										id="list-name"
-										placeholder="name of list"
-										onChange={(e) => setJoinListName(e.target.value)}
-									/>
-								</label>
+						<form onSubmit={handleJoinList} className="join-list">
+							<label htmlFor="list-name" className="join-list-input">
+								Join an existing list:{' '}
+								<input
+									required
+									type="text"
+									name="list-name"
+									value={joinListName}
+									id="list-name"
+									placeholder="name of list"
+									onChange={(e) => setJoinListName(e.target.value)}
+								/>
+							</label>
+							<p>Enter a three word token.</p>
+							<div>
+								<button type="submit" className="join-list-button">
+									JOIN
+								</button>
 							</div>
 							{error && <p>That list does not exist.</p>}
-							<div>
-								<button type="submit">Join List</button>
-							</div>
 						</form>
 					</div>
+					<button onClick={handleClick}>Create New List</button>
 				</>
 			)}
 		</div>
