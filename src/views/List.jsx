@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './List.css';
 
-export function List({ data, listToken, loading }) {
+export function List({ data, listToken, loading, logOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
@@ -77,12 +77,18 @@ export function List({ data, listToken, loading }) {
 
 	console.log('filteredGroups', filteredGroups);
 	// get information by index
+
 	return (
 		<div className="list-container">
 			{loading ? (
 				<p>Your list is loading...</p>
 			) : (
 				<>
+					<button onClick={logOut}>Log Out</button>
+					<p>
+						Your list name is{' '}
+						<span style={{ color: 'salmon' }}>{listToken}</span>.
+					</p>
 					{data.length >= 1 ? (
 						<>
 							<h3>Find what you're looking for!</h3>

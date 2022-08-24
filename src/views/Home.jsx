@@ -8,12 +8,6 @@ export function Home({ handleClick, listToken, setListToken }) {
 	const [joinListName, setJoinListName] = useState('');
 	const [error, setError] = useState(false);
 
-	useEffect(() => {
-		if (listToken) {
-			navigateTo('/list');
-		} else return;
-	}, [listToken, navigateTo]);
-
 	const handleJoinList = async (e) => {
 		e.preventDefault();
 		setError(false);
@@ -28,30 +22,36 @@ export function Home({ handleClick, listToken, setListToken }) {
 
 	return (
 		<div className="Home">
-			<button onClick={handleClick}>Create New List</button>
+			{listToken ? (
+				navigateTo('/list')
+			) : (
+				<>
+					<button onClick={handleClick}>Create New List</button>
 
-			<div>
-				<form onSubmit={handleJoinList}>
-					<div className="list-name">
-						<label htmlFor="list-name">
-							List Name:{' '}
-							<input
-								required
-								type="text"
-								name="list-name"
-								value={joinListName}
-								id="list-name"
-								placeholder="name of list"
-								onChange={(e) => setJoinListName(e.target.value)}
-							/>
-						</label>
-					</div>
-					{error && <p>That list does not exist.</p>}
 					<div>
-						<button type="submit">Join List</button>
+						<form onSubmit={handleJoinList}>
+							<div className="list-name">
+								<label htmlFor="list-name">
+									List Name:{' '}
+									<input
+										required
+										type="text"
+										name="list-name"
+										value={joinListName}
+										id="list-name"
+										placeholder="name of list"
+										onChange={(e) => setJoinListName(e.target.value)}
+									/>
+								</label>
+							</div>
+							{error && <p>That list does not exist.</p>}
+							<div>
+								<button type="submit">Join List</button>
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
+				</>
+			)}
 		</div>
 	);
 }

@@ -60,9 +60,20 @@ export function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [listToken]);
 
+	function logOut() {
+		const confirm = window.confirm(
+			`If you're ready to log out, make sure to write down your list name before you click ok! It is ${listToken}`,
+		);
+		if (confirm) {
+			localStorage.clear();
+			setListToken('');
+			navigateTo('/');
+		}
+	}
+
 	return (
 		<Routes>
-			<Route path="/" element={<Layout />}>
+			<Route path="/" element={<Layout listToken={listToken} />}>
 				<Route
 					index
 					element={
@@ -76,7 +87,14 @@ export function App() {
 
 				<Route
 					path="/list"
-					element={<List data={data} loading={loading} listToken={listToken} />}
+					element={
+						<List
+							data={data}
+							loading={loading}
+							listToken={listToken}
+							logOut={logOut}
+						/>
+					}
 				/>
 
 				<Route
