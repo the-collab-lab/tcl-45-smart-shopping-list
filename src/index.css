@@ -38,9 +38,6 @@
 	box-sizing: border-box;
 }
 
-/**
- * Make sure the app fills the height of the viewport
- */
 html,
 body,
 #root,
@@ -53,7 +50,7 @@ html {
 }
 
 body {
-	background-color: var(--color-bg);
+	background-color: var(--blue);
 	color: var(--color-text);
 	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
 		helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;

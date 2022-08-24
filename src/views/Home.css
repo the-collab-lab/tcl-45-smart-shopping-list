@@ -1,18 +1,83 @@
-.timeframe {
+.Home {
+	background-color: var(--blue);
+	height: 80vh;
 	display: flex;
 	flex-direction: column;
-	border: none;
-	margin-left: 0px;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
-.button {
-	text-align: center;
+.join-list-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
-.legend {
-	margin-left: -1vh;
+.character {
+	height: 9vh;
+	width: 6vw;
 }
 
-.item-name {
-	margin-bottom: 2vh;
+.join-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.join-list-input {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	font-size: 4rem;
+}
+
+.join-list-input > input {
+	background-color: var(--blue);
+	border: 1px solid var(--yellow);
+	line-height: 3rem;
+	color: var(--yellow);
+	font-family: 'Share Tech Mono', monospace;
+	font-size: 2rem;
+	padding: 5px;
+}
+
+.join-list-token {
+	font-size: 2rem;
+	margin: 0px;
+}
+
+.join-list-button,
+.existing-list-button {
+	background: var(--yellow);
+	color: var(--blue);
+	height: 5vh;
+	width: 10vw;
+	font-family: 'VT323', monospace;
+	font-size: 2rem;
+}
+
+.join-list-error {
+	color: orange;
+	font-size: 3rem;
+}
+
+.existing-list-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.existing-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 4rem;
+	margin: 10px;
+}
+
+.existing-list > p {
+	margin: 0px;
 }

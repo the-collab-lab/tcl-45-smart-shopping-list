@@ -1,3 +1,5 @@
+import './App.css';
+
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -62,7 +64,7 @@ export function App() {
 
 	function logOut() {
 		const confirm = window.confirm(
-			`If you're ready to log out, make sure to write down your list name before you click ok! It is ${listToken}`,
+			`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`,
 		);
 		if (confirm) {
 			localStorage.clear();
@@ -72,38 +74,44 @@ export function App() {
 	}
 
 	return (
-		<Routes>
-			<Route path="/" element={<Layout listToken={listToken} />}>
-				<Route
-					index
-					element={
-						<Home
-							handleClick={handleClick}
-							listToken={listToken}
-							setListToken={setListToken}
-						/>
-					}
-				/>
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<Layout listToken={listToken} />}>
+					<Route
+						index
+						element={
+							<Home
+								handleClick={handleClick}
+								listToken={listToken}
+								setListToken={setListToken}
+							/>
+						}
+					/>
 
-				<Route
-					path="/list"
-					element={
-						<List
-							data={data}
-							loading={loading}
-							listToken={listToken}
-							logOut={logOut}
-						/>
-					}
-				/>
+					<Route
+						path="/list"
+						element={
+							<List
+								data={data}
+								loading={loading}
+								listToken={listToken}
+								logOut={logOut}
+							/>
+						}
+					/>
 
-				<Route
-					path="/add-item"
-					element={
-						<AddItem listToken={listToken} itemList={data} setData={setData} />
-					}
-				/>
-			</Route>
-		</Routes>
+					<Route
+						path="/add-item"
+						element={
+							<AddItem
+								listToken={listToken}
+								itemList={data}
+								setData={setData}
+							/>
+						}
+					/>
+				</Route>
+			</Routes>
+		</div>
 	);
 }

@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Share+Tech+Mono&family=VT323&display=swap');
+
+/* for header
+font-family: 'Major Mono Display', monospace;
+
+thinner body 
+font-family: 'Share Tech Mono', monospace;
+
+thicker body
+font-family: 'VT323', monospace; */
+
+* {
+	--yellow: #f8d568;
+	--blue: #0c105f;
+	--white: #fafafa;
+}
+
+body,
+html {
+	margin: 0;
+}
+
+.App {
+	background-color: var(--blue);
+	color: var(--yellow);
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	font-family: 'Share Tech Mono', monospace;
+}
