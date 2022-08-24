@@ -36,34 +36,34 @@ export function List({ data, listToken, loading, logOut }) {
 	}
 
 	//4 groups, within each group
-	//order items by previousEstimate within the group
+	//order items by currentEstimate within the group
 	const groups = [
 		{
 			timeFrame: 'Soon',
 			subLabel: '7 days or less',
 			filteredData: (item) => {
-				return item.previousEstimate <= 7;
+				return item.currentEstimate <= 7;
 			},
 		},
 		{
 			timeFrame: 'Kind of soon',
 			subLabel: 'Between 7 and 30 days',
 			filteredData: (item) => {
-				return item.previousEstimate > 7 && item.previousEstimate < 30;
+				return item.currentEstimate > 7 && item.currentEstimate < 30;
 			},
 		},
 		{
 			timeFrame: 'Not that soon',
 			subLabel: 'Between 30 and 60 days',
 			filteredData: (item) => {
-				return item.previousEstimate >= 30 && item.previousEstimate < 60;
+				return item.currentEstimate >= 30 && item.currentEstimate < 60;
 			},
 		},
 		{
 			timeFrame: 'Inactive',
 			subLabel: '60 days or more',
 			filteredData: (item) => {
-				return item.previousEstimate >= 60;
+				return item.currentEstimate >= 60;
 			},
 		},
 	];

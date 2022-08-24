@@ -79,13 +79,16 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		dateCreated: new Date(),
 		// NOTE: This is null because the item has just been created.
 		// We'll put a Date here when the item is purchased!
+		previousDateLastPurchased: null,
 		dateLastPurchased: null,
+		previousDateNextPurchased: null,
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		// This property will be used when we build out more of our UI.
 		isChecked: false,
 		name: itemName,
 		totalPurchases: 0,
-		previousEstimate: parseInt(daysUntilNextPurchase),
+		previousEstimate: null,
+		currentEstimate: parseInt(daysUntilNextPurchase),
 	});
 }
 
@@ -99,10 +102,10 @@ export async function updateItem(listId, itemData) {
 		: (daysSinceLastTransaction = getDaysBetweenDates(itemData.dateCreated));
 
 	// this line with "let previousEstimate = parseInt .." can be removed if the database is reset. This line is required for converting old time frame entriies to numbers.
-	let previousEstimate = parseInt(itemData.previousEstimate);
+	let currentEstimate = parseInt(itemData.previousEstimate);
 
 	let newTimeEstimate = calculateEstimate(
-		previousEstimate,
+		currentEstimate,
 		daysSinceLastTransaction,
 		itemData.totalPurchases,
 	);
@@ -110,9 +113,32 @@ export async function updateItem(listId, itemData) {
 	await updateDoc(itemRef, {
 		totalPurchases: itemData.totalPurchases,
 		isChecked: itemData.isChecked,
+		previousDateLastPurchased: itemData.dateLastPurchased,
 		dateLastPurchased: new Date(),
+		previousDateNextPurchased: itemData.dateNextPurchased,
 		dateNextPurchased: getFutureDate(newTimeEstimate),
-		previousEstimate: newTimeEstimate,
+		previousEstimate: itemData.currentEstimate,
+		currentEstimate: newTimeEstimate,
+	});
+}
+
+export async function updateItemBack(listId, itemData) {
+	const itemRef = doc(db, listId, itemData.id);
+
+	await updateDoc(itemRef, {
+		totalPurchases: itemData.totalPurchases,
+		isChecked: itemData.isChecked,
+		dateLastPurchased: itemData.previousDateLastPurchased,
+		dateNextPurchased: itemData.previousDateNextPurchased,
+		currentEstimate: itemData.previousEstimate,
+	});
+}
+
+export async function updateItemCheckedStatus(listId, itemData) {
+	const itemRef = doc(db, listId, itemData.id);
+
+	await updateDoc(itemRef, {
+		isChecked: itemData.isChecked,
 	});
 }
 
