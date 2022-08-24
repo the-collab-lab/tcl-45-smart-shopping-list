@@ -7,6 +7,16 @@
 	align-items: center;
 }
 
+.join-list-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.character {
+	height: 9vh;
+	width: 8vw;
+}
 .join-list {
 	display: flex;
 	flex-direction: column;

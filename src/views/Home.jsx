@@ -2,6 +2,7 @@ import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { findToken } from '../api/firebase';
+import redBlinky from '../../src/assets/red-blinky.png';
 
 export function Home({ handleClick, listToken, setListToken }) {
 	const navigateTo = useNavigate();
@@ -26,7 +27,8 @@ export function Home({ handleClick, listToken, setListToken }) {
 				navigateTo('/list')
 			) : (
 				<>
-					<div>
+					<div className="join-list-container">
+						<img src={redBlinky} alt="Red character" className="character" />
 						<form onSubmit={handleJoinList} className="join-list">
 							<label htmlFor="list-name" className="join-list-input">
 								Join an existing list:{' '}
