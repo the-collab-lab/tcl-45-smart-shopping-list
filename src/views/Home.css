@@ -39,6 +39,8 @@
 	line-height: 3rem;
 	color: var(--yellow);
 	font-family: 'Share Tech Mono', monospace;
+	font-size: 2rem;
+	padding: 5px;
 }
 
 .join-list-token {
