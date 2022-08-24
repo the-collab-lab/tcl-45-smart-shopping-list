@@ -62,7 +62,7 @@ export function App() {
 
 	function logOut() {
 		const confirm = window.confirm(
-			`If you're ready to log out, make sure to write down your list name before you click ok! It is ${listToken}`,
+			`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`,
 		);
 		if (confirm) {
 			localStorage.clear();
