@@ -13,6 +13,7 @@
 	position: sticky;
 	text-align: center;
 	top: 0;
+	background-color: var(--blue);
 }
 
 .Layout-header > h1 > img {
