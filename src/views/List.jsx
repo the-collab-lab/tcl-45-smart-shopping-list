@@ -68,14 +68,6 @@ export function List({ data, listToken, loading }) {
 		},
 	];
 
-	//following code might be removed if no longer needed
-	const filteredGroups = groups.reduce(function (r, a) {
-		r[a.timeFrame] = r[a.timeFrame] || [];
-		r[a.timeFrame].push(a);
-		return r;
-	}, []);
-
-	console.log('filteredGroups', filteredGroups);
 	// get information by index
 	return (
 		<div className="list-container">
