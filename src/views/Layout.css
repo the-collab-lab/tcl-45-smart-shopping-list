@@ -3,11 +3,10 @@
 	flex-direction: column;
 	margin: 0 auto;
 	max-width: 100vw;
-	height: 100%;
+	height: 100vh;
 	padding-top: calc(1rem + env(safe-area-inset-top, 1rem));
 	padding-bottom: calc(1rem + env(safe-area-inset-bottom, 1rem));
 	width: 60rem;
-	background-color: chartreuse;
 }
 
 .Layout-header {

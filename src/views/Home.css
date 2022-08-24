@@ -37,9 +37,11 @@
 	background-color: var(--blue);
 	border: 1px solid var(--yellow);
 	line-height: 3rem;
+	color: var(--yellow);
+	font-family: 'Share Tech Mono', monospace;
 }
 
-.join-list > p {
+.join-list-token {
 	font-size: 2rem;
 	margin: 0px;
 }
@@ -52,6 +54,11 @@
 	width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
+}
+
+.join-list-error {
+	color: orange;
+	font-size: 3rem;
 }
 
 .existing-list-container {

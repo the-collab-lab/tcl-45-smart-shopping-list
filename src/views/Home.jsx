@@ -39,17 +39,20 @@ export function Home({ handleClick, listToken, setListToken }) {
 									name="list-name"
 									value={joinListName}
 									id="list-name"
-									placeholder="name of list"
 									onChange={(e) => setJoinListName(e.target.value)}
 								/>
 							</label>
-							<p>Enter a three word token.</p>
+							<p className="join-list-token">Enter a three word token.</p>
 							<div>
 								<button type="submit" className="join-list-button">
 									JOIN
 								</button>
 							</div>
-							{error && <p>That list does not exist.</p>}
+							{error && (
+								<p className="join-list-error">
+									Oh no! That list does not exist.
+								</p>
+							)}
 						</form>
 					</div>
 					<div className="existing-list-container">
