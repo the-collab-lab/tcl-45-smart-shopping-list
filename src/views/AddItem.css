@@ -87,3 +87,8 @@ input[type='radio']:checked {
 	background-color: var(--yellow);
 	border: 0.15em solid var(--blue);
 }
+
+input[type='text'] {
+	background-color: var(--blue);
+	color: var(--yellow);
+}
