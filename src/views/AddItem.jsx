@@ -49,7 +49,7 @@ export function AddItem({ listToken, itemList, setData }) {
 			<form onSubmit={handleSubmit}>
 				<div className="item-name-container">
 					<label htmlFor="item-name">
-						Item Name:{' '}
+						Enter Item Name:{' '}
 						<input
 							required
 							value={itemName}
@@ -74,7 +74,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								name="time-frame"
 								id="soon"
 								onChange={handleTime}
-							/>
+							/>{' '}
 							Soon (7 days)
 						</label>
 
@@ -85,7 +85,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								id="kind-of-soon"
 								value="14"
 								onChange={handleTime}
-							/>
+							/>{' '}
 							Kind of Soon (14 days)
 						</label>
 
@@ -96,7 +96,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								id="not-soon"
 								value="30"
 								onChange={handleTime}
-							/>
+							/>{' '}
 							Not Soon (30 days)
 						</label>
 					</fieldset>

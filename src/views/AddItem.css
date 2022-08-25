@@ -3,6 +3,7 @@
 	flex-direction: column;
 	padding: 20px;
 	margin: 20px 50px 50px 50px;
+	width: 40vw;
 }
 
 .timeframe label {
@@ -13,7 +14,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border: 1px white solid;
 	margin-top: 2rem;
 }
 
@@ -28,6 +28,8 @@
 	flex-direction: column;
 	align-items: center;
 	padding: 20px;
+	font-size: 1.3em;
+	font-weight: bold;
 }
 
 .item-name-container input {
@@ -35,7 +37,12 @@
 	margin: 20px;
 	box-sizing: border-box;
 	border: 1px solid var(--yellow);
-	max-width: 40vw;
+}
+
+.legend {
+	font-size: 1.2em;
+	font-weight: bold;
+	min-width: 30vw;
 }
 
 .button {
