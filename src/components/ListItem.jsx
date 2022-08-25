@@ -12,6 +12,8 @@ const one_day_in_ms = 24 * 60 * 60 * 1000;
 export function ListItem({ item, listToken }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
+	const [isEditing, setIsEditing] = useState(false);
+	const [updatedItem, setUpdatedItem] = useState('');
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -78,16 +80,54 @@ export function ListItem({ item, listToken }) {
 		}
 	};
 
+	const handleUpdateItem = async (item) => {
+		item.name = updatedItem;
+		await updateItem(listToken, item.name);
+	};
+
+	let itemDisplay;
+
+	if (isEditing) {
+		itemDisplay = (
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					setIsEditing(false);
+					handleUpdateItem(item);
+				}}
+			>
+				<input
+					type="text"
+					placeholder="Edit Item"
+					value={updatedItem}
+					onChange={(e) => {
+						setUpdatedItem(e.target.value);
+						console.log('updatedItem', updatedItem);
+					}}
+				/>
+				<button>Submit</button>
+			</form>
+		);
+	} else {
+		itemDisplay = (
+			<>
+				<input
+					type="checkbox"
+					id={`${item.id}-${item.name}-checkbox`}
+					name={item.name}
+					onChange={handleCheckItem}
+					checked={isPurchased}
+				/>
+				<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
+				<button type="button" onClick={() => setIsEditing(true)}>
+					Edit
+				</button>
+			</>
+		);
+	}
 	return (
 		<div className="ListItem">
-			<input
-				type="checkbox"
-				id={`${item.id}-${item.name}-checkbox`}
-				name={item.name}
-				onChange={handleCheckItem}
-				checked={isPurchased}
-			/>
-			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
+			{itemDisplay}
 			<button type="button" onClick={handleDeleteItem}>
 				Delete
 			</button>

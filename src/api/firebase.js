@@ -110,7 +110,10 @@ export async function updateItem(listId, itemData) {
 		itemData.totalPurchases,
 	);
 
+	let updatedName = itemData.name;
+
 	await updateDoc(itemRef, {
+		name: updatedName,
 		totalPurchases: itemData.totalPurchases,
 		isChecked: itemData.isChecked,
 		previousDateLastPurchased: itemData.dateLastPurchased,
