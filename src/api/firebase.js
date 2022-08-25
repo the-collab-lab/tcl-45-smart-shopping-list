@@ -145,6 +145,14 @@ export async function updateItemCheckedStatus(listId, itemData) {
 	});
 }
 
+export async function updateItemName(listId, itemData, itemName) {
+	const itemRef = doc(db, listId, itemData.id);
+
+	await updateDoc(itemRef, {
+		name: itemName,
+	});
+}
+
 export async function deleteItem(listId, itemData) {
 	await deleteDoc(doc(db, listId, itemData.id));
 }

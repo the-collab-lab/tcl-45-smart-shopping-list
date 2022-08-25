@@ -5,6 +5,7 @@ import {
 	deleteItem,
 	updateItemBack,
 	updateItemCheckedStatus,
+	updateItemName,
 } from '../api';
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
@@ -13,7 +14,7 @@ export function ListItem({ item, listToken }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
 	const [isEditing, setIsEditing] = useState(false);
-	const [updatedItem, setUpdatedItem] = useState('');
+	const [updatedName, setUpdatedName] = useState('');
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -80,11 +81,6 @@ export function ListItem({ item, listToken }) {
 		}
 	};
 
-	const handleUpdateItem = async (item) => {
-		item.name = updatedItem;
-		await updateItem(listToken, item.name);
-	};
-
 	let itemDisplay;
 
 	if (isEditing) {
@@ -93,19 +89,22 @@ export function ListItem({ item, listToken }) {
 				onSubmit={(e) => {
 					e.preventDefault();
 					setIsEditing(false);
-					handleUpdateItem(item);
+					try {
+						updateItemName(listToken, item, updatedName);
+					} catch (error) {
+						console.log('error', error);
+					}
 				}}
 			>
 				<input
 					type="text"
 					placeholder="Edit Item"
-					value={updatedItem}
+					value={updatedName}
 					onChange={(e) => {
-						setUpdatedItem(e.target.value);
-						console.log('updatedItem', updatedItem);
+						setUpdatedName(e.target.value);
 					}}
 				/>
-				<button>Submit</button>
+				<button type="submit">Submit</button>
 			</form>
 		);
 	} else {
