@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
+import './AddItem.css';
 
 export function AddItem({ listToken, itemList, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
@@ -44,9 +45,9 @@ export function AddItem({ listToken, itemList, setData }) {
 		setSuccess(false);
 	};
 	return (
-		<div>
+		<div className="item-form-container">
 			<form onSubmit={handleSubmit}>
-				<div className="item-name">
+				<div className="item-name-container">
 					<label htmlFor="item-name">
 						Item Name:{' '}
 						<input

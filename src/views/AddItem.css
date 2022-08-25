@@ -1,0 +1,89 @@
+.timeframe {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	margin: 20px 50px 50px 50px;
+}
+
+.timeframe label {
+	padding: 10px;
+}
+
+.item-form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px white solid;
+	margin-top: 2rem;
+}
+
+.item-name-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.item-name-container > label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.item-name-container input {
+	padding: 10px;
+	margin: 20px;
+	box-sizing: border-box;
+	border: 1px solid var(--yellow);
+	max-width: 40vw;
+}
+
+.button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 51px;
+	border-radius: 10px;
+	margin: 10px;
+}
+
+.button > button {
+	width: 150px;
+	height: 51px;
+	background: var(--yellow);
+	border-radius: 10px;
+}
+
+p,
+button {
+	font-family: 'Share Tech Mono', monospace;
+	font-size: 1.2em;
+	color: var(--blue);
+	font-weight: bold;
+}
+
+input[type='radio'] {
+	font: inherit;
+	width: 1.15em;
+	height: 1.15em;
+	appearance: none;
+	background-color: var(--blue);
+	border: 0.15em solid var(--yellow);
+	border-radius: 50%;
+}
+
+input[type='radio']::before {
+	content: '';
+	width: 0.65em;
+	height: 0.65em;
+	border-radius: 50%;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 1em 1em var(--blue);
+}
+
+input[type='radio']:checked {
+	transform: scale(1);
+	background-color: var(--yellow);
+	border: 0.15em solid var(--blue);
+}
