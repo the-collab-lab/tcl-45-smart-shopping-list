@@ -1,5 +1,8 @@
 import './ListItem.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+// import { A11yDialog } from 'react-a11y-dialog';
+import CustomDeleteDialog from '../utils/CustomDeleteDialog';
+
 import {
 	updateItem,
 	deleteItem,
@@ -12,6 +15,7 @@ const one_day_in_ms = 24 * 60 * 60 * 1000;
 export function ListItem({ item, listToken }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
+	const [deleteResponse, setDeleteResponse] = useState(false);
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -38,6 +42,8 @@ export function ListItem({ item, listToken }) {
 		}
 	};
 
+	const dialog = useRef();
+
 	useEffect(() => {
 		if (
 			timeElapsed > one_day_in_ms &&
@@ -62,11 +68,11 @@ export function ListItem({ item, listToken }) {
 	};
 
 	const handleDeleteItem = () => {
-		const confirm = window.confirm(
-			`Do you really want to delete ${item.name}?`,
-		);
+		dialog.current.show();
+		// const confirm = window.confirm(
+		// 	`Do you really want to delete ${item.name}?`,
 		try {
-			if (confirm) {
+			if (deleteResponse) {
 				deleteItem(listToken, item);
 				// commenting out the lines below but keeping them for a11y dialog window to be implemented later
 				// 	alert(`${item.name} has been deleted!`);
@@ -88,9 +94,13 @@ export function ListItem({ item, listToken }) {
 				checked={isPurchased}
 			/>
 			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
-			<button type="button" onClick={handleDeleteItem}>
+			{/* <button type="button" onClick={handleDeleteItem}>
 				Delete
-			</button>
+			</button> */}
+
+			<CustomDeleteDialog
+				props={`Do you really want to delete ${item.name}?`}
+			/>
 		</div>
 	);
 }
