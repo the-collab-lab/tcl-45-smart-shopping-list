@@ -21,13 +21,18 @@ const CustomDeleteDialog = ({ text, deleteConfirmation }) => {
 
 			<div {...attr.dialog} className="dialog-content">
 				<h1 {...attr.title} className="dialog-title">
-					Confirm Dialog
+					Confirm Delete Dialog
 				</h1>
 
 				<p>{text}</p>
 
 				<button {...attr.closeButton} className="dialog-close">
-					X
+					<img
+						src="../../public/img/x.png"
+						width="16"
+						height="16"
+						alt="close dialog button"
+					/>
 				</button>
 				<button
 					type="button"
