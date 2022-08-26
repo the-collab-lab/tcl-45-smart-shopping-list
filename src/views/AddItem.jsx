@@ -64,7 +64,7 @@ export function AddItem({ listToken, itemList, setData }) {
 						/>
 					</label>
 				</div>
-				<div>
+				<div className="time-frame-container">
 					<fieldset className="timeframe">
 						<legend className="legend">
 							How soon will you buy this again?
@@ -115,6 +115,9 @@ export function AddItem({ listToken, itemList, setData }) {
 						</label>
 					</fieldset>
 				</div>
+				<div className="button">
+					<button type="submit">Add Item</button>
+				</div>
 				{error && <p>The item was not added</p>}
 				{duplicateError && (
 					<p>
@@ -122,10 +125,6 @@ export function AddItem({ listToken, itemList, setData }) {
 					</p>
 				)}
 				{success && <p>The item has been added</p>}
-
-				<div className="button">
-					<button type="submit">Add Item</button>
-				</div>
 			</form>
 		</div>
 	);
