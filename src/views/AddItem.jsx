@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 import './AddItem.css';
+import redblinky from '../../src/assets/red-blinky.png';
+import pinkblinky from '../../src/assets/pink-blinky.png';
+import yellowblinky from '../../src/assets/yellow-blinky.png';
 
 export function AddItem({ listToken, itemList, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
@@ -75,7 +78,8 @@ export function AddItem({ listToken, itemList, setData }) {
 								id="soon"
 								onChange={handleTime}
 							/>{' '}
-							Soon (7 days)
+							Soon (7 days){' '}
+							<img className="blinkies" src={redblinky} alt="red-blinky logo" />
 						</label>
 
 						<label htmlFor="kind-of-soon">
@@ -87,6 +91,11 @@ export function AddItem({ listToken, itemList, setData }) {
 								onChange={handleTime}
 							/>{' '}
 							Kind of Soon (14 days)
+							<img
+								className="blinkies"
+								src={pinkblinky}
+								alt="pink-blinky logo"
+							/>
 						</label>
 
 						<label htmlFor="not-soon">
@@ -98,6 +107,11 @@ export function AddItem({ listToken, itemList, setData }) {
 								onChange={handleTime}
 							/>{' '}
 							Not Soon (30 days)
+							<img
+								className="blinkies"
+								src={yellowblinky}
+								alt="yellow-blinky logo"
+							/>
 						</label>
 					</fieldset>
 				</div>
