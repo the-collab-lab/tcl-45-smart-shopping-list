@@ -1,7 +1,7 @@
 import './Layout.css';
 import { Outlet, NavLink } from 'react-router-dom';
 
-export function Layout({ listToken }) {
+export function Layout({ listToken, logOut }) {
 	return (
 		<>
 			<div className="Layout">
@@ -13,8 +13,17 @@ export function Layout({ listToken }) {
 				<div className="layout-container">
 					{listToken && (
 						<>
-							<header className="app-header">
-								<h1>HELLO!</h1>
+							<header className="header">
+								<div className="header-left">
+									<h3>Your list: </h3>
+									<h3>{listToken}</h3>
+								</div>
+								<div className="header-center">
+									<h3>COPY NAME BUTTON</h3>
+								</div>
+								<div className="header-right">
+									<button onClick={logOut}>Log Out</button>
+								</div>
 							</header>
 							<main className="Layout-main">
 								<Outlet />

@@ -76,7 +76,10 @@ export function App() {
 	return (
 		<div className="App">
 			<Routes>
-				<Route path="/" element={<Layout listToken={listToken} />}>
+				<Route
+					path="/"
+					element={<Layout listToken={listToken} logOut={logOut} />}
+				>
 					<Route
 						index
 						element={
@@ -91,12 +94,7 @@ export function App() {
 					<Route
 						path="/list"
 						element={
-							<List
-								data={data}
-								loading={loading}
-								listToken={listToken}
-								logOut={logOut}
-							/>
+							<List data={data} loading={loading} listToken={listToken} />
 						}
 					/>
 

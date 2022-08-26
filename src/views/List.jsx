@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import pac from '../assets/pac.png';
 
-export function List({ data, listToken, loading, logOut }) {
+export function List({ data, listToken, loading }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
@@ -65,7 +65,6 @@ export function List({ data, listToken, loading, logOut }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
-					<button onClick={logOut}>Log Out</button>
 					<p>
 						Your list name is{' '}
 						<span style={{ color: 'salmon' }}>{listToken}</span>.
