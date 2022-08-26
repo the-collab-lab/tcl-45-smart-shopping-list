@@ -3,3 +3,25 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+.empty-list-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	height: 50vh;
+}
+
+.empty-list-add-item-button {
+	background: var(--yellow);
+	color: var(--blue);
+	height: 6vh;
+	width: 16vw;
+	font-family: 'VT323', monospace;
+	font-size: 2rem;
+	cursor: pointer;
+}
+
+.empty-list-container > h3 {
+	text-align: center;
+}

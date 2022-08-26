@@ -1,7 +1,8 @@
+import './List.css';
 import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './List.css';
+import pac from '../assets/pac.png';
 
 export function List({ data, listToken, loading, logOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
@@ -122,13 +123,22 @@ export function List({ data, listToken, loading, logOut }) {
 							</div>
 						</div>
 					) : (
-						<>
+						<div className="empty-list-container">
 							<h3>
-								Your list is empty! Click the button below to start building
-								your list.
+								Your smart shopping list is currently empty! Start picking
+								products to fill your list.
 							</h3>
-							<button onClick={handleNav}>Add Item</button>
-						</>
+							<button
+								onClick={handleNav}
+								className="empty-list-add-item-button"
+							>
+								ADD ITEM
+							</button>
+							<img
+								src={pac}
+								alt="A yellow Miss Pac Man with three dots coming out of her mouth."
+							/>
+						</div>
 					)}{' '}
 				</>
 			)}
