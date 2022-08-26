@@ -47,14 +47,14 @@ export function List({ data, listToken, loading, logOut }) {
 		},
 		{
 			timeFrame: 'Next week',
-			subLabel: 'Between 7 and 30 days',
+			subLabel: 'Between 8 and 14 days',
 			filteredData: (item) => {
 				return item.currentEstimate > 7 && item.currentEstimate < 30;
 			},
 		},
 		{
 			timeFrame: 'Next month',
-			subLabel: 'Between 30 and 60 days',
+			subLabel: 'Between 15 and 30 days',
 			filteredData: (item) => {
 				return item.currentEstimate >= 30 && item.currentEstimate < 60;
 			},
