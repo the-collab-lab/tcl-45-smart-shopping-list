@@ -1,26 +1,35 @@
 import './Layout.css';
 import { Outlet, NavLink } from 'react-router-dom';
-import logo from '../../src/assets/shop-ade.png';
 
 export function Layout({ listToken }) {
 	return (
 		<>
 			<div className="Layout">
-				<main className="Layout-main">
-					<Outlet />
-				</main>
-				<nav className="Nav">
+				{!listToken && (
+					<main className="Layout-main">
+						<Outlet />
+					</main>
+				)}
+				<div className="layout-container">
 					{listToken && (
 						<>
-							<NavLink to="/list" className="Nav-link">
-								List
-							</NavLink>
-							<NavLink to="/add-item" className="Nav-link">
-								Add Item
-							</NavLink>
+							<header className="app-header">
+								<h1>HELLO!</h1>
+							</header>
+							<main className="Layout-main">
+								<Outlet />
+							</main>
+							<div className="nav">
+								<NavLink to="/list" className="Nav-link">
+									List
+								</NavLink>
+								<NavLink to="/add-item" className="Nav-link">
+									Add Item
+								</NavLink>
+							</div>
 						</>
 					)}
-				</nav>
+				</div>
 			</div>
 		</>
 	);
