@@ -7,11 +7,6 @@ export function List({ data, listToken, loading, logOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
-	// user type in search item - query
-	// as letters come in, filters items rendered on page
-	// set query to searchQuery
-	// render onto page search Results -> setting whatever is filtered into searchResults
-	// console.log('data from List', data);
 
 	function filterResults(query) {
 		return data.filter((item) =>
@@ -21,9 +16,6 @@ export function List({ data, listToken, loading, logOut }) {
 
 	useEffect(() => {
 		setSearchResults(filterResults(searchQuery));
-
-		// ignoring dependency array warning for now
-		// adding filterResults causes infinite re-render
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchQuery, data]);
 
@@ -35,8 +27,6 @@ export function List({ data, listToken, loading, logOut }) {
 		navigateTo('/add-item');
 	}
 
-	//4 groups, within each group
-	//order items by currentEstimate within the group
 	const groups = [
 		{
 			timeFrame: 'Soon',
@@ -68,8 +58,6 @@ export function List({ data, listToken, loading, logOut }) {
 		},
 	];
 
-	// get information by index
-
 	return (
 		<div className="list-container">
 			{loading ? (
@@ -82,32 +70,57 @@ export function List({ data, listToken, loading, logOut }) {
 						<span style={{ color: 'salmon' }}>{listToken}</span>.
 					</p>
 					{data.length >= 1 ? (
-						<>
-							<h3>Find what you're looking for!</h3>
-							<form>
-								<label htmlFor="search-items">
-									Search Items:{' '}
-									<input
-										name="search-items"
-										id="search-items"
-										type="text"
-										placeholder="Search items"
-										value={searchQuery}
-										onChange={(e) => setSearchQuery(e.target.value)}
-									/>
-									{searchQuery ? (
-										<>
-											{' '}
-											<button type="button" onClick={handleClearSearchQuery}>
-												Clear search
-											</button>
-										</>
-									) : (
-										''
-									)}
-								</label>
-							</form>
-						</>
+						<div>
+							<div>
+								<h3>Find what you're looking for!</h3>
+								<form>
+									<label htmlFor="search-items">
+										Search Items:{' '}
+										<input
+											name="search-items"
+											id="search-items"
+											type="text"
+											placeholder="Search items"
+											value={searchQuery}
+											onChange={(e) => setSearchQuery(e.target.value)}
+										/>
+										{searchQuery ? (
+											<>
+												{' '}
+												<button type="button" onClick={handleClearSearchQuery}>
+													Clear search
+												</button>
+											</>
+										) : (
+											''
+										)}
+									</label>
+								</form>
+							</div>
+							<div>
+								<ul>
+									{groups.map((group) => {
+										return (
+											<section className={group.timeFrame}>
+												<h1>{group.timeFrame}</h1>
+												<p>({group.subLabel})</p>
+												{searchResults
+													.filter((item) => group.filteredData(item))
+													.map((filteredItem) => {
+														return (
+															<ListItem
+																key={filteredItem.id}
+																item={filteredItem}
+																listToken={listToken}
+															/>
+														);
+													})}
+											</section>
+										);
+									})}
+								</ul>
+							</div>
+						</div>
 					) : (
 						<>
 							<h3>
@@ -119,29 +132,6 @@ export function List({ data, listToken, loading, logOut }) {
 					)}{' '}
 				</>
 			)}
-			<ul>
-				{/* filter through groups array for each group to display by time frame */}
-				{groups.map((group) => {
-					return (
-						<section className={group.timeFrame}>
-							<h1>{group.timeFrame}</h1>
-							<p>({group.subLabel})</p>
-							{searchResults
-								// within each group's filteredData, map through to each item to pass in as a prop
-								.filter((item) => group.filteredData(item))
-								.map((filteredItem) => {
-									return (
-										<ListItem
-											key={filteredItem.id}
-											item={filteredItem}
-											listToken={listToken}
-										/>
-									);
-								})}
-						</section>
-					);
-				})}
-			</ul>
 		</div>
 	);
 }
