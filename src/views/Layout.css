@@ -9,18 +9,6 @@
 	width: 60rem;
 }
 
-.Layout-header {
-	position: sticky;
-	text-align: center;
-	top: 0;
-	background-color: var(--blue);
-}
-
-.Layout-header > h1 > img {
-	margin-top: 0;
-	width: 100%;
-}
-
 .Layout-main {
 	margin: 0 auto;
 	max-width: 95vw;
