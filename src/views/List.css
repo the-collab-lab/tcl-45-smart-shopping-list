@@ -15,10 +15,10 @@
 .empty-list-add-item-button {
 	background: var(--yellow);
 	color: var(--blue);
-	height: 6vh;
-	width: 16vw;
+	height: 8vh;
+	width: 30vw;
 	font-family: 'VT323', monospace;
-	font-size: 2rem;
+	font-size: 3rem;
 	cursor: pointer;
 }
 

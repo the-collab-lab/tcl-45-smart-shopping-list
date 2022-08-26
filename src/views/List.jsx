@@ -121,7 +121,7 @@ export function List({ data, listToken, loading }) {
 						<div className="empty-list-container">
 							<h3>
 								Your smart shopping list is currently empty! Start picking
-								products to fill your list.
+								products to fill your needs.
 							</h3>
 							<button
 								onClick={handleNav}

@@ -15,7 +15,7 @@ export function Layout({ listToken, logOut }) {
 						<>
 							<header className="header">
 								<div className="header-left">
-									<h3>Your list: </h3>
+									<h3>Your list name: </h3>
 									<h3>{listToken}</h3>
 								</div>
 								<div className="header-center">
@@ -28,12 +28,12 @@ export function Layout({ listToken, logOut }) {
 							<main className="Layout-main">
 								<Outlet />
 							</main>
-							<div className="nav">
-								<NavLink to="/list" className="Nav-link">
-									List
+							<div className="footer">
+								<NavLink to="/list" className="nav-link">
+									SEE LIST
 								</NavLink>
-								<NavLink to="/add-item" className="Nav-link">
-									Add Item
+								<NavLink to="/add-item" className="nav-link">
+									ADD ITEM
 								</NavLink>
 							</div>
 						</>
