@@ -86,29 +86,17 @@
 	box-sizing: border-box;
 }
 
-.delete-confirm-button {
+.confirm-action-button:hover,
+.confirm-action-button:active,
+.cancel-action-button:hover,
+.confirm-action-button:active {
+	background-color: var(--white);
+	color: var(--blue);
+}
+.confirm-action-button,
+.cancel-action-button {
 	background-color: var(--blue);
-	color: var(--yellow);
-	border: 0;
-	font-family: inherit;
-	font-size: inherit;
-	padding: 8px 15px;
-	cursor: pointer;
-	transition: 0.15s;
-	display: inline-block;
-	border: 1px solid var(--blue);
-	width: 5em;
-}
-
-.delete-confirm-button:hover,
-.delete-confirm-button:active {
-	background-color: var(--white);
-	color: var(--blue);
-}
-
-.delete-cancel-button {
-	background-color: var(--white);
-	color: var(--blue);
+	color: var(--white);
 	border: 0;
 	font-family: inherit;
 	font-size: inherit;
@@ -118,10 +106,4 @@
 	display: inline-block;
 	border: 1px solid var(--blue);
 	margin: 5px;
-}
-
-.delete-cancel-button:hover,
-.delete-cancel-button:active {
-	background-color: var(--blue);
-	color: var(--yellow);
 }
