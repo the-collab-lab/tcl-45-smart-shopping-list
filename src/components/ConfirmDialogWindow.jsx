@@ -1,7 +1,8 @@
 import { useA11yDialog } from 'react-a11y-dialog';
 import { createPortal } from 'react-dom';
+import './ConfirmDialogWindow.css';
 
-const CustomDeleteDialog = ({ text, deleteConfirmation }) => {
+const ConfirmDialogWindow = ({ text, confirmAction }) => {
 	// `instance` is the `a11y-dialog` instance.
 	// `attr` is an object with the following keys:
 	// - `container`: the dialog container
@@ -47,7 +48,7 @@ const CustomDeleteDialog = ({ text, deleteConfirmation }) => {
 					type="button"
 					className="delete-confirm-button"
 					onClick={() => {
-						deleteConfirmation(true);
+						confirmAction(true);
 						instance.hide();
 					}}
 				>
@@ -68,4 +69,4 @@ const CustomDeleteDialog = ({ text, deleteConfirmation }) => {
 	);
 };
 
-export default CustomDeleteDialog;
+export default ConfirmDialogWindow;

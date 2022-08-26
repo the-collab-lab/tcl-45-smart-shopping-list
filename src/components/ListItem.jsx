@@ -1,7 +1,6 @@
 import './ListItem.css';
 import { useState, useEffect } from 'react';
-import CustomDeleteDialog from '../utils/CustomDeleteDialog';
-
+import ConfirmDialogWindow from './ConfirmDialogWindow';
 import {
 	updateItem,
 	deleteItem,
@@ -14,7 +13,7 @@ const one_day_in_ms = 24 * 60 * 60 * 1000;
 export function ListItem({ item, listToken }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
-	const [deleteResponse, setDeleteResponse] = useState(false);
+	const [confirmResponse, setConfirmResponse] = useState(false);
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -64,7 +63,7 @@ export function ListItem({ item, listToken }) {
 		handlePurchaseItem();
 	};
 
-	if (deleteResponse) {
+	if (confirmResponse) {
 		try {
 			deleteItem(listToken, item);
 		} catch (error) {
@@ -83,9 +82,9 @@ export function ListItem({ item, listToken }) {
 			/>
 			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
 
-			<CustomDeleteDialog
+			<ConfirmDialogWindow
 				text={`Do you really want to delete ${item.name}?`}
-				deleteConfirmation={setDeleteResponse}
+				confirmAction={setConfirmResponse}
 			/>
 		</div>
 	);
