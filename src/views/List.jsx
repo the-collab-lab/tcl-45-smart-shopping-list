@@ -65,10 +65,6 @@ export function List({ data, listToken, loading }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
-					<p>
-						Your list name is{' '}
-						<span style={{ color: 'salmon' }}>{listToken}</span>.
-					</p>
 					{data.length >= 1 ? (
 						<div>
 							<div>
