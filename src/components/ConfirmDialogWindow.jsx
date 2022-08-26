@@ -2,7 +2,7 @@ import { useA11yDialog } from 'react-a11y-dialog';
 import { createPortal } from 'react-dom';
 import './ConfirmDialogWindow.css';
 
-const ConfirmDialogWindow = ({ text, confirmAction }) => {
+const ConfirmDialogWindow = ({ text, title, confirmAction }) => {
 	// `instance` is the `a11y-dialog` instance.
 	// `attr` is an object with the following keys:
 	// - `container`: the dialog container
@@ -11,9 +11,9 @@ const ConfirmDialogWindow = ({ text, confirmAction }) => {
 	// - `title`: the dialog mandatory title
 	// - `closeButton`:  the dialog close button
 	const [instance, attr] = useA11yDialog({
-		id: 'confirm-delete-dialog',
+		id: 'confirm-dialog',
 		role: 'dialog',
-		title: 'Confirm delete dialog',
+		title: 'Confirm action dialog',
 	});
 
 	const dialog = createPortal(
@@ -22,7 +22,7 @@ const ConfirmDialogWindow = ({ text, confirmAction }) => {
 
 			<div {...attr.dialog} className="dialog-content">
 				<h1 {...attr.title} className="dialog-title">
-					Confirm Delete Dialog
+					Confirm Dialog
 				</h1>
 
 				<p>{text}</p>
@@ -37,7 +37,7 @@ const ConfirmDialogWindow = ({ text, confirmAction }) => {
 				</button>
 				<button
 					type="button"
-					className="delete-cancel-button"
+					className="cancel-action-button"
 					onClick={() => {
 						instance.hide();
 					}}
@@ -46,7 +46,7 @@ const ConfirmDialogWindow = ({ text, confirmAction }) => {
 				</button>
 				<button
 					type="button"
-					className="delete-confirm-button"
+					className="confirm-action-button"
 					onClick={() => {
 						confirmAction(true);
 						instance.hide();
@@ -62,7 +62,7 @@ const ConfirmDialogWindow = ({ text, confirmAction }) => {
 	return (
 		<>
 			<button type="button" onClick={() => instance.show()}>
-				X
+				{title === 'Log Out' ? 'Log Out' : 'X'}
 			</button>
 			{dialog}
 		</>

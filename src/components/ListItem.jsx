@@ -84,6 +84,7 @@ export function ListItem({ item, listToken }) {
 
 			<ConfirmDialogWindow
 				text={`Do you really want to delete ${item.name}?`}
+				title="delete dialog"
 				confirmAction={setConfirmResponse}
 			/>
 		</div>
