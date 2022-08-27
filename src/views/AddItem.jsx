@@ -80,6 +80,7 @@ export function AddItem({ listToken, itemList, setData }) {
 							/>{' '}
 							Soon (7 days){' '}
 							<img className="blinkies" src={redblinky} alt="red-blinky logo" />
+							This week
 						</label>
 
 						<label htmlFor="kind-of-soon">
@@ -96,6 +97,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								src={pinkblinky}
 								alt="pink-blinky logo"
 							/>
+							Next week
 						</label>
 
 						<label htmlFor="not-soon">
@@ -112,6 +114,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								src={yellowblinky}
 								alt="yellow-blinky logo"
 							/>
+							Next month
 						</label>
 					</fieldset>
 				</div>
