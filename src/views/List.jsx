@@ -66,8 +66,8 @@ export function List({ data, listToken, loading }) {
 			) : (
 				<>
 					{data.length >= 1 ? (
-						<div>
-							<div>
+						<div className="full-list-container">
+							<div className="full-list-search">
 								<h3>Find what you're looking for!</h3>
 								<form>
 									<label htmlFor="search-items">
@@ -93,7 +93,7 @@ export function List({ data, listToken, loading }) {
 									</label>
 								</form>
 							</div>
-							<div>
+							<div className="full-list-items">
 								<ul>
 									{groups.map((group) => {
 										return (
