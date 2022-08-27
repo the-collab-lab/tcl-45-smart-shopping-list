@@ -13,7 +13,7 @@ export function App() {
 	const navigateTo = useNavigate();
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
-
+	const [confirmLogOut, setConfirmLogOut] = useState(false);
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
 	 * that can be used to update `listToken` later.
@@ -62,15 +62,11 @@ export function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [listToken]);
 
-	function logOut() {
-		const confirm = window.confirm(
-			`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`,
-		);
-		if (confirm) {
-			localStorage.clear();
-			setListToken('');
-			navigateTo('/');
-		}
+	if (confirmLogOut === true) {
+		localStorage.clear();
+		setListToken('');
+		navigateTo('/');
+		setConfirmLogOut(false);
 	}
 
 	return (
@@ -95,7 +91,7 @@ export function App() {
 								data={data}
 								loading={loading}
 								listToken={listToken}
-								logOut={logOut}
+								confirmLogOut={setConfirmLogOut}
 							/>
 						}
 					/>
