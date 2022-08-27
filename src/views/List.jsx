@@ -67,11 +67,11 @@ export function List({ data, listToken, loading }) {
 				<>
 					{data.length >= 1 ? (
 						<div className="full-list-container">
-							<div className="full-list-search">
-								<h3>Find what you're looking for!</h3>
+							<div className="full-list-search-container">
+								<h2>I NEED TO BUY...</h2>
 								<form>
 									<label htmlFor="search-items">
-										Search Items:{' '}
+										Filter:{' '}
 										<input
 											name="search-items"
 											id="search-items"
@@ -93,29 +93,29 @@ export function List({ data, listToken, loading }) {
 									</label>
 								</form>
 							</div>
-							<div className="full-list-items">
-								<ul>
-									{groups.map((group) => {
-										return (
-											<section className={group.timeFrame}>
-												<h1>{group.timeFrame}</h1>
+							<ul className="full-list-items-container">
+								{groups.map((group) => {
+									return (
+										<section className="full-list-items">
+											<div className="full-list-items-timeframe">
+												<h3>{group.timeFrame}</h3>
 												<p>({group.subLabel})</p>
-												{searchResults
-													.filter((item) => group.filteredData(item))
-													.map((filteredItem) => {
-														return (
-															<ListItem
-																key={filteredItem.id}
-																item={filteredItem}
-																listToken={listToken}
-															/>
-														);
-													})}
-											</section>
-										);
-									})}
-								</ul>
-							</div>
+											</div>
+											{searchResults
+												.filter((item) => group.filteredData(item))
+												.map((filteredItem) => {
+													return (
+														<ListItem
+															key={filteredItem.id}
+															item={filteredItem}
+															listToken={listToken}
+														/>
+													);
+												})}
+										</section>
+									);
+								})}
+							</ul>
 						</div>
 					) : (
 						<div className="empty-list-container">
