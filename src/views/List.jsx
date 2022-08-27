@@ -35,22 +35,22 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 	//order items by currentEstimate within the group
 	const groups = [
 		{
-			timeFrame: 'Soon',
+			timeFrame: 'This week',
 			subLabel: '7 days or less',
 			filteredData: (item) => {
 				return item.currentEstimate <= 7;
 			},
 		},
 		{
-			timeFrame: 'Kind of soon',
-			subLabel: 'Between 7 and 30 days',
+			timeFrame: 'Next week',
+			subLabel: 'Between 8 and 14 days',
 			filteredData: (item) => {
 				return item.currentEstimate > 7 && item.currentEstimate < 30;
 			},
 		},
 		{
-			timeFrame: 'Not that soon',
-			subLabel: 'Between 30 and 60 days',
+			timeFrame: 'Next month',
+			subLabel: 'Between 15 and 30 days',
 			filteredData: (item) => {
 				return item.currentEstimate >= 30 && item.currentEstimate < 60;
 			},
@@ -125,7 +125,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 					return (
 						<section className={group.timeFrame}>
 							<h1>{group.timeFrame}</h1>
-							<p>({group.subLabel})</p>
 							{searchResults
 								// within each group's filteredData, map through to each item to pass in as a prop
 								.filter((item) => group.filteredData(item))
