@@ -1,0 +1,11 @@
+.date-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.timeframe {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	margin: 20px;
+}
