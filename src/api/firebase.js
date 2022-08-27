@@ -11,6 +11,7 @@ import {
 	updateDoc,
 	deleteDoc,
 	doc,
+	orderBy,
 } from 'firebase/firestore';
 
 import { getDaysBetweenDates, getFutureDate } from '../utils';
@@ -37,7 +38,8 @@ const db = getFirestore(app);
  */
 export function streamListItems(listId, handleSuccess) {
 	const listCollectionRef = collection(db, listId);
-	return onSnapshot(listCollectionRef, handleSuccess);
+	const alphabeticalList = query(listCollectionRef, orderBy('lowercase_name'));
+	return onSnapshot(alphabeticalList, handleSuccess);
 }
 
 /**
@@ -86,6 +88,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		// This property will be used when we build out more of our UI.
 		isChecked: false,
 		name: itemName,
+		lowercase_name: itemName.toLowerCase(),
 		totalPurchases: 0,
 		previousEstimate: null,
 		currentEstimate: parseInt(daysUntilNextPurchase),

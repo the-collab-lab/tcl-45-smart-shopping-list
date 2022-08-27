@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 .timeframe {
+=======
+.date-container {
+>>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
 	display: flex;
 	flex-direction: column;
 }
 
+<<<<<<< HEAD
 .timeframe > fieldset {
 	display: flex;
 	flex-direction: column;
@@ -116,4 +121,11 @@ input[type='radio']:checked {
 input[type='text'] {
 	background-color: var(--blue);
 	color: var(--yellow);
+=======
+.timeframe {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	margin: 20px;
+>>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
 }
