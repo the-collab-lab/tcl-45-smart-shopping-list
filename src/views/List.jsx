@@ -1,17 +1,13 @@
 import { ListItem } from '../components';
+import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './List.css';
 
-export function List({ data, listToken, loading, logOut }) {
+export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const navigateTo = useNavigate();
-	// user type in search item - query
-	// as letters come in, filters items rendered on page
-	// set query to searchQuery
-	// render onto page search Results -> setting whatever is filtered into searchResults
-	// console.log('data from List', data);
 
 	function filterResults(query) {
 		return data.filter((item) =>
@@ -76,7 +72,11 @@ export function List({ data, listToken, loading, logOut }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
-					<button onClick={logOut}>Log Out</button>
+					<ConfirmDialogWindow
+						text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
+						title="Log Out"
+						confirmAction={confirmLogOut}
+					/>
 					<p>
 						Your list name is{' '}
 						<span style={{ color: 'salmon' }}>{listToken}</span>.
