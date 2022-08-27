@@ -9,7 +9,9 @@
 		"@the-collab-lab/shopping-list-utils": "^2.0.0",
 		"firebase": "^9.8.4",
 		"react": "^18.2.0",
+		"react-a11y-dialog": "^6.1.5",
 		"react-dom": "^18.2.0",
+		"react-hot-toast": "^2.3.0",
 		"react-router-dom": "^6.3.0"
 	},
 	"devDependencies": {
