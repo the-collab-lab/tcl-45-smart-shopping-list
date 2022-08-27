@@ -2,11 +2,14 @@ import { ListItem } from '../components';
 import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import './List.css';
 
 export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
+	const [copy, setCopy] = useState(false);
+
 	const navigateTo = useNavigate();
 
 	function filterResults(query) {
@@ -64,10 +67,18 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		},
 	];
 
-	// get information by index
+	function handleCopy() {
+		setCopy(true);
+		navigator.clipboard.writeText(`${listToken}`);
+		toast.success('Copied!');
+		setTimeout(() => {
+			setCopy(false);
+		}, 2000);
+	}
 
 	return (
 		<div className="list-container">
+			<Toaster />
 			{loading ? (
 				<p>Your list is loading...</p>
 			) : (
