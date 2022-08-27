@@ -62,7 +62,7 @@ export function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [listToken]);
 
-	if (confirmLogOut === true) {
+	if (confirmLogOut) {
 		localStorage.clear();
 		setListToken('');
 		navigateTo('/');

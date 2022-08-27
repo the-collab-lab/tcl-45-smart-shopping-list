@@ -3,13 +3,6 @@ import { createPortal } from 'react-dom';
 import './ConfirmDialogWindow.css';
 
 const ConfirmDialogWindow = ({ text, title, confirmAction }) => {
-	// `instance` is the `a11y-dialog` instance.
-	// `attr` is an object with the following keys:
-	// - `container`: the dialog container
-	// - `overlay`: the dialog overlay (sometimes called backdrop)
-	// - `dialog`: the actual dialog box
-	// - `title`: the dialog mandatory title
-	// - `closeButton`:  the dialog close button
 	const [instance, attr] = useA11yDialog({
 		id: 'confirm-dialog',
 		role: 'dialog',
