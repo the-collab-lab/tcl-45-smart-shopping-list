@@ -1,0 +1,24 @@
+.about-article {
+	background-color: var(--yellow);
+	color: var(--blue);
+	padding: 10px;
+	margin: 15px auto;
+}
+
+.article-title {
+	padding: 5px;
+	background-color: var(--blue);
+	color: var(--yellow);
+}
+
+ul {
+	list-style: square;
+	margin-left: 20px;
+}
+
+a:visited,
+a:hover,
+a:active {
+	color: var(--blue);
+	text-decoration: none;
+}

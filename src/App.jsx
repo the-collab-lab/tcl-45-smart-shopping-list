@@ -3,7 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import { AddItem, Home, Layout, List } from './views';
+import { AddItem, Home, Layout, List, About } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
@@ -13,7 +13,7 @@ export function App() {
 	const navigateTo = useNavigate();
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
-
+	const [confirmLogOut, setConfirmLogOut] = useState(false);
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
 	 * that can be used to update `listToken` later.
@@ -62,16 +62,15 @@ export function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [listToken]);
 
-	function logOut() {
-		const confirm = window.confirm(
-			`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`,
-		);
-		if (confirm) {
+	useEffect(() => {
+		if (confirmLogOut) {
 			localStorage.clear();
 			setListToken('');
 			navigateTo('/');
+			setConfirmLogOut(false);
 		}
-	}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [confirmLogOut]);
 
 	return (
 		<div className="App">
@@ -95,7 +94,7 @@ export function App() {
 								data={data}
 								loading={loading}
 								listToken={listToken}
-								logOut={logOut}
+								confirmLogOut={setConfirmLogOut}
 							/>
 						}
 					/>
@@ -110,6 +109,8 @@ export function App() {
 							/>
 						}
 					/>
+
+					<Route path="/about" element={<About />} />
 				</Route>
 			</Routes>
 		</div>
