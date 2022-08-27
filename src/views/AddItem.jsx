@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
+import './AddItem.css';
 
 export function AddItem({ listToken, itemList, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
@@ -60,7 +61,7 @@ export function AddItem({ listToken, itemList, setData }) {
 						/>
 					</label>
 				</div>
-				<div>
+				<div className="date-container">
 					<fieldset className="timeframe">
 						<legend className="legend">
 							How soon will you buy this again?
@@ -74,7 +75,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								id="soon"
 								onChange={handleTime}
 							/>
-							Soon (7 days)
+							This week
 						</label>
 
 						<label htmlFor="kind-of-soon">
@@ -85,7 +86,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								value="14"
 								onChange={handleTime}
 							/>
-							Kind of Soon (14 days)
+							Next week
 						</label>
 
 						<label htmlFor="not-soon">
@@ -96,7 +97,7 @@ export function AddItem({ listToken, itemList, setData }) {
 								value="30"
 								onChange={handleTime}
 							/>
-							Not Soon (30 days)
+							Next month
 						</label>
 					</fieldset>
 				</div>
