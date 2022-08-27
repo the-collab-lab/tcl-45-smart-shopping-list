@@ -3,7 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import { AddItem, Home, Layout, List } from './views';
+import { AddItem, Home, Layout, List, About } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
@@ -106,6 +106,8 @@ export function App() {
 							/>
 						}
 					/>
+
+					<Route path="/about" element={<About />} />
 				</Route>
 			</Routes>
 		</div>
