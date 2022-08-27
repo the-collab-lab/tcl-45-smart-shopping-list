@@ -1,20 +1,16 @@
 import { ListItem } from '../components';
+import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import './List.css';
 
-export function List({ data, listToken, loading, logOut }) {
+export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const [copy, setCopy] = useState(false);
 
 	const navigateTo = useNavigate();
-	// user type in search item - query
-	// as letters come in, filters items rendered on page
-	// set query to searchQuery
-	// render onto page search Results -> setting whatever is filtered into searchResults
-	// console.log('data from List', data);
 
 	function filterResults(query) {
 		return data.filter((item) =>
@@ -42,22 +38,22 @@ export function List({ data, listToken, loading, logOut }) {
 	//order items by currentEstimate within the group
 	const groups = [
 		{
-			timeFrame: 'Soon',
+			timeFrame: 'This week',
 			subLabel: '7 days or less',
 			filteredData: (item) => {
 				return item.currentEstimate <= 7;
 			},
 		},
 		{
-			timeFrame: 'Kind of soon',
-			subLabel: 'Between 7 and 30 days',
+			timeFrame: 'Next week',
+			subLabel: 'Between 8 and 14 days',
 			filteredData: (item) => {
 				return item.currentEstimate > 7 && item.currentEstimate < 30;
 			},
 		},
 		{
-			timeFrame: 'Not that soon',
-			subLabel: 'Between 30 and 60 days',
+			timeFrame: 'Next month',
+			subLabel: 'Between 15 and 30 days',
 			filteredData: (item) => {
 				return item.currentEstimate >= 30 && item.currentEstimate < 60;
 			},
@@ -87,10 +83,18 @@ export function List({ data, listToken, loading, logOut }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
+
 					<button onClick={logOut}>Log Out</button>
 					<button onClick={handleCopy}>
 						{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
 					</button>
+          
+					<ConfirmDialogWindow
+						text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
+						title="Log Out"
+						confirmAction={confirmLogOut}
+					/>
+          
 					<p>
 						Your list name is{' '}
 						<span style={{ color: 'salmon' }}>{listToken}</span>.
@@ -139,7 +143,6 @@ export function List({ data, listToken, loading, logOut }) {
 					return (
 						<section className={group.timeFrame}>
 							<h1>{group.timeFrame}</h1>
-							<p>({group.subLabel})</p>
 							{searchResults
 								// within each group's filteredData, map through to each item to pass in as a prop
 								.filter((item) => group.filteredData(item))
