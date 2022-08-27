@@ -28,14 +28,12 @@
 }
 
 .full-list-items-container {
-	/* background-color: red; */
 	margin: 0px;
 	overflow: scroll;
 	width: 100%;
 }
 
 .full-list-items {
-	/* background-color: blueviolet; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -46,7 +44,6 @@
 }
 
 .full-list-items-timeframe {
-	/* background-color: black; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
