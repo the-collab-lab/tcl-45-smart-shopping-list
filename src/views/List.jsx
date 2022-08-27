@@ -2,11 +2,14 @@ import { ListItem } from '../components';
 import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import './List.css';
 
 export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
+	const [copy, setCopy] = useState(false);
+
 	const navigateTo = useNavigate();
 
 	function filterResults(query) {
@@ -64,19 +67,34 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		},
 	];
 
-	// get information by index
+	function handleCopy() {
+		setCopy(true);
+		navigator.clipboard.writeText(`${listToken}`);
+		toast.success('Copied!');
+		setTimeout(() => {
+			setCopy(false);
+		}, 2000);
+	}
 
 	return (
 		<div className="list-container">
+			<Toaster />
 			{loading ? (
 				<p>Your list is loading...</p>
 			) : (
 				<>
+
+					<button onClick={logOut}>Log Out</button>
+					<button onClick={handleCopy}>
+						{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
+					</button>
+          
 					<ConfirmDialogWindow
 						text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
 						title="Log Out"
 						confirmAction={confirmLogOut}
 					/>
+          
 					<p>
 						Your list name is{' '}
 						<span style={{ color: 'salmon' }}>{listToken}</span>.
