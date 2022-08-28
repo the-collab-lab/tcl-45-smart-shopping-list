@@ -1,3 +1,4 @@
+import './List.css';
 import { ListItem } from '../components';
 import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 import { useEffect, useState } from 'react';
@@ -25,9 +26,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 
 	useEffect(() => {
 		setSearchResults(filterResults(searchQuery));
-
-		// ignoring dependency array warning for now
-		// adding filterResults causes infinite re-render
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchQuery, data]);
 
@@ -39,8 +37,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		navigateTo('/add-item');
 	}
 
-	//4 groups, within each group
-	//order items by currentEstimate within the group
 	const groups = [
 		{
 			timeFrame: 'This week',
@@ -174,7 +170,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 												item={filteredItem}
 												listToken={listToken}
 											/>
-										);
+git 										);
 									})}
 							</section>
 						);

@@ -75,7 +75,10 @@ export function App() {
 	return (
 		<div className="App">
 			<Routes>
-				<Route path="/" element={<Layout listToken={listToken} />}>
+				<Route
+					path="/"
+					element={<Layout listToken={listToken} logOut={logOut} />}
+				>
 					<Route
 						index
 						element={
