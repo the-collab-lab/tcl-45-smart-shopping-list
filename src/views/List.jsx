@@ -85,7 +85,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 
 		if (match) {
 			toast(
-				'This item already exists on your List! Try adding a different item.',
+				'This item already exists on your list! Try adding a different item.',
 			);
 			return true;
 		} else {
@@ -149,6 +149,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 													.map((filteredItem) => {
 														return (
 															<ListItem
+																compareDuplicate={compareDuplicate}
 																key={filteredItem.id}
 																item={filteredItem}
 																listToken={listToken}

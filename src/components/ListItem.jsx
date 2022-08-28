@@ -68,23 +68,6 @@ export function ListItem({ item, listToken, compareDuplicate }) {
 		handlePurchaseItem();
 	};
 
-	// const handleDeleteItem = () => {
-	// 	const confirm = window.confirm(
-	// 		`Do you really want to delete ${item.name}?`,
-	// 	);
-	// 	try {
-	// 		if (confirm) {
-	// 			deleteItem(listToken, item);
-	// 			// commenting out the lines below but keeping them for a11y dialog window to be implemented later
-	// 			// 	alert(`${item.name} has been deleted!`);
-	// 			// } else {
-	// 			// 	alert(`${item.name} was not deleted`);
-	// 		}
-	// 	} catch (error) {
-	// 		console.log('error', error);
-	// 	}
-	// };
-
 	if (confirmResponse) {
 		try {
 			deleteItem(listToken, item);
@@ -165,27 +148,6 @@ export function ListItem({ item, listToken, compareDuplicate }) {
 	return (
 		<div className="list-item-container">
 			{itemDisplay}
-			{/* <div className="list-item-label-container">
-				<label
-					className="list-item-label"
-					htmlFor={`${item.id}-${item.name}-checkbox`}
-				>
-					{item.name}
-				</label>
-			</div>
-			<div className="list-item-input-container">
-				<input
-					className="list-item-input"
-					type="checkbox"
-					id={`${item.id}-${item.name}-checkbox`}
-					name={item.name}
-					onChange={handleCheckItem}
-					checked={isPurchased}
-				/>
-			</div> */}
-			{/* <button type="button" onClick={handleDeleteItem}>
-				Delete
-			</button> */}
 			<div className="delete-container">
 				<ConfirmDialogWindow
 					text={`Do you really want to delete ${item.name}?`}
