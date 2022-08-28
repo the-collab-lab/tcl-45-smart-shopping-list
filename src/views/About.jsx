@@ -73,15 +73,35 @@ export function About() {
 					React.js, Firebase/Firestore, CSS styling, and lots of teamwork magic
 					to create it. The application theme is inspired the old-school arcade
 					games, especially, <b>Pac-Man</b>. We worked remotedly using Agile
-					methodology for two months. Our amazing mentors are{' '}
-					<b>Lindsey Dinkel</b>,<b>Zenzi Ali</b> and <b>Nick Taylor</b>.
+					methodology for two months. Our amazing and supportive mentors are{' '}
+					<b>Lindsey Dinkel</b>,<b>Zenzi Ali</b>, <b>Nick Taylor</b> and{' '}
+					<b>EJ Mason</b>.
 				</p>
 				<ul>
 					Team members:
-					<li>Michelle Nygren</li>
-					<li>Mira Kinebuchi</li>
-					<li>Nadia Zubko</li>
-					<li>Trevor Rezac</li>
+					<li>
+						<b>Michelle Nygren</b>{' '}
+						<a
+							href="https://github.com/michellerenehey"
+							target="_blank"
+							rel="noreferrer"
+							className="linkedin-link"
+						>
+							<img
+								src="src/assets/linkedin-circled.svg"
+								alt="Link to Michelle Nygren's linkedIn profile"
+							/>
+						</a>
+					</li>
+					<li>
+						<b>Mira Kinebuchi</b>
+					</li>
+					<li>
+						<b>Nadia Zubko</b>
+					</li>
+					<li>
+						<b>Trevor Rezac</b>
+					</li>
 				</ul>
 			</article>
 		</>
