@@ -3,7 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import { AddItem, Home, Layout, List } from './views';
+import { AddItem, Home, Layout, List, About } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
@@ -16,6 +16,7 @@ export function App() {
 	const [loading, setLoading] = useState(true);
 	const [confirmLogOut, setConfirmLogOut] = useState(false);
 	const [copy, setCopy] = useState(false);
+	const [about, setAbout] = useState(false);
 
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
@@ -95,6 +96,8 @@ export function App() {
 							handleCopy={handleCopy}
 							copy={copy}
 							confirmLogOut={setConfirmLogOut}
+							setAbout={setAbout}
+							about={about}
 						/>
 					}
 				>
@@ -130,6 +133,7 @@ export function App() {
 							/>
 						}
 					/>
+					<Route path="/about" element={<About />} />
 				</Route>
 			</Routes>
 		</div>

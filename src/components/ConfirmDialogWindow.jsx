@@ -21,12 +21,7 @@ const ConfirmDialogWindow = ({ text, title, confirmAction }) => {
 				<p>{text}</p>
 
 				<button {...attr.closeButton} className="dialog-close">
-					<img
-						src="../../public/img/x.png"
-						width="16"
-						height="16"
-						alt="close dialog button"
-					/>
+					x
 				</button>
 				<button
 					type="button"

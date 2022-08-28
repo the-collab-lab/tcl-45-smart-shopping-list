@@ -78,6 +78,16 @@ export function Home({ handleClick, listToken, setListToken }) {
 								</button>
 							</div>
 						</div>
+						<div>
+							<button
+								className="existing-list-button"
+								onClick={() => {
+									navigateTo('/about');
+								}}
+							>
+								ABOUT
+							</button>
+						</div>
 					</div>
 				</>
 			)}
