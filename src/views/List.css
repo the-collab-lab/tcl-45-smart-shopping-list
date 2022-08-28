@@ -17,9 +17,24 @@ section {
 
 .list-titles {
 	display: flex;
-	gap: 30px;
+	gap: 50px;
 	width: 100%;
 	justify-content: space-evenly;
+}
+
+.item-title-1 {
+	width: 15vw;
+	text-align: center;
+}
+
+.item-title-2 {
+	width: 10vw;
+	text-align: center;
+}
+
+.item-title-3 {
+	width: 10vw;
+	text-align: center;
 }
 
 .list-titles > .item-title {
