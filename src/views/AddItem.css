@@ -1,11 +1,166 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+.timeframe {
+=======
 .date-container {
+>>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
+=======
+.time-frame-container {
+	display: flex;
+	flex-direction: column;
+}
+.timeframe {
+>>>>>>> 28d3f31 (centered labels and added classNames, cleaned up responsive design)
 	display: flex;
 	flex-direction: column;
 }
 
+<<<<<<< HEAD
+.timeframe > fieldset {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	margin: 50;
+	width: auto;
+	position: fixed;
+}
+
+/* .timeframe label {
+	padding: 10px;
+} */
+
+.timeframe label {
+	display: flex;
+	padding: 10px;
+	gap: 20px;
+}
+
+.timeframe span {
+	display: flex;
+	align-items: center;
+}
+
+/* .time-frame-label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+} */
+
+.time-frame-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 40%;
+	width: full;
+	max-height: 40vh;
+	margin: 10%;
+}
+
+.item-form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+}
+
+.item-name-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.item-name-container > label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+.item-name-container input {
+	padding: 10px;
+	margin: 20px;
+	box-sizing: border-box;
+	border: 1px solid var(--yellow);
+}
+
+.legend {
+	font-size: 1.2em;
+	font-weight: bold;
+	min-width: 30vw;
+	max-width: full;
+	text-align: center;
+}
+
+.button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 51px;
+	border-radius: 10px;
+	margin: 10px;
+}
+
+.button > button {
+	width: 150px;
+	height: 51px;
+	background: var(--yellow);
+	border-radius: 10px;
+}
+
+.button > p,
+button {
+	font-family: 'Share Tech Mono', monospace;
+	font-size: 1.2em;
+	color: var(--blue);
+	font-weight: bold;
+}
+
+input[type='radio'] {
+	font: inherit;
+	width: 1.15em;
+	height: 1.15em;
+	appearance: none;
+	background-color: var(--blue);
+	border: 0.15em solid var(--yellow);
+	border-radius: 50%;
+}
+
+input[type='radio']::before {
+	content: '';
+	width: 0.65em;
+	height: 0.65em;
+	border-radius: 50%;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 1em 1em var(--blue);
+}
+
+input[type='radio']:checked {
+	transform: scale(1);
+	background-color: var(--yellow);
+	border: 0.15em solid var(--blue);
+}
+
+input[type='text'] {
+	background-color: var(--blue);
+	color: var(--yellow);
+=======
 .timeframe {
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
 	margin: 20px;
+>>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
+}
+
+.error-message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var(--yellow);
+	font-weight: bold;
 }
