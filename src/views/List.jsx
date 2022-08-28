@@ -83,18 +83,14 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
-
-					<button onClick={logOut}>Log Out</button>
 					<button onClick={handleCopy}>
 						{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
 					</button>
-          
 					<ConfirmDialogWindow
 						text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
 						title="Log Out"
 						confirmAction={confirmLogOut}
 					/>
-          
 					<p>
 						Your list name is{' '}
 						<span style={{ color: 'salmon' }}>{listToken}</span>.
