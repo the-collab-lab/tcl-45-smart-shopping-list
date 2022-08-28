@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 import './AddItem.css';
-<<<<<<< HEAD
 import redblinky from '../../src/assets/red-blinky.png';
 import pinkblinky from '../../src/assets/pink-blinky.png';
 import yellowblinky from '../../src/assets/yellow-blinky.png';
-=======
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
 
 export function AddItem({ listToken, itemList, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
@@ -67,11 +64,7 @@ export function AddItem({ listToken, itemList, setData }) {
 						/>
 					</label>
 				</div>
-<<<<<<< HEAD
 				<div className="time-frame-container">
-=======
-				<div className="date-container">
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
 					<fieldset className="timeframe">
 						<legend className="legend">
 							How soon will you buy this again?
@@ -84,7 +77,6 @@ export function AddItem({ listToken, itemList, setData }) {
 								name="time-frame"
 								id="soon"
 								onChange={handleTime}
-<<<<<<< HEAD
 							/>{' '}
 							<img className="blinkies" src={redblinky} alt="red-blinky logo" />
 							<span>This week</span>
@@ -97,7 +89,6 @@ export function AddItem({ listToken, itemList, setData }) {
 								id="kind-of-soon"
 								value="14"
 								onChange={handleTime}
-<<<<<<< HEAD
 							/>{' '}
 							<img
 								className="blinkies"
@@ -114,7 +105,6 @@ export function AddItem({ listToken, itemList, setData }) {
 								id="not-soon"
 								value="30"
 								onChange={handleTime}
-<<<<<<< HEAD
 							/>{' '}
 							<img
 								className="blinkies"

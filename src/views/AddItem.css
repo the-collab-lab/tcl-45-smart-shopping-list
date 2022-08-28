@@ -1,21 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-.timeframe {
-=======
-.date-container {
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
-=======
 .time-frame-container {
 	display: flex;
 	flex-direction: column;
 }
 .timeframe {
->>>>>>> 28d3f31 (centered labels and added classNames, cleaned up responsive design)
 	display: flex;
 	flex-direction: column;
 }
 
-<<<<<<< HEAD
 .timeframe > fieldset {
 	display: flex;
 	flex-direction: column;
@@ -148,13 +139,6 @@ input[type='radio']:checked {
 input[type='text'] {
 	background-color: var(--blue);
 	color: var(--yellow);
-=======
-.timeframe {
-	display: flex;
-	flex-direction: column;
-	padding: 10px;
-	margin: 20px;
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
 }
 
 .error-message {
