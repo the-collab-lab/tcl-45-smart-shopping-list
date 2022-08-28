@@ -97,6 +97,8 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
+<<<<<<< HEAD
+=======
 					<button onClick={handleCopy}>
 						{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
 					</button>
@@ -109,6 +111,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 						Your list name is{' '}
 						<span style={{ color: 'salmon' }}>{listToken}</span>.
 					</p>
+>>>>>>> 151e7f1 (matching branch with main to avoid merge conflicts)
 					{data.length >= 1 ? (
 						<>
 							<h3>Find what you're looking for!</h3>
