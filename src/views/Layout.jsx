@@ -17,6 +17,12 @@ export function Layout({
 		navigateTo('/about');
 	};
 
+	const handleList = () => {
+		setAbout(false);
+		navigateTo('/list');
+	};
+
+	console.log('about', about);
 	return (
 		<>
 			<div className="Layout">
@@ -34,11 +40,8 @@ export function Layout({
 									<h3>{listToken}</h3>
 								</div>
 								<div className="header-home">
-									<button
-										className="home-button"
-										onClick={() => navigateTo('/list')}
-									>
-										Home
+									<button className="home-button" onClick={handleList}>
+										List
 									</button>
 								</div>
 								<div className="header-center">
