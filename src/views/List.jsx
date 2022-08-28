@@ -83,7 +83,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
-					{/* <button onClick={logOut}>Log Out</button> */}
 					<button onClick={handleCopy}>
 						{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
 					</button>
