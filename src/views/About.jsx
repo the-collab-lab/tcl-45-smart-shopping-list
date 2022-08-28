@@ -80,27 +80,44 @@ export function About() {
 				<ul>
 					Team members:
 					<li>
-						<b>Michelle Nygren</b>{' '}
 						<a
 							href="https://github.com/michellerenehey"
 							target="_blank"
 							rel="noreferrer"
 							className="linkedin-link"
 						>
-							<img
-								src="src/assets/linkedin-circled.svg"
-								alt="Link to Michelle Nygren's linkedIn profile"
-							/>
+							<b>Michelle Nygren</b>
 						</a>
 					</li>
 					<li>
-						<b>Mira Kinebuchi</b>
+						<a
+							href="https://github.com/mira-kine"
+							target="_blank"
+							rel="noreferrer"
+							className="linkedin-link"
+						>
+							<b>Mira Kinebuchi</b>
+						</a>
 					</li>
 					<li>
-						<b>Nadia Zubko</b>
+						<a
+							href="https://github.com/N-Zubko"
+							target="_blank"
+							rel="noreferrer"
+							className="linkedin-link"
+						>
+							<b>Nadia Zubko</b>
+						</a>
 					</li>
 					<li>
-						<b>Trevor Rezac</b>
+						<a
+							href="https://github.com/Trevor-Rezac"
+							target="_blank"
+							rel="noreferrer"
+							className="linkedin-link"
+						>
+							<b>Trevor Rezac</b>
+						</a>
 					</li>
 				</ul>
 			</article>

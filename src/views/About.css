@@ -15,3 +15,10 @@ ul {
 	list-style: square;
 	margin-left: 20px;
 }
+
+a:visited,
+a:hover,
+a:active {
+	color: var(--blue);
+	text-decoration: none;
+}
