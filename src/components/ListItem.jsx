@@ -105,15 +105,20 @@ export function ListItem({ item, listToken, compareDuplicate }) {
 					}
 				}}
 			>
-				<input
-					type="text"
-					placeholder="Edit Item"
-					value={updatedName}
-					onChange={(e) => {
-						setUpdatedName(e.target.value);
-					}}
-				/>
-				<button onClick={handleCancelEditItem}>Cancel</button>
+				<label>
+					Edit
+					<input
+						type="text"
+						placeholder="Edit Item"
+						value={updatedName}
+						onChange={(e) => {
+							setUpdatedName(e.target.value);
+						}}
+					/>
+				</label>
+				<button type="button" onClick={handleCancelEditItem}>
+					Cancel
+				</button>
 				<button type="submit">Submit</button>
 			</form>
 		);
