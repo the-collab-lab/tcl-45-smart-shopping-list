@@ -25,3 +25,9 @@ section {
 .list-titles > .item-title {
 	align-items: flex-start;
 }
+
+.group-title {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+}
