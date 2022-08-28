@@ -23,7 +23,6 @@ export function AddItem({ listToken, itemList, setData }) {
 				setError(false);
 				setSuccess(true);
 				setItem('');
-				setTimeFrame('7');
 			} else {
 				setDuplicateError(true);
 				setSuccess(false);
@@ -66,7 +65,11 @@ export function AddItem({ listToken, itemList, setData }) {
 						<legend className="legend">
 							How soon will you buy this again?
 						</legend>
-						<label className="time-frame-label" htmlFor="soon">
+						<label
+							className="time-frame-label"
+							className="time-frame-label"
+							htmlFor="soon"
+						>
 							<input
 								type="radio"
 								value="7"
@@ -79,7 +82,11 @@ export function AddItem({ listToken, itemList, setData }) {
 							<span>This week</span>
 						</label>
 
-						<label className="time-frame-label" htmlFor="kind-of-soon">
+						<label
+							className="time-frame-label"
+							className="time-frame-label"
+							htmlFor="kind-of-soon"
+						>
 							<input
 								type="radio"
 								name="time-frame"
@@ -95,7 +102,11 @@ export function AddItem({ listToken, itemList, setData }) {
 							<span>Next week</span>
 						</label>
 
-						<label className="time-frame-label" htmlFor="not-soon">
+						<label
+							className="time-frame-label"
+							className="time-frame-label"
+							htmlFor="not-soon"
+						>
 							<input
 								type="radio"
 								name="time-frame"
@@ -116,13 +127,16 @@ export function AddItem({ listToken, itemList, setData }) {
 					<button type="submit">Add Item</button>
 				</div>
 				<span className="error-message">
-					{error && <p>The item was not added</p>}
-					{duplicateError && (
-						<p>
-							The item already exists on your list! Try adding a different item.
-						</p>
-					)}
-					{success && <p>The item has been added</p>}
+					<span className="error-message">
+						{error && <p>The item was not added</p>}
+						{duplicateError && (
+							<p>
+								The item already exists on your list! Try adding a different
+								item.
+							</p>
+						)}
+						{success && <p>The item has been added</p>}
+					</span>
 				</span>
 			</form>
 		</div>

@@ -1,5 +1,5 @@
+import './List.css';
 import { ListItem } from '../components';
-import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
@@ -10,10 +10,11 @@ import blueblinky from '../../src/assets/blue-blinky.png';
 
 import './List.css';
 
+import pac from '../assets/pac.png';
+
 export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
-	const [copy, setCopy] = useState(false);
 
 	const navigateTo = useNavigate();
 
@@ -25,9 +26,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 
 	useEffect(() => {
 		setSearchResults(filterResults(searchQuery));
-
-		// ignoring dependency array warning for now
-		// adding filterResults causes infinite re-render
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchQuery, data]);
 
@@ -39,12 +37,11 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		navigateTo('/add-item');
 	}
 
-	//4 groups, within each group
-	//order items by currentEstimate within the group
 	const groups = [
 		{
 			timeFrame: 'This week',
 			subLabel: '7 days or less',
+			image: <img className="blinkies" src={redblinky} alt="red-blinky logo" />,
 			image: <img className="blinkies" src={redblinky} alt="red-blinky logo" />,
 			filteredData: (item) => {
 				return item.currentEstimate <= 7;
@@ -53,6 +50,9 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		{
 			timeFrame: 'Next week',
 			subLabel: 'Between 8 and 14 days',
+			image: (
+				<img className="blinkies" src={pinkblinky} alt="pink-blinky logo" />
+			),
 			image: (
 				<img className="blinkies" src={pinkblinky} alt="pink-blinky logo" />
 			),
@@ -67,6 +67,10 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 				<img className="blinkies" src={yellowblinky} alt="yellow-blinky logo" />
 			),
 
+			image: (
+				<img className="blinkies" src={yellowblinky} alt="yellow-blinky logo" />
+			),
+
 			filteredData: (item) => {
 				return item.currentEstimate >= 30 && item.currentEstimate < 60;
 			},
@@ -77,20 +81,14 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 			image: (
 				<img className="blinkies" src={blueblinky} alt="blue-blinky logo" />
 			),
+			image: (
+				<img className="blinkies" src={blueblinky} alt="blue-blinky logo" />
+			),
 			filteredData: (item) => {
 				return item.currentEstimate >= 60;
 			},
 		},
 	];
-
-	function handleCopy() {
-		setCopy(true);
-		navigator.clipboard.writeText(`${listToken}`);
-		toast.success('Copied!');
-		setTimeout(() => {
-			setCopy(false);
-		}, 2000);
-	}
 
 	return (
 		<div className="list-container">

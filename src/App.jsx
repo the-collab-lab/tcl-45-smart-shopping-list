@@ -8,12 +8,15 @@ import { AddItem, Home, Layout, List } from './views';
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
+import toast from 'react-hot-toast';
 
 export function App() {
 	const navigateTo = useNavigate();
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [confirmLogOut, setConfirmLogOut] = useState(false);
+	const [copy, setCopy] = useState(false);
+
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
 	 * that can be used to update `listToken` later.
@@ -75,7 +78,17 @@ export function App() {
 	return (
 		<div className="App">
 			<Routes>
-				<Route path="/" element={<Layout listToken={listToken} />}>
+				<Route
+					path="/"
+					element={
+						<Layout
+							listToken={listToken}
+							handleCopy={handleCopy}
+							copy={copy}
+							confirmLogOut={setConfirmLogOut}
+						/>
+					}
+				>
 					<Route
 						index
 						element={
@@ -86,7 +99,6 @@ export function App() {
 							/>
 						}
 					/>
-
 					<Route
 						path="/list"
 						element={

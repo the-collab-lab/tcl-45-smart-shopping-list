@@ -1,5 +1,5 @@
-.ListItem {
-	align-items: baseline;
+.list-item-container {
+	align-items: center;
 	display: flex;
 	flex-direction: row;
 	font-size: 1.2em;

@@ -72,21 +72,32 @@ export function ListItem({ item, listToken }) {
 	}
 
 	return (
-		<div className="ListItem">
-			<input
-				type="checkbox"
-				id={`${item.id}-${item.name}-checkbox`}
-				name={item.name}
-				onChange={handleCheckItem}
-				checked={isPurchased}
-			/>
-			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
-
-			<ConfirmDialogWindow
-				text={`Do you really want to delete ${item.name}?`}
-				title="delete dialog"
-				confirmAction={setConfirmResponse}
-			/>
+		<div className="list-item-container">
+			<div className="list-item-label-container">
+				<label
+					className="list-item-label"
+					htmlFor={`${item.id}-${item.name}-checkbox`}
+				>
+					{item.name}
+				</label>
+			</div>
+			<div className="list-item-input-container">
+				<input
+					className="list-item-input"
+					type="checkbox"
+					id={`${item.id}-${item.name}-checkbox`}
+					name={item.name}
+					onChange={handleCheckItem}
+					checked={isPurchased}
+				/>
+			</div>
+			<div className="delete-container">
+				<ConfirmDialogWindow
+					text={`Do you really want to delete ${item.name}?`}
+					title="delete dialog"
+					confirmAction={setConfirmResponse}
+				/>
+			</div>
 		</div>
 	);
 }

@@ -1,39 +1,44 @@
 import './Layout.css';
 import { Outlet, NavLink } from 'react-router-dom';
-import logo from '../../src/assets/shop-ade.png';
 
-export function Layout({ listToken }) {
+export function Layout({ listToken, logOut }) {
 	return (
 		<>
 			<div className="Layout">
-				<header className="Layout-header">
-					<h1>
-						<img
-							src={logo}
-							alt="Bright yellow and orange logo that says SHOP-ADE in all caps."
-						/>
-					</h1>
-				</header>
-				<main className="Layout-main">
-					<Outlet />
-				</main>
-				<nav className="Nav">
-					{!listToken && (
-						<NavLink to="/" className="Nav-link">
-							Home
-						</NavLink>
-					)}
+				{!listToken && (
+					<main className="Layout-main">
+						<Outlet />
+					</main>
+				)}
+				<div className="layout-container">
 					{listToken && (
 						<>
-							<NavLink to="/list" className="Nav-link">
-								List
-							</NavLink>
-							<NavLink to="/add-item" className="Nav-link">
-								Add Item
-							</NavLink>
+							<header className="header">
+								<div className="header-left">
+									<h3>Your list name: </h3>
+									<h3>{listToken}</h3>
+								</div>
+								<div className="header-center">
+									<h3>COPY NAME BUTTON</h3>
+								</div>
+								<div className="header-right">
+									<button onClick={logOut}>Log Out</button>
+								</div>
+							</header>
+							<main className="Layout-main">
+								<Outlet />
+							</main>
+							<div className="footer">
+								<NavLink to="/list" className="nav-link">
+									SEE LIST
+								</NavLink>
+								<NavLink to="/add-item" className="nav-link">
+									ADD ITEM
+								</NavLink>
+							</div>
 						</>
 					)}
-				</nav>
+				</div>
 			</div>
 		</>
 	);
