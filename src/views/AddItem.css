@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+.timeframe {
+=======
+.date-container {
+>>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
+=======
 .time-frame-container {
 	display: flex;
 	flex-direction: column;
 }
 .timeframe {
+>>>>>>> 28d3f31 (centered labels and added classNames, cleaned up responsive design)
 	display: flex;
 	flex-direction: column;
 }
@@ -163,8 +171,14 @@ input[type='text'] {
 .error-message {
 	display: flex;
 	flex-direction: column;
-=======
->>>>>>> 1816001 (Merge pull request #65 from the-collab-lab/MN-hotfix-logout-button)
+	padding: 10px;
+	margin: 20px;
+>>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
+}
+
+.error-message {
+	display: flex;
+	flex-direction: column;
 	align-items: center;
 	color: var(--yellow);
 	font-weight: bold;
