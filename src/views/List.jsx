@@ -1,9 +1,8 @@
 import './List.css';
 import { ListItem } from '../components';
-import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import redblinky from '../../src/assets/red-blinky.png';
 import pinkblinky from '../../src/assets/pink-blinky.png';
 import yellowblinky from '../../src/assets/yellow-blinky.png';
@@ -11,10 +10,11 @@ import blueblinky from '../../src/assets/blue-blinky.png';
 
 import './List.css';
 
+import pac from '../assets/pac.png';
+
 export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
-	const [copy, setCopy] = useState(false);
 
 	const navigateTo = useNavigate();
 
@@ -79,15 +79,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		},
 	];
 
-	function handleCopy() {
-		setCopy(true);
-		navigator.clipboard.writeText(`${listToken}`);
-		toast.success('Copied!');
-		setTimeout(() => {
-			setCopy(false);
-		}, 2000);
-	}
-
 	return (
 		<div className="list-container">
 			<Toaster />
@@ -95,91 +86,87 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 				<p>Your list is loading...</p>
 			) : (
 				<>
-<<<<<<< HEAD
-=======
-					<button onClick={handleCopy}>
-						{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
-					</button>
-					<ConfirmDialogWindow
-						text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
-						title="Log Out"
-						confirmAction={confirmLogOut}
-					/>
-					<p>
-						Your list name is{' '}
-						<span style={{ color: 'salmon' }}>{listToken}</span>.
-					</p>
->>>>>>> a7df4d4 (Remove extra logOut button)
 					{data.length >= 1 ? (
-						<>
-							<h3>Find what you're looking for!</h3>
-							<form>
-								<label htmlFor="search-items">
-									Search Items:{' '}
-									<input
-										name="search-items"
-										id="search-items"
-										type="text"
-										placeholder="Search items"
-										value={searchQuery}
-										onChange={(e) => setSearchQuery(e.target.value)}
-									/>
-									{searchQuery ? (
-										<>
-											{' '}
-											<button type="button" onClick={handleClearSearchQuery}>
-												Clear search
-											</button>
-										</>
-									) : (
-										''
-									)}
-								</label>
-							</form>
-						</>
+						<div className="full-list-container">
+							<div className="full-list-search-container">
+								<h2>I NEED TO BUY...</h2>
+								<form>
+									<label htmlFor="search-items">
+										Filter:{' '}
+										<input
+											name="search-items"
+											id="search-items"
+											type="text"
+											placeholder="Search items"
+											value={searchQuery}
+											onChange={(e) => setSearchQuery(e.target.value)}
+										/>
+										{searchQuery ? (
+											<>
+												{' '}
+												<button type="button" onClick={handleClearSearchQuery}>
+													Clear search
+												</button>
+											</>
+										) : (
+											''
+										)}
+									</label>
+								</form>
+							</div>
+							<ul className="full-list-items-container">
+								<div className="group-container">
+									{/* filter through groups array for each group to display by time frame */}
+									{groups.map((group) => {
+										return (
+											<section className="full-list-items">
+												<div className="full-list-items-timeframe">
+													<span>{group.image}</span>
+													<h1>{group.timeFrame}</h1>
+												</div>
+												<div className="list-titles">
+													<h3 className="item-title-1">Item</h3>
+													<h3 className="item-title-2">Bought</h3>
+													<h3 className="item-title-3">Delete</h3>
+												</div>
+												{searchResults
+													// within each group's filteredData, map through to each item to pass in as a prop
+													.filter((item) => group.filteredData(item))
+													.map((filteredItem) => {
+														return (
+															<ListItem
+																key={filteredItem.id}
+																item={filteredItem}
+																listToken={listToken}
+															/>
+														);
+													})}
+											</section>
+										);
+									})}
+								</div>
+							</ul>
+						</div>
 					) : (
-						<>
+						<div className="empty-list-container">
 							<h3>
-								Your list is empty! Click the button below to start building
-								your list.
+								Your smart shopping list is currently empty! Start picking
+								products to fill your needs.
 							</h3>
-							<button onClick={handleNav}>Add Item</button>
-						</>
+							<button
+								onClick={handleNav}
+								className="empty-list-add-item-button"
+							>
+								ADD ITEM
+							</button>
+							<img
+								src={pac}
+								alt="A yellow Miss Pac Man with three dots coming out of her mouth."
+							/>
+						</div>
 					)}{' '}
 				</>
 			)}
-			<ul>
-				<div className="group-container">
-					{/* filter through groups array for each group to display by time frame */}
-					{groups.map((group) => {
-						return (
-							<section className={group.timeFrame}>
-								<div className="group-title">
-									<span>{group.image}</span>
-									<h1>{group.timeFrame}</h1>
-								</div>
-								<div className="list-titles">
-									<h3 className="item-title-1">Item</h3>
-									<h3 className="item-title-2">Bought</h3>
-									<h3 className="item-title-3">Delete</h3>
-								</div>
-								{searchResults
-									// within each group's filteredData, map through to each item to pass in as a prop
-									.filter((item) => group.filteredData(item))
-									.map((filteredItem) => {
-										return (
-											<ListItem
-												key={filteredItem.id}
-												item={filteredItem}
-												listToken={listToken}
-											/>
-git 										);
-									})}
-							</section>
-						);
-					})}
-				</div>
-			</ul>
 		</div>
 	);
 }
