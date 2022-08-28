@@ -33,6 +33,14 @@ export function Layout({
 									<h3>Your list name: </h3>
 									<h3>{listToken}</h3>
 								</div>
+								<div className="header-home">
+									<button
+										className="home-button"
+										onClick={() => navigateTo('/list')}
+									>
+										Home
+									</button>
+								</div>
 								<div className="header-center">
 									<button onClick={handleCopy} className="copy-button">
 										{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}

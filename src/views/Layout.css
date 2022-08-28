@@ -67,6 +67,26 @@
 	cursor: pointer;
 }
 
+.header-home {
+	background: var(--yellow);
+	color: var(--blue);
+	height: 7vh;
+	width: 15vw;
+	font-family: 'VT323', monospace;
+	font-size: 2rem;
+	cursor: pointer;
+}
+
+.home-button {
+	background: var(--yellow);
+	color: var(--blue);
+	height: 7vh;
+	width: 15vw;
+	font-family: 'VT323', monospace;
+	font-size: 2rem;
+	cursor: pointer;
+}
+
 .header-right > button {
 	background: var(--yellow);
 	color: var(--blue);
