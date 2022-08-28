@@ -26,7 +26,6 @@ export function AddItem({ listToken, itemList, setData }) {
 				setError(false);
 				setSuccess(true);
 				setItem('');
-				setTimeFrame('7');
 			} else {
 				setDuplicateError(true);
 				setSuccess(false);
