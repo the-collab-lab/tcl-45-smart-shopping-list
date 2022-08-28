@@ -1,15 +1,59 @@
-.ListItem {
+.list-item-container {
 	align-items: baseline;
 	display: flex;
 	flex-direction: row;
 	font-size: 1.2em;
-	border: 1px solid white;
+	gap: 50px;
+	width: 100%;
+	justify-content: space-evenly;
 }
 
-.ListItem-checkbox {
+/* .ListItem-checkbox {
 	accent-color: var(--color-accent);
 }
 
 .ListItem-label {
 	margin-left: 0.2em;
+} */
+
+.delete-container {
+	display: flex;
+	flex-direction: column;
+	width: 5vw;
+}
+
+.list-item-label-container {
+	display: flex;
+	width: 15vw;
+}
+
+.list-item-input-container {
+	display: flex;
+	width: 10vw;
+}
+
+input[type='checkbox'] {
+	font: inherit;
+	min-width: 1.15em;
+	min-height: 1.15em;
+	appearance: none;
+	background-color: var(--blue);
+	border: 0.15em solid var(--yellow);
+	border-radius: 50%;
+}
+
+input[type='checkbox']::before {
+	content: '';
+	min-width: 0.65em;
+	min-height: 0.65em;
+	border-radius: 50%;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 1em 1em var(--blue);
+}
+
+input[type='checkbox']:checked {
+	transform: scale(1);
+	background-color: var(--yellow);
+	border: 0.15em solid var(--blue);
 }

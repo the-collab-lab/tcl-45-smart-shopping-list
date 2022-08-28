@@ -3,3 +3,25 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+section {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+	align-items: flex-start;
+	border: 2px solid white;
+	margin: 10px;
+	padding: 20px;
+}
+
+.list-titles {
+	display: flex;
+	gap: 30px;
+	width: 100%;
+	justify-content: space-evenly;
+}
+
+.list-titles > .item-title {
+	align-items: flex-start;
+}
