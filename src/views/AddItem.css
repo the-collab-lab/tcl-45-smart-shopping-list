@@ -163,14 +163,8 @@ input[type='text'] {
 .error-message {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	color: var(--yellow);
-	font-weight: bold;
-}
-
-.error-message {
-	display: flex;
-	flex-direction: column;
+=======
+>>>>>>> 1816001 (Merge pull request #65 from the-collab-lab/MN-hotfix-logout-button)
 	align-items: center;
 	color: var(--yellow);
 	font-weight: bold;
