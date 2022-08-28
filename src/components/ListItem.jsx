@@ -1,5 +1,6 @@
 import './ListItem.css';
 import { useState, useEffect } from 'react';
+import ConfirmDialogWindow from './ConfirmDialogWindow';
 import {
 	updateItem,
 	deleteItem,
@@ -13,8 +14,11 @@ const one_day_in_ms = 24 * 60 * 60 * 1000;
 export function ListItem({ item, listToken, compareDuplicate }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
+
 	const [isEditing, setIsEditing] = useState(false);
 	const [updatedName, setUpdatedName] = useState(item.name);
+
+	const [confirmResponse, setConfirmResponse] = useState(false);
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -64,22 +68,30 @@ export function ListItem({ item, listToken, compareDuplicate }) {
 		handlePurchaseItem();
 	};
 
-	const handleDeleteItem = () => {
-		const confirm = window.confirm(
-			`Do you really want to delete ${item.name}?`,
-		);
+	// const handleDeleteItem = () => {
+	// 	const confirm = window.confirm(
+	// 		`Do you really want to delete ${item.name}?`,
+	// 	);
+	// 	try {
+	// 		if (confirm) {
+	// 			deleteItem(listToken, item);
+	// 			// commenting out the lines below but keeping them for a11y dialog window to be implemented later
+	// 			// 	alert(`${item.name} has been deleted!`);
+	// 			// } else {
+	// 			// 	alert(`${item.name} was not deleted`);
+	// 		}
+	// 	} catch (error) {
+	// 		console.log('error', error);
+	// 	}
+	// };
+
+	if (confirmResponse) {
 		try {
-			if (confirm) {
-				deleteItem(listToken, item);
-				// commenting out the lines below but keeping them for a11y dialog window to be implemented later
-				// 	alert(`${item.name} has been deleted!`);
-				// } else {
-				// 	alert(`${item.name} was not deleted`);
-			}
+			deleteItem(listToken, item);
 		} catch (error) {
 			console.log('error', error);
 		}
-	};
+	}
 
 	const handleCancelEditItem = (e) => {
 		e.preventDefault();
@@ -125,14 +137,24 @@ export function ListItem({ item, listToken, compareDuplicate }) {
 	} else {
 		itemDisplay = (
 			<>
-				<input
-					type="checkbox"
-					id={`${item.id}-${item.name}-checkbox`}
-					name={item.name}
-					onChange={handleCheckItem}
-					checked={isPurchased}
-				/>
-				<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
+				<div className="list-item-label-container">
+					<label
+						className="list-item-label"
+						htmlFor={`${item.id}-${item.name}-checkbox`}
+					>
+						{item.name}
+					</label>
+				</div>
+				<div className="list-item-input-container">
+					<input
+						className="list-item-input"
+						type="checkbox"
+						id={`${item.id}-${item.name}-checkbox`}
+						name={item.name}
+						onChange={handleCheckItem}
+						checked={isPurchased}
+					/>
+				</div>
 				<button type="button" onClick={() => setIsEditing(true)}>
 					Edit
 				</button>
@@ -141,11 +163,36 @@ export function ListItem({ item, listToken, compareDuplicate }) {
 	}
 
 	return (
-		<div className="ListItem">
+		<div className="list-item-container">
 			{itemDisplay}
-			<button type="button" onClick={handleDeleteItem}>
+			{/* <div className="list-item-label-container">
+				<label
+					className="list-item-label"
+					htmlFor={`${item.id}-${item.name}-checkbox`}
+				>
+					{item.name}
+				</label>
+			</div>
+			<div className="list-item-input-container">
+				<input
+					className="list-item-input"
+					type="checkbox"
+					id={`${item.id}-${item.name}-checkbox`}
+					name={item.name}
+					onChange={handleCheckItem}
+					checked={isPurchased}
+				/>
+			</div> */}
+			{/* <button type="button" onClick={handleDeleteItem}>
 				Delete
-			</button>
+			</button> */}
+			<div className="delete-container">
+				<ConfirmDialogWindow
+					text={`Do you really want to delete ${item.name}?`}
+					title="delete dialog"
+					confirmAction={setConfirmResponse}
+				/>
+			</div>
 		</div>
 	);
 }

@@ -1,18 +1,23 @@
+import './List.css';
 import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import redblinky from '../../src/assets/red-blinky.png';
+import pinkblinky from '../../src/assets/pink-blinky.png';
+import yellowblinky from '../../src/assets/yellow-blinky.png';
+import blueblinky from '../../src/assets/blue-blinky.png';
+
 import './List.css';
 import toast from 'react-hot-toast';
 
-export function List({ data, listToken, loading, logOut }) {
+import pac from '../assets/pac.png';
+
+export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
+
 	const navigateTo = useNavigate();
-	// user type in search item - query
-	// as letters come in, filters items rendered on page
-	// set query to searchQuery
-	// render onto page search Results -> setting whatever is filtered into searchResults
-	// console.log('data from List', data);
 
 	function filterResults(query) {
 		return data.filter((item) =>
@@ -22,9 +27,6 @@ export function List({ data, listToken, loading, logOut }) {
 
 	useEffect(() => {
 		setSearchResults(filterResults(searchQuery));
-
-		// ignoring dependency array warning for now
-		// adding filterResults causes infinite re-render
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchQuery, data]);
 
@@ -36,26 +38,32 @@ export function List({ data, listToken, loading, logOut }) {
 		navigateTo('/add-item');
 	}
 
-	//4 groups, within each group
-	//order items by currentEstimate within the group
 	const groups = [
 		{
-			timeFrame: 'Soon',
+			timeFrame: 'This week',
 			subLabel: '7 days or less',
+			image: <img className="blinkies" src={redblinky} alt="red-blinky logo" />,
 			filteredData: (item) => {
 				return item.currentEstimate <= 7;
 			},
 		},
 		{
-			timeFrame: 'Kind of soon',
-			subLabel: 'Between 7 and 30 days',
+			timeFrame: 'Next week',
+			subLabel: 'Between 8 and 14 days',
+			image: (
+				<img className="blinkies" src={pinkblinky} alt="pink-blinky logo" />
+			),
 			filteredData: (item) => {
 				return item.currentEstimate > 7 && item.currentEstimate < 30;
 			},
 		},
 		{
-			timeFrame: 'Not that soon',
-			subLabel: 'Between 30 and 60 days',
+			timeFrame: 'Next month',
+			subLabel: 'Between 15 and 30 days',
+			image: (
+				<img className="blinkies" src={yellowblinky} alt="yellow-blinky logo" />
+			),
+
 			filteredData: (item) => {
 				return item.currentEstimate >= 30 && item.currentEstimate < 60;
 			},
@@ -63,6 +71,9 @@ export function List({ data, listToken, loading, logOut }) {
 		{
 			timeFrame: 'Inactive',
 			subLabel: '60 days or more',
+			image: (
+				<img className="blinkies" src={blueblinky} alt="blue-blinky logo" />
+			),
 			filteredData: (item) => {
 				return item.currentEstimate >= 60;
 			},
@@ -84,77 +95,92 @@ export function List({ data, listToken, loading, logOut }) {
 
 	return (
 		<div className="list-container">
+			<Toaster />
 			{loading ? (
 				<p>Your list is loading...</p>
 			) : (
 				<>
-					<button onClick={logOut}>Log Out</button>
-					<p>
-						Your list name is{' '}
-						<span style={{ color: 'salmon' }}>{listToken}</span>.
-					</p>
 					{data.length >= 1 ? (
-						<>
-							<h3>Find what you're looking for!</h3>
-							<form>
-								<label htmlFor="search-items">
-									Search Items:{' '}
-									<input
-										name="search-items"
-										id="search-items"
-										type="text"
-										placeholder="Search items"
-										value={searchQuery}
-										onChange={(e) => setSearchQuery(e.target.value)}
-									/>
-									{searchQuery ? (
-										<>
-											{' '}
-											<button type="button" onClick={handleClearSearchQuery}>
-												Clear search
-											</button>
-										</>
-									) : (
-										''
-									)}
-								</label>
-							</form>
-						</>
+						<div className="full-list-container">
+							<div className="full-list-search-container">
+								<h2>I NEED TO BUY...</h2>
+								<form>
+									<label htmlFor="search-items">
+										Filter:{' '}
+										<input
+											name="search-items"
+											id="search-items"
+											type="text"
+											placeholder="Search items"
+											value={searchQuery}
+											onChange={(e) => setSearchQuery(e.target.value)}
+										/>
+										{searchQuery ? (
+											<>
+												{' '}
+												<button type="button" onClick={handleClearSearchQuery}>
+													Clear search
+												</button>
+											</>
+										) : (
+											''
+										)}
+									</label>
+								</form>
+							</div>
+							<ul className="full-list-items-container">
+								<div className="group-container">
+									{/* filter through groups array for each group to display by time frame */}
+									{groups.map((group) => {
+										return (
+											<section className="full-list-items">
+												<div className="full-list-items-timeframe">
+													<span>{group.image}</span>
+													<h1>{group.timeFrame}</h1>
+												</div>
+												<div className="list-titles">
+													<h3 className="item-title-1">Item</h3>
+													<h3 className="item-title-2">Bought</h3>
+													<h3 className="item-title-3">Delete</h3>
+												</div>
+												{searchResults
+													// within each group's filteredData, map through to each item to pass in as a prop
+													.filter((item) => group.filteredData(item))
+													.map((filteredItem) => {
+														return (
+															<ListItem
+																key={filteredItem.id}
+																item={filteredItem}
+																listToken={listToken}
+															/>
+														);
+													})}
+											</section>
+										);
+									})}
+								</div>
+							</ul>
+						</div>
 					) : (
-						<>
+						<div className="empty-list-container">
 							<h3>
-								Your list is empty! Click the button below to start building
-								your list.
+								Your smart shopping list is currently empty! Start picking
+								products to fill your needs.
 							</h3>
-							<button onClick={handleNav}>Add Item</button>
-						</>
+							<button
+								onClick={handleNav}
+								className="empty-list-add-item-button"
+							>
+								ADD ITEM
+							</button>
+							<img
+								src={pac}
+								alt="A yellow Miss Pac Man with three dots coming out of her mouth."
+							/>
+						</div>
 					)}{' '}
 				</>
 			)}
-			<ul>
-				{/* filter through groups array for each group to display by time frame */}
-				{groups.map((group) => {
-					return (
-						<section className={group.timeFrame}>
-							<h1>{group.timeFrame}</h1>
-							<p>({group.subLabel})</p>
-							{searchResults
-								// within each group's filteredData, map through to each item to pass in as a prop
-								.filter((item) => group.filteredData(item))
-								.map((filteredItem) => {
-									return (
-										<ListItem
-											compareDuplicate={compareDuplicate}
-											key={filteredItem.id}
-											item={filteredItem}
-											listToken={listToken}
-										/>
-									);
-								})}
-						</section>
-					);
-				})}
-			</ul>
 		</div>
 	);
 }

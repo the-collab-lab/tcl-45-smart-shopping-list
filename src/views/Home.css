@@ -1,16 +1,35 @@
 .Home {
 	background-color: var(--blue);
-	height: 80vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
 }
 
+.home-header {
+	position: sticky;
+	text-align: center;
+	top: 0;
+	background-color: var(--blue);
+}
+
+.home-header > h1 > img {
+	margin-top: 0;
+	width: 100%;
+}
+
+.home-container {
+	height: 60vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
 .join-list-container {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 }
 
 .character {
@@ -56,6 +75,7 @@
 	width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
+	cursor: pointer;
 }
 
 .join-list-error {
