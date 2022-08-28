@@ -7,14 +7,14 @@ import {
 	updateItemCheckedStatus,
 	updateItemName,
 } from '../api';
-const one_day_in_ms = 24 * 60 * 60 * 1000;
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
+const one_day_in_ms = 24 * 60 * 60 * 1000;
 
 export function ListItem({ item, listToken }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
 	const [isEditing, setIsEditing] = useState(false);
-	const [updatedName, setUpdatedName] = useState('');
+	const [updatedName, setUpdatedName] = useState(item.name);
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -81,6 +81,12 @@ export function ListItem({ item, listToken }) {
 		}
 	};
 
+	const handleCancelEditItem = (e) => {
+		e.preventDefault();
+		setIsEditing(false);
+		setUpdatedName(item.name);
+	};
+
 	let itemDisplay;
 
 	if (isEditing) {
@@ -104,6 +110,7 @@ export function ListItem({ item, listToken }) {
 						setUpdatedName(e.target.value);
 					}}
 				/>
+				<button onClick={handleCancelEditItem}>Cancel</button>
 				<button type="submit">Submit</button>
 			</form>
 		);
@@ -124,6 +131,7 @@ export function ListItem({ item, listToken }) {
 			</>
 		);
 	}
+
 	return (
 		<div className="ListItem">
 			{itemDisplay}
