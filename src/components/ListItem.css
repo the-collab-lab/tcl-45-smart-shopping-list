@@ -1,15 +1,54 @@
-.ListItem {
-	align-items: baseline;
+.list-item-container {
+	align-items: center;
 	display: flex;
 	flex-direction: row;
 	font-size: 1.2em;
-	border: 1px solid white;
+	gap: 50px;
+	width: 100%;
+	justify-content: space-evenly;
+	padding: 3px;
 }
 
-.ListItem-checkbox {
-	accent-color: var(--color-accent);
+.delete-container {
+	text-align: center;
+	width: 10vw;
 }
 
-.ListItem-label {
-	margin-left: 0.2em;
+.list-item-label-container {
+	width: 15vw;
+}
+
+.list-item-input-container {
+	text-align: center;
+	width: 10vw;
+	padding: 2px;
+}
+
+input[type='checkbox'] {
+	font: inherit;
+	min-width: 1.15em;
+	min-height: 1.15em;
+	appearance: none;
+	background-color: var(--white);
+	border: 0.15em solid var(--yellow);
+	border-radius: 50%;
+}
+
+input[type='checkbox']::before {
+	content: '';
+	min-width: 0.65em;
+	min-height: 0.65em;
+	border-radius: 50%;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 1em 1em var(--blue);
+}
+
+input[type='checkbox']:checked {
+	transform: scale(1);
+	background-color: var(--yellow);
+	border: 0.15em solid var(--blue);
+	background-image: url(../assets/checkmark.png);
+	background-position: center;
+	background-size: cover;
 }
