@@ -80,7 +80,9 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 	];
 
 	const compareDuplicate = (itemNameToCompare) => {
-		const match = data.find((item) => itemNameToCompare === item.name);
+		const match = data.find(
+			(item) => itemNameToCompare.toLowerCase() === item.name.toLowerCase(),
+		);
 
 		if (match) {
 			toast(
