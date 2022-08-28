@@ -126,6 +126,11 @@ section {
 	text-align: center;
 }
 
+.item-title-4 {
+	width: 10vw;
+	text-align: center;
+}
+
 .list-titles > .item-title {
 	align-items: flex-start;
 }

@@ -9,6 +9,7 @@ import yellowblinky from '../../src/assets/yellow-blinky.png';
 import blueblinky from '../../src/assets/blue-blinky.png';
 
 import './List.css';
+import toast from 'react-hot-toast';
 
 import pac from '../assets/pac.png';
 
@@ -79,6 +80,19 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		},
 	];
 
+	const compareDuplicate = (itemNameToCompare) => {
+		const match = data.find((item) => itemNameToCompare === item.name);
+
+		if (match) {
+			toast(
+				'This item already exists on your list! Try adding a different item.',
+			);
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	return (
 		<div className="list-container">
 			<Toaster />
@@ -127,6 +141,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 												<div className="list-titles">
 													<h3 className="item-title-1">Item</h3>
 													<h3 className="item-title-2">Bought</h3>
+													<h3 className="item-title-4">Edit</h3>
 													<h3 className="item-title-3">Delete</h3>
 												</div>
 												{searchResults
@@ -135,6 +150,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 													.map((filteredItem) => {
 														return (
 															<ListItem
+																compareDuplicate={compareDuplicate}
 																key={filteredItem.id}
 																item={filteredItem}
 																listToken={listToken}
