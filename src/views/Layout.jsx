@@ -2,8 +2,20 @@ import './Layout.css';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 
-export function Layout({ listToken, handleCopy, copy, confirmLogOut }) {
+export function Layout({
+	listToken,
+	handleCopy,
+	copy,
+	confirmLogOut,
+	about,
+	setAbout,
+}) {
 	const navigateTo = useNavigate();
+
+	const handleAbout = () => {
+		setAbout(true);
+		navigateTo('/about');
+	};
 
 	return (
 		<>
@@ -35,12 +47,7 @@ export function Layout({ listToken, handleCopy, copy, confirmLogOut }) {
 								</div>
 								<div>
 									{' '}
-									<button
-										className="copy-button"
-										onClick={() => {
-											navigateTo('/about');
-										}}
-									>
+									<button className="copy-button" onClick={handleAbout}>
 										About
 									</button>
 								</div>
@@ -48,14 +55,16 @@ export function Layout({ listToken, handleCopy, copy, confirmLogOut }) {
 							<main className="Layout-main">
 								<Outlet />
 							</main>
-							<div className="footer">
-								<NavLink to="/list" className="nav-link">
-									SEE LIST
-								</NavLink>
-								<NavLink to="/add-item" className="nav-link">
-									ADD ITEM
-								</NavLink>
-							</div>
+							{!about && (
+								<div className="footer">
+									<NavLink to="/list" className="nav-link">
+										SEE LIST
+									</NavLink>
+									<NavLink to="/add-item" className="nav-link">
+										ADD ITEM
+									</NavLink>
+								</div>
+							)}
 						</>
 					)}
 				</div>

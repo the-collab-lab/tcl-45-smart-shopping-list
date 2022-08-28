@@ -16,6 +16,7 @@ export function App() {
 	const [loading, setLoading] = useState(true);
 	const [confirmLogOut, setConfirmLogOut] = useState(false);
 	const [copy, setCopy] = useState(false);
+	const [about, setAbout] = useState(false);
 
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
@@ -95,6 +96,8 @@ export function App() {
 							handleCopy={handleCopy}
 							copy={copy}
 							confirmLogOut={setConfirmLogOut}
+							setAbout={setAbout}
+							about={about}
 						/>
 					}
 				>
