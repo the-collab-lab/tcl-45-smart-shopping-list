@@ -3,3 +3,46 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+section {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+	align-items: flex-start;
+	border: 2px solid white;
+	margin: 10px;
+	padding: 20px;
+}
+
+.list-titles {
+	display: flex;
+	gap: 50px;
+	width: 100%;
+	justify-content: space-evenly;
+}
+
+.item-title-1 {
+	width: 15vw;
+	text-align: center;
+}
+
+.item-title-2 {
+	width: 10vw;
+	text-align: center;
+}
+
+.item-title-3 {
+	width: 10vw;
+	text-align: center;
+}
+
+.list-titles > .item-title {
+	align-items: flex-start;
+}
+
+.group-title {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+}
