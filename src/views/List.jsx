@@ -134,26 +134,33 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 				</>
 			)}
 			<ul>
-				{/* filter through groups array for each group to display by time frame */}
-				{groups.map((group) => {
-					return (
-						<section className={group.timeFrame}>
-							<h1>{group.timeFrame}</h1>
-							{searchResults
-								// within each group's filteredData, map through to each item to pass in as a prop
-								.filter((item) => group.filteredData(item))
-								.map((filteredItem) => {
-									return (
-										<ListItem
-											key={filteredItem.id}
-											item={filteredItem}
-											listToken={listToken}
-										/>
-									);
-								})}
-						</section>
-					);
-				})}
+				<div className="group-container">
+					{/* filter through groups array for each group to display by time frame */}
+					{groups.map((group) => {
+						return (
+							<section className={group.timeFrame}>
+								<h1>{group.timeFrame}</h1>
+								<div className="list-titles">
+									<h3 className="item-title">Item</h3>
+									<h3>Bought</h3>
+									<h3>Delete</h3>
+								</div>
+								{searchResults
+									// within each group's filteredData, map through to each item to pass in as a prop
+									.filter((item) => group.filteredData(item))
+									.map((filteredItem) => {
+										return (
+											<ListItem
+												key={filteredItem.id}
+												item={filteredItem}
+												listToken={listToken}
+											/>
+										);
+									})}
+							</section>
+						);
+					})}
+				</div>
 			</ul>
 		</div>
 	);
