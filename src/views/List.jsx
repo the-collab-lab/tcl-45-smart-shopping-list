@@ -141,6 +141,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 												<div className="list-titles">
 													<h3 className="item-title-1">Item</h3>
 													<h3 className="item-title-2">Bought</h3>
+													<h3 className="item-title-4">Edit</h3>
 													<h3 className="item-title-3">Delete</h3>
 												</div>
 												{searchResults
