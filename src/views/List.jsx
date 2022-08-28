@@ -2,6 +2,7 @@ import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './List.css';
+import toast from 'react-hot-toast';
 
 export function List({ data, listToken, loading, logOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
@@ -68,7 +69,18 @@ export function List({ data, listToken, loading, logOut }) {
 		},
 	];
 
-	// get information by index
+	const compareDuplicate = (itemNameToCompare) => {
+		const match = data.find((item) => itemNameToCompare === item.name);
+
+		if (match) {
+			toast(
+				'This item already exists on your List! Try adding a different item.',
+			);
+			return true;
+		} else {
+			return false;
+		}
+	};
 
 	return (
 		<div className="list-container">
@@ -132,6 +144,7 @@ export function List({ data, listToken, loading, logOut }) {
 								.map((filteredItem) => {
 									return (
 										<ListItem
+											compareDuplicate={compareDuplicate}
 											key={filteredItem.id}
 											item={filteredItem}
 											listToken={listToken}
