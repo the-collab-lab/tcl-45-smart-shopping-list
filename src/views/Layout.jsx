@@ -1,8 +1,10 @@
 import './Layout.css';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 
 export function Layout({ listToken, handleCopy, copy, confirmLogOut }) {
+	const navigateTo = useNavigate();
+
 	return (
 		<>
 			<div className="Layout">
@@ -30,6 +32,17 @@ export function Layout({ listToken, handleCopy, copy, confirmLogOut }) {
 										title="Log Out"
 										confirmAction={confirmLogOut}
 									/>
+								</div>
+								<div>
+									{' '}
+									<button
+										className="copy-button"
+										onClick={() => {
+											navigateTo('/about');
+										}}
+									>
+										About
+									</button>
 								</div>
 							</header>
 							<main className="Layout-main">
