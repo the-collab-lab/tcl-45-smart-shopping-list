@@ -75,15 +75,6 @@ export function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [confirmLogOut]);
 
-	function handleCopy() {
-		setCopy(true);
-		navigator.clipboard.writeText(`${listToken}`);
-		toast.success('Copied!');
-		setTimeout(() => {
-			setCopy(false);
-		}, 2000);
-	}
-
 	return (
 		<div className="App">
 			<Routes>
