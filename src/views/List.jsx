@@ -2,7 +2,6 @@ import './List.css';
 import { ListItem } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 import redblinky from '../../src/assets/red-blinky.png';
 import pinkblinky from '../../src/assets/pink-blinky.png';
 import yellowblinky from '../../src/assets/yellow-blinky.png';
@@ -95,7 +94,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 
 	return (
 		<div className="list-container">
-			<Toaster />
 			{loading ? (
 				<p>Your list is loading...</p>
 			) : (
