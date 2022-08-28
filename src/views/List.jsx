@@ -12,8 +12,6 @@ import './List.css';
 
 import pac from '../assets/pac.png';
 
-import pac from '../assets/pac.png';
-
 export function List({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
@@ -44,7 +42,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 			timeFrame: 'This week',
 			subLabel: '7 days or less',
 			image: <img className="blinkies" src={redblinky} alt="red-blinky logo" />,
-			image: <img className="blinkies" src={redblinky} alt="red-blinky logo" />,
 			filteredData: (item) => {
 				return item.currentEstimate <= 7;
 			},
@@ -52,9 +49,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		{
 			timeFrame: 'Next week',
 			subLabel: 'Between 8 and 14 days',
-			image: (
-				<img className="blinkies" src={pinkblinky} alt="pink-blinky logo" />
-			),
 			image: (
 				<img className="blinkies" src={pinkblinky} alt="pink-blinky logo" />
 			),
@@ -69,10 +63,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 				<img className="blinkies" src={yellowblinky} alt="yellow-blinky logo" />
 			),
 
-			image: (
-				<img className="blinkies" src={yellowblinky} alt="yellow-blinky logo" />
-			),
-
 			filteredData: (item) => {
 				return item.currentEstimate >= 30 && item.currentEstimate < 60;
 			},
@@ -80,9 +70,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 		{
 			timeFrame: 'Inactive',
 			subLabel: '60 days or more',
-			image: (
-				<img className="blinkies" src={blueblinky} alt="blue-blinky logo" />
-			),
 			image: (
 				<img className="blinkies" src={blueblinky} alt="blue-blinky logo" />
 			),

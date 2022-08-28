@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 import './AddItem.css';
+import redblinky from '../../src/assets/red-blinky.png';
+import pinkblinky from '../../src/assets/pink-blinky.png';
+import yellowblinky from '../../src/assets/yellow-blinky.png';
 
 export function AddItem({ listToken, itemList, setData }) {
 	const [daysUntilNextPurchase, setTimeFrame] = useState('7');
@@ -60,16 +63,12 @@ export function AddItem({ listToken, itemList, setData }) {
 						/>
 					</label>
 				</div>
-				<div className="date-container">
+				<div className="time-frame-container">
 					<fieldset className="timeframe">
 						<legend className="legend">
 							How soon will you buy this again?
 						</legend>
-						<label
-							className="time-frame-label"
-							className="time-frame-label"
-							htmlFor="soon"
-						>
+						<label className="time-frame-label" htmlFor="soon">
 							<input
 								type="radio"
 								value="7"
@@ -82,11 +81,7 @@ export function AddItem({ listToken, itemList, setData }) {
 							<span>This week</span>
 						</label>
 
-						<label
-							className="time-frame-label"
-							className="time-frame-label"
-							htmlFor="kind-of-soon"
-						>
+						<label className="time-frame-label" htmlFor="kind-of-soon">
 							<input
 								type="radio"
 								name="time-frame"
@@ -102,11 +97,7 @@ export function AddItem({ listToken, itemList, setData }) {
 							<span>Next week</span>
 						</label>
 
-						<label
-							className="time-frame-label"
-							className="time-frame-label"
-							htmlFor="not-soon"
-						>
+						<label className="time-frame-label" htmlFor="not-soon">
 							<input
 								type="radio"
 								name="time-frame"
@@ -127,16 +118,13 @@ export function AddItem({ listToken, itemList, setData }) {
 					<button type="submit">Add Item</button>
 				</div>
 				<span className="error-message">
-					<span className="error-message">
-						{error && <p>The item was not added</p>}
-						{duplicateError && (
-							<p>
-								The item already exists on your list! Try adding a different
-								item.
-							</p>
-						)}
-						{success && <p>The item has been added</p>}
-					</span>
+					{error && <p>The item was not added</p>}
+					{duplicateError && (
+						<p>
+							The item already exists on your list! Try adding a different item.
+						</p>
+					)}
+					{success && <p>The item has been added</p>}
 				</span>
 			</form>
 		</div>
