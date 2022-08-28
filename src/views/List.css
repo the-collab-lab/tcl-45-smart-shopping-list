@@ -88,3 +88,7 @@
 	border-radius: 4px;
 	background-color: var(--yellow);
 }
+
+::-webkit-scrollbar-corner {
+	background-color: var(--blue);
+}
