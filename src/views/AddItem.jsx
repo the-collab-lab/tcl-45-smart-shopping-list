@@ -76,7 +76,7 @@ export function AddItem({ listToken, itemList, setData }) {
 						<legend className="legend">
 							How soon will you buy this again?
 						</legend>
-						<label htmlFor="soon">
+						<label className="time-frame-label" htmlFor="soon">
 							<input
 								type="radio"
 								value="7"
@@ -86,15 +86,11 @@ export function AddItem({ listToken, itemList, setData }) {
 								onChange={handleTime}
 <<<<<<< HEAD
 							/>{' '}
-							Soon (7 days){' '}
 							<img className="blinkies" src={redblinky} alt="red-blinky logo" />
-=======
-							/>
-							This week
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
+							<span>This week</span>
 						</label>
 
-						<label htmlFor="kind-of-soon">
+						<label className="time-frame-label" htmlFor="kind-of-soon">
 							<input
 								type="radio"
 								name="time-frame"
@@ -103,19 +99,15 @@ export function AddItem({ listToken, itemList, setData }) {
 								onChange={handleTime}
 <<<<<<< HEAD
 							/>{' '}
-							Kind of Soon (14 days)
 							<img
 								className="blinkies"
 								src={pinkblinky}
 								alt="pink-blinky logo"
 							/>
-=======
-							/>
-							Next week
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
+							<span>Next week</span>
 						</label>
 
-						<label htmlFor="not-soon">
+						<label className="time-frame-label" htmlFor="not-soon">
 							<input
 								type="radio"
 								name="time-frame"
@@ -124,29 +116,27 @@ export function AddItem({ listToken, itemList, setData }) {
 								onChange={handleTime}
 <<<<<<< HEAD
 							/>{' '}
-							Not Soon (30 days)
 							<img
 								className="blinkies"
 								src={yellowblinky}
 								alt="yellow-blinky logo"
 							/>
-=======
-							/>
-							Next month
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
+							<span>Next month</span>
 						</label>
 					</fieldset>
 				</div>
 				<div className="button">
 					<button type="submit">Add Item</button>
 				</div>
-				{error && <p>The item was not added</p>}
-				{duplicateError && (
-					<p>
-						The item already exists on your list! Try adding a different item.
-					</p>
-				)}
-				{success && <p>The item has been added</p>}
+				<span className="error-message">
+					{error && <p>The item was not added</p>}
+					{duplicateError && (
+						<p>
+							The item already exists on your list! Try adding a different item.
+						</p>
+					)}
+					{success && <p>The item has been added</p>}
+				</span>
 			</form>
 		</div>
 	);
