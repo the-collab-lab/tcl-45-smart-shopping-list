@@ -1,7 +1,8 @@
 import './Layout.css';
 import { Outlet, NavLink } from 'react-router-dom';
+import ConfirmDialogWindow from '../components/ConfirmDialogWindow';
 
-export function Layout({ listToken, logOut }) {
+export function Layout({ listToken, handleCopy, copy, confirmLogOut }) {
 	return (
 		<>
 			<div className="Layout">
@@ -19,10 +20,17 @@ export function Layout({ listToken, logOut }) {
 									<h3>{listToken}</h3>
 								</div>
 								<div className="header-center">
-									<h3>COPY NAME BUTTON</h3>
+									<button onClick={handleCopy} className="copy-button">
+										{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
+									</button>
 								</div>
 								<div className="header-right">
-									<button onClick={logOut}>Log Out</button>
+									{/* <button onClick={confirmLogOut}>Log Out</button> */}
+									<ConfirmDialogWindow
+										text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
+										title="Log Out"
+										confirmAction={confirmLogOut}
+									/>
 								</div>
 							</header>
 							<main className="Layout-main">

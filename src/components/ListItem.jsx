@@ -1,5 +1,6 @@
 import './ListItem.css';
 import { useState, useEffect } from 'react';
+import ConfirmDialogWindow from './ConfirmDialogWindow';
 import {
 	updateItem,
 	deleteItem,
@@ -12,6 +13,7 @@ const one_day_in_ms = 24 * 60 * 60 * 1000;
 export function ListItem({ item, listToken }) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
+	const [confirmResponse, setConfirmResponse] = useState(false);
 
 	const currentDate = new Date();
 	const currentTimeInMilliseconds = Math.floor(currentDate.getTime());
@@ -61,36 +63,41 @@ export function ListItem({ item, listToken }) {
 		handlePurchaseItem();
 	};
 
-	const handleDeleteItem = () => {
-		const confirm = window.confirm(
-			`Do you really want to delete ${item.name}?`,
-		);
+	if (confirmResponse) {
 		try {
-			if (confirm) {
-				deleteItem(listToken, item);
-				// commenting out the lines below but keeping them for a11y dialog window to be implemented later
-				// 	alert(`${item.name} has been deleted!`);
-				// } else {
-				// 	alert(`${item.name} was not deleted`);
-			}
+			deleteItem(listToken, item);
 		} catch (error) {
 			console.log('error', error);
 		}
-	};
+	}
 
 	return (
-		<div className="ListItem">
-			<input
-				type="checkbox"
-				id={`${item.id}-${item.name}-checkbox`}
-				name={item.name}
-				onChange={handleCheckItem}
-				checked={isPurchased}
-			/>
-			<label htmlFor={`${item.id}-${item.name}-checkbox`}>{item.name}</label>
-			<button type="button" onClick={handleDeleteItem}>
-				Delete
-			</button>
+		<div className="list-item-container">
+			<div className="list-item-label-container">
+				<label
+					className="list-item-label"
+					htmlFor={`${item.id}-${item.name}-checkbox`}
+				>
+					{item.name}
+				</label>
+			</div>
+			<div className="list-item-input-container">
+				<input
+					className="list-item-input"
+					type="checkbox"
+					id={`${item.id}-${item.name}-checkbox`}
+					name={item.name}
+					onChange={handleCheckItem}
+					checked={isPurchased}
+				/>
+			</div>
+			<div className="delete-container">
+				<ConfirmDialogWindow
+					text={`Do you really want to delete ${item.name}?`}
+					title="delete dialog"
+					confirmAction={setConfirmResponse}
+				/>
+			</div>
 		</div>
 	);
 }
