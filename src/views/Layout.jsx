@@ -25,7 +25,6 @@ export function Layout({ listToken, handleCopy, copy, confirmLogOut }) {
 									</button>
 								</div>
 								<div className="header-right">
-									{/* <button onClick={confirmLogOut}>Log Out</button> */}
 									<ConfirmDialogWindow
 										text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
 										title="Log Out"
