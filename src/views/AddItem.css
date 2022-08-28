@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-.timeframe {
-=======
-.date-container {
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
-=======
 .time-frame-container {
 	display: flex;
 	flex-direction: column;
 }
 .timeframe {
->>>>>>> 28d3f31 (centered labels and added classNames, cleaned up responsive design)
 	display: flex;
 	flex-direction: column;
 }
@@ -28,29 +20,11 @@
 	padding: 10px;
 } */
 
-/* .timeframe label {
-	padding: 10px;
-} */
-
 .timeframe label {
 	display: flex;
-	display: flex;
 	padding: 10px;
 	gap: 20px;
-	gap: 20px;
 }
-
-.timeframe span {
-	display: flex;
-	align-items: center;
-}
-
-/* .time-frame-label {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-} */
 
 .timeframe span {
 	display: flex;
@@ -110,7 +84,6 @@
 	min-width: 30vw;
 	max-width: full;
 	text-align: center;
-	text-align: center;
 }
 
 .button {
@@ -129,7 +102,7 @@
 	border-radius: 10px;
 }
 
-.button > .button > p,
+.button > p,
 button {
 	font-family: 'Share Tech Mono', monospace;
 	font-size: 1.2em;
@@ -166,14 +139,6 @@ input[type='radio']:checked {
 input[type='text'] {
 	background-color: var(--blue);
 	color: var(--yellow);
-}
-
-.error-message {
-	display: flex;
-	flex-direction: column;
-	padding: 10px;
-	margin: 20px;
->>>>>>> refs/rewritten/commented-out-line-86-in-List-jsx-because-of-eslint-error
 }
 
 .error-message {
