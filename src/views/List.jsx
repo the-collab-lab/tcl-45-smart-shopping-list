@@ -160,9 +160,9 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 									<h1>{group.timeFrame}</h1>
 								</div>
 								<div className="list-titles">
-									<h3 className="item-title">Item</h3>
-									<h3>Bought</h3>
-									<h3>Delete</h3>
+									<h3 className="item-title-1">Item</h3>
+									<h3 className="item-title-2">Bought</h3>
+									<h3 className="item-title-3">Delete</h3>
 								</div>
 								{searchResults
 									// within each group's filteredData, map through to each item to pass in as a prop

@@ -55,7 +55,7 @@ const ConfirmDialogWindow = ({ text, title, confirmAction }) => {
 	return (
 		<>
 			<button type="button" onClick={() => instance.show()}>
-				{title === 'Log Out' ? 'Log Out' : 'X'}
+				{title === 'Log Out' ? 'Log Out' : 'x'}
 			</button>
 			{dialog}
 		</>
