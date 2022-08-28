@@ -62,12 +62,15 @@ export function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [listToken]);
 
-	if (confirmLogOut) {
-		localStorage.clear();
-		setListToken('');
-		navigateTo('/');
-		setConfirmLogOut(false);
-	}
+	useEffect(() => {
+		if (confirmLogOut) {
+			localStorage.clear();
+			setListToken('');
+			navigateTo('/');
+			setConfirmLogOut(false);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [confirmLogOut]);
 
 	return (
 		<div className="App">
