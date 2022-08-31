@@ -22,27 +22,8 @@ export function Layout({
 		navigateTo('/list');
 	};
 
-	// const handleHome = () => {
-	// 	setAbout(false);
-	// 	navigateTo('/');
-	// };
-
 	return (
 		<div className="Layout">
-			{/* {!listToken && about && (
-				<div className="about-back-container">
-					<button className="existing-list-button" onClick={handleHome}>
-						Back
-					</button>
-				</div>
-			)}
-			{!listToken && !about && (
-				<div className="about-back-container">
-					<button className="existing-list-button about" onClick={handleAbout}>
-						?
-					</button>
-				</div>
-			)} */}
 			<div className="Layout">
 				{!listToken && (
 					<main className="Layout-main">
