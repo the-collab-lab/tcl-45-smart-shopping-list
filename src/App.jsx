@@ -108,6 +108,8 @@ export function App() {
 								handleClick={handleClick}
 								listToken={listToken}
 								setListToken={setListToken}
+								about={about}
+								setAbout={setAbout}
 							/>
 						}
 					/>
@@ -133,7 +135,12 @@ export function App() {
 							/>
 						}
 					/>
-					<Route path="/about" element={<About />} />
+					<Route
+						path="/about"
+						element={<About />}
+						about={about}
+						setAbout={setAbout}
+					/>
 				</Route>
 			</Routes>
 		</div>
