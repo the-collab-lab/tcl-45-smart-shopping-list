@@ -1,3 +1,7 @@
+.about-page-container {
+	font-size: larger;
+}
+
 .about-article {
 	background-color: var(--yellow);
 	color: var(--blue);
@@ -21,4 +25,17 @@ a:hover,
 a:active {
 	color: var(--blue);
 	text-decoration: none;
+}
+
+.about-details {
+	margin-bottom: 0.25em;
+}
+
+.about-summary {
+	margin: 0.25em;
+	font-weight: bold;
+}
+
+.teammate {
+	margin-top: 0.8em;
 }
