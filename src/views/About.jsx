@@ -1,11 +1,22 @@
 import './About.css';
+import { useNavigate } from 'react-router-dom';
+export function About({ about, setAbout, listToken }) {
+	const navigateTo = useNavigate();
 
-export function About() {
+	const handleHome = () => {
+		navigateTo('/');
+		setAbout(false);
+	};
+
 	return (
 		<div className="about-page-container">
-			<header>
+			<header className="about-header">
 				<h1>About</h1>
-				<button className="home-button">Back</button>
+				{about && !listToken && (
+					<button className="about-button" onClick={handleHome}>
+						Back
+					</button>
+				)}
 			</header>
 			<article className="about-article">
 				<h2 className="article-title">What is Shop-Ade</h2>

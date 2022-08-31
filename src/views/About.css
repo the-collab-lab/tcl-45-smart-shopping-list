@@ -39,3 +39,12 @@ a:active {
 .teammate {
 	margin-top: 0.8em;
 }
+
+.about-header {
+	display: flex;
+	flex-flow: row;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1em;
+}
