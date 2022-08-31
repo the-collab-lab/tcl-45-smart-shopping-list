@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { findToken } from '../api/firebase';
 import redBlinky from '../../src/assets/red-blinky.png';
 import blueBlinky from '../../src/assets/blue-blinky.png';
+import yellowBlinky from '../../src/assets/yellow-blinky.png';
 import logo from '../../src/assets/shop-ade.png';
 
 export function Home({ handleClick, listToken, setListToken }) {
@@ -78,16 +79,18 @@ export function Home({ handleClick, listToken, setListToken }) {
 								</button>
 							</div>
 						</div>
-						<div>
-							<button
-								className="existing-list-button"
-								onClick={() => {
-									navigateTo('/about');
-								}}
-							>
-								ABOUT
-							</button>
-						</div>
+						{/* <div className="join-list-container">
+							<img
+								src={yellowBlinky}
+								alt="Blue character"
+								className="character"
+							/>
+							<div className="existing-list">
+								<button onClick="" className="existing-list-button">
+									ABOUT
+								</button>
+							</div>
+						</div> */}
 					</div>
 				</>
 			)}
