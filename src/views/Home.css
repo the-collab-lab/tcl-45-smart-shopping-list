@@ -71,7 +71,7 @@
 	background: var(--yellow);
 	color: var(--blue);
 	height: 5vh;
-	width: 10vw;
+	min-width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;
@@ -125,7 +125,7 @@
 	background: var(--blue);
 	color: var(--yellow);
 	height: 5vh;
-	width: 10vw;
+	min-width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;
