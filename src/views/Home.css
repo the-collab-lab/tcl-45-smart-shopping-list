@@ -11,6 +11,7 @@
 	text-align: center;
 	top: 0;
 	background-color: var(--blue);
+	margin-bottom: 3em;
 }
 
 .home-header > h1 > img {
