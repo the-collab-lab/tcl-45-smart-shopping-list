@@ -95,7 +95,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 	};
 
 	return (
-		<div className="list-container">
+		<>
 			{loading ? (
 				<p>Your list is loading...</p>
 			) : (
@@ -183,6 +183,6 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 					)}{' '}
 				</>
 			)}
-		</div>
+		</>
 	);
 }
