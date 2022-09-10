@@ -61,7 +61,8 @@
 .copy-button {
 	background: var(--yellow);
 	color: var(--blue);
-	height: 7vh;
+	min-height: 7vh;
+	max-height: fit-content;
 	width: 15vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
