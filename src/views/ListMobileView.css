@@ -6,7 +6,7 @@ List {
 	margin-top: 5px;
 }
 
-.full-list-container {
+.full-list-container-mobile {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -14,7 +14,7 @@ List {
 	gap: 20px;
 	height: 74vh;
 	margin-top: 5px;
-	width: 55vw;
+	width: 100%;
 }
 
 .full-list-search-container {
@@ -23,8 +23,12 @@ List {
 	align-items: center;
 	justify-content: center;
 	line-height: 1.5rem;
-	width: 55vw;
+	width: 100%;
 	padding: 10px;
+}
+
+.full-list-search-container h2 {
+	line-height: 2.5rem;
 }
 
 .full-list-items-container {

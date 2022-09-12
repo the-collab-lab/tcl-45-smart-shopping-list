@@ -10,7 +10,7 @@ import blueblinky from '../../src/assets/blue-blinky.png';
 import toast from 'react-hot-toast';
 import pac from '../assets/pac.png';
 
-export function List({ data, listToken, loading, confirmLogOut }) {
+export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 
@@ -99,7 +99,7 @@ export function List({ data, listToken, loading, confirmLogOut }) {
 			) : (
 				<>
 					{data.length >= 1 ? (
-						<div className="full-list-container">
+						<div className="full-list-container-mobile">
 							<div className="full-list-search-container">
 								<h2>I NEED TO BUY...</h2>
 								<form>
