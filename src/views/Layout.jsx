@@ -38,31 +38,40 @@ export function Layout({
 									<h3>Your list name: </h3>
 									<h3>{listToken}</h3>
 								</div>
-								<div className="header-center">
-									<button onClick={handleCopy} className="copy-button">
-										{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
-									</button>
-								</div>
-								<div className="header-right">
-									<ConfirmDialogWindow
-										text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
-										title="Log Out"
-										confirmAction={confirmLogOut}
-									/>
-								</div>
-								{!about ? (
-									<div>
-										<button className="copy-button" onClick={handleAbout}>
-											About
+								<div className="button-block">
+									<div className="header-center">
+										<button onClick={handleCopy} className="copy-button">
+											{!copy ? (
+												<span>Copy List Name</span>
+											) : (
+												<span>Copied!</span>
+											)}
 										</button>
 									</div>
-								) : (
-									<div className="header-home">
-										<button className="home-button" onClick={handleList}>
-											List
-										</button>
+									<div className="header-right">
+										<ConfirmDialogWindow
+											text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
+											title="Log Out"
+											confirmAction={confirmLogOut}
+										/>
 									</div>
-								)}
+									{!about ? (
+										<div>
+											<button
+												className="copy-button about-button"
+												onClick={handleAbout}
+											>
+												About
+											</button>
+										</div>
+									) : (
+										<div className="header-home">
+											<button className="home-button" onClick={handleList}>
+												List
+											</button>
+										</div>
+									)}
+								</div>
 							</header>
 							<main className="Layout-main">
 								<Outlet />

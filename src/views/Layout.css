@@ -30,11 +30,30 @@
 	background-color: var(--blue);
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	justify-content: space-around;
+	flex-wrap: wrap;
+	align-items: center;
 	width: 95vw;
 	height: 15vh;
 	border-bottom: 1px var(--yellow) solid;
+}
+
+@media only screen and (max-width: 600px) {
+	.header {
+		justify-content: flex-start;
+		gap: 0.2em;
+	}
+}
+.header {
+	justify-content: flex-start;
+	gap: 0.2em;
+}
+
+@media only screen and (max-width: 364px) {
+	.header {
+		padding-bottom: 8em;
+		margin-bottom: 2rem;
+	}
 }
 
 .header-left {
@@ -63,7 +82,7 @@
 	color: var(--blue);
 	min-height: 7vh;
 	max-height: fit-content;
-	width: 15vw;
+	width: fit-content;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;
@@ -134,4 +153,13 @@
 	display: flex;
 	height: 100px;
 	justify-content: space-evenly;
+}
+.about-button {
+	width: fit-content;
+}
+
+.button-block {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5em;
 }
