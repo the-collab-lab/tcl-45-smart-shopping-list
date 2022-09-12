@@ -1,4 +1,7 @@
 <img src="./src/assets/shop-ade-title.jpg" alt="image of shop-ade logo" align="center" />
+
+[Click here to check it out!](https://tcl-45-smart-shopping-list.firebaseapp.com/)
+
 <hr>
 <h1 align="center">
     <img src="./src/assets/red-blinky.png" width="20" align="center" /> Shop-Ade  
