@@ -1,5 +1,5 @@
 import './ListMobileView.css';
-import { ListItem } from '../components';
+import { ListItemMobileView } from '../components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import redblinky from '../../src/assets/red-blinky.png';
@@ -147,7 +147,7 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 													.filter((item) => group.filteredData(item))
 													.map((filteredItem) => {
 														return (
-															<ListItem
+															<ListItemMobileView
 																compareDuplicate={compareDuplicate}
 																key={filteredItem.id}
 																item={filteredItem}
