@@ -1,4 +1,4 @@
-import './ListItem.css';
+import './ListItemMobileView.css';
 import { useState, useEffect } from 'react';
 import ConfirmDialogWindow from './ConfirmDialogWindow';
 import {
@@ -11,7 +11,12 @@ import {
 // const one_day_in_ms = 60 * 2 * 1000; // 120 seconds for testing the reset timeframe
 const one_day_in_ms = 24 * 60 * 60 * 1000;
 
-export function ListItemMobileView({ item, listToken, compareDuplicate }) {
+export function ListItemMobileView({
+	item,
+	listToken,
+	compareDuplicate,
+	image,
+}) {
 	const [boxChecked, setBoxChecked] = useState(false);
 	const [isPurchased, setIsPurchased] = useState(item.isChecked);
 
@@ -120,7 +125,9 @@ export function ListItemMobileView({ item, listToken, compareDuplicate }) {
 	} else {
 		itemDisplay = (
 			<>
-				<div className="list-item-label-container">
+				<div className="top">
+					<img src={image} alt={item.name} style={{ width: '4em' }} />
+
 					<label
 						className="list-item-label"
 						htmlFor={`${item.id}-${item.name}-checkbox`}
@@ -137,24 +144,18 @@ export function ListItemMobileView({ item, listToken, compareDuplicate }) {
 						onChange={handleCheckItem}
 						checked={isPurchased}
 					/>
+					<button type="button" onClick={() => setIsEditing(true)}>
+						Edit
+					</button>
+					<ConfirmDialogWindow
+						text={`Do you really want to delete ${item.name}?`}
+						title="delete dialog"
+						confirmAction={setConfirmResponse}
+					/>
 				</div>
-				<button type="button" onClick={() => setIsEditing(true)}>
-					Edit
-				</button>
 			</>
 		);
 	}
 
-	return (
-		<div className="list-item-container">
-			{itemDisplay}
-			<div className="delete-container">
-				<ConfirmDialogWindow
-					text={`Do you really want to delete ${item.name}?`}
-					title="delete dialog"
-					confirmAction={setConfirmResponse}
-				/>
-			</div>
-		</div>
-	);
+	return <div className="list-item-container">{itemDisplay}</div>;
 }

@@ -36,86 +36,52 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 		navigateTo('/add-item');
 	}
 
+	const this_week = searchResults.filter(
+		(item) => getDaysUntilNextPurchased(item.dateNextPurchased) <= 7,
+	);
+	const next_week = searchResults.filter(
+		(item) =>
+			getDaysUntilNextPurchased(item.dateNextPurchased) > 7 &&
+			getDaysUntilNextPurchased(item.dateNextPurchased) <= 14,
+	);
+	const next_month = searchResults.filter(
+		(item) => getDaysUntilNextPurchased(item.dateNextPurchased) > 14,
+	);
+	const inactive_array = searchResults.filter(
+		(item) => getDaysUntilNextPurchased(item.dateNextPurchased) < 0,
+	);
+
 	const group_this_week = {
-		timeFrame: 'This week',
+		timeFrame: 'SOON',
 		subLabel: '7 days or less',
-		image: <img className="blinkies" src={redblinky} alt="red-blinky logo" />,
-		filteredData: (item) => {
-			return item.currentEstimate <= 7;
-		},
+		image: '../../src/assets/red-blinky.png',
+		alt: 'red ghost logo',
+		array: this_week,
 	};
 
 	const group_next_week = {
-		timeFrame: 'Next week',
+		timeFrame: 'KIND OF SOON',
 		subLabel: 'Between 8 and 14 days',
-		image: <img className="blinkies" src={pinkblinky} alt="pink-blinky logo" />,
-		filteredData: (item) => {
-			return item.currentEstimate > 7 && item.currentEstimate < 30;
-		},
+		image: '../../src/assets/pink-blinky.png',
+		alt: 'pink ghost logo',
+		array: next_week,
 	};
 
 	const group_next_month = {
-		timeFrame: 'Next month',
-		subLabel: 'Between 15 and 30 days',
-		image: (
-			<img className="blinkies" src={yellowblinky} alt="yellow-blinky logo" />
-		),
-
-		filteredData: (item) => {
-			return item.currentEstimate >= 30 && item.currentEstimate < 60;
-		},
+		timeFrame: 'NOT SO SOON',
+		subLabel: '15 days or more',
+		image: '../../src/assets/yellow-blinky.png',
+		alt: 'yellow ghost logo',
+		array: next_month,
 	};
 
 	const group_inactive = {
-		timeFrame: 'Inactive',
-		subLabel: '60 days or more',
-		image: <img className="blinkies" src={blueblinky} alt="blue-blinky logo" />,
-		filteredData: (item) => {
-			return item.currentEstimate >= 60;
-		},
+		timeFrame: 'INACTIVE',
+		subLabel: "Haven't bought it receintly",
+		image: '../../src/assets/blue-blinky.png',
+		alt: 'blue ghost logo',
+		array: inactive_array,
 	};
-
-	const groups = [
-		{
-			timeFrame: 'This week',
-			subLabel: '7 days or less',
-			image: <img className="blinkies" src={redblinky} alt="red-blinky logo" />,
-			filteredData: (item) => {
-				return item.currentEstimate <= 7;
-			},
-		},
-		{
-			timeFrame: 'Next week',
-			subLabel: 'Between 8 and 14 days',
-			image: (
-				<img className="blinkies" src={pinkblinky} alt="pink-blinky logo" />
-			),
-			filteredData: (item) => {
-				return item.currentEstimate > 7 && item.currentEstimate < 30;
-			},
-		},
-		{
-			timeFrame: 'Next month',
-			subLabel: 'Between 15 and 30 days',
-			image: (
-				<img className="blinkies" src={yellowblinky} alt="yellow-blinky logo" />
-			),
-
-			filteredData: (item) => {
-				return item.currentEstimate >= 30 && item.currentEstimate < 60;
-			},
-		},
-		{
-			timeFrame: 'Inactive',
-			subLabel: '60 days or more',
-			image: (
-				<img className="blinkies" src={blueblinky} alt="blue-blinky logo" />
-			),
-			filteredData: (item) => {
-				return item.currentEstimate >= 60;
-			},
-		},
-	];
 
 	const compareDuplicate = (itemNameToCompare) => {
 		const match = data.find(
@@ -132,27 +98,10 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 		}
 	};
 
-	const this_week = searchResults.filter(
-		(item) => getDaysUntilNextPurchased(item.dateNextPurchased) <= 7,
-	);
-	const next_week = searchResults.filter(
-		(item) =>
-			getDaysUntilNextPurchased(item.dateNextPurchased) > 7 &&
-			getDaysUntilNextPurchased(item.dateNextPurchased) <= 30,
-	);
-	const next_month = searchResults.filter(
-		(item) =>
-			getDaysUntilNextPurchased(item.dateNextPurchased) > 30 &&
-			getDaysUntilNextPurchased(item.dateNextPurchased) <= 60,
-	);
-	const inactive_array = searchResults.filter(
-		(item) => getDaysUntilNextPurchased(item.dateNextPurchased) < 0,
-	);
-
-	console.log('this_week', this_week);
-	console.log('next_week', next_week);
-	console.log('next_month', next_month);
-	console.log('inactive', inactive_array);
+	// console.log('this_week', this_week);
+	// console.log('next_week', next_week);
+	// console.log('next_month', next_month);
+	// console.log('inactive', inactive_array);
 
 	return (
 		<>
@@ -190,84 +139,62 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 							</div>
 							<ul className="full-list-items-container">
 								<div className="group-container">
-									{/* filter through groups array for each group to display by time frame */}
-									{/* {groups.map((group) => {
-										return (
-											<section className="full-list-items">
-												<div className="full-list-items-timeframe">
-													<span>{group.image}</span>
-													<h1>{group.timeFrame}</h1>
-												</div>
-												<div className="list-titles">
-													<h3 className="item-title-1">Item</h3>
-													<h3 className="item-title-2">Bought</h3>
-													<h3 className="item-title-4">Edit</h3>
-													<h3 className="item-title-3">Delete</h3>
-												</div>
-												{searchResults
-													// within each group's filteredData, map through to each item to pass in as a prop
-													.filter((item) => group.filteredData(item))
-													.map((filteredItem) => {
-														return (
-															<ListItemMobileView
-																compareDuplicate={compareDuplicate}
-																key={filteredItem.id}
-																item={filteredItem}
-																listToken={listToken}
-															/>
-														);
-													})}
-											</section>
-										);
-									})} */}
-									{this_week.length > 0 && (
+									{group_this_week.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>THIS WEEK</h2>
-											{this_week.map((item) => (
+											<h2>{group_this_week.timeFrame}</h2>
+											{group_this_week.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
 													key={item.id}
 													item={item}
 													listToken={listToken}
+													image={group_this_week.image}
+													alt={group_this_week.alt}
 												/>
 											))}
 										</div>
 									)}
-									{next_week.length > 0 && (
+									{group_next_week.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>NEXT WEEK</h2>
-											{next_week.map((item) => (
+											<h2>{group_next_week.timeFrame}</h2>
+											{group_next_week.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
 													key={item.id}
 													item={item}
 													listToken={listToken}
+													image={group_next_week.image}
+													alt={group_next_week.alt}
 												/>
 											))}
 										</div>
 									)}
-									{next_month.length > 0 && (
+									{group_next_month.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>NEXT MONTH</h2>
-											{next_month.map((item) => (
+											<h2>{group_next_month.timeFrame}</h2>
+											{group_next_month.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
 													key={item.id}
 													item={item}
 													listToken={listToken}
+													image={group_next_month.image}
+													alt={group_next_month.alt}
 												/>
 											))}
 										</div>
 									)}
-									{inactive_array.length > 0 && (
+									{group_inactive.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>INACTIVE</h2>
-											{inactive_array.map((item) => (
+											<h2>{group_inactive.timeFrame}</h2>
+											{group_inactive.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
 													key={item.id}
 													item={item}
 													listToken={listToken}
+													image={group_inactive.image}
+													alt={group_inactive.alt}
 												/>
 											))}
 										</div>

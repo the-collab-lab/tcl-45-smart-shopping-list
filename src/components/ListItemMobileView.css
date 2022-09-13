@@ -1,7 +1,7 @@
 .list-item-container {
 	align-items: center;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	font-size: 1.2em;
 	gap: 50px;
 	width: 100%;
@@ -18,10 +18,18 @@
 	width: 15vw;
 }
 
+.list-item-label {
+	font-size: 5rem;
+}
+
 .list-item-input-container {
+	display: flex;
+	flex-direction: row;
 	text-align: center;
 	width: 10vw;
 	padding: 2px;
+	gap: 2rem;
+	justify-content: center;
 }
 
 input[type='checkbox'] {
@@ -51,4 +59,9 @@ input[type='checkbox']:checked {
 	background-image: url(../assets/checkmark.png);
 	background-position: center;
 	background-size: cover;
+}
+
+.top {
+	display: flex;
+	align-items: center;
 }
