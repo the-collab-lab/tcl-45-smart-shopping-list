@@ -63,8 +63,6 @@ export function App() {
 		}, 2000);
 	}
 
-	console.log('isDesktop ', isDesktop);
-
 	return (
 		<div className="App">
 			<Routes>
