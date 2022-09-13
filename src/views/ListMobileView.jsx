@@ -132,20 +132,20 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 		}
 	};
 
-	const this_week = data.filter(
+	const this_week = searchResults.filter(
 		(item) => getDaysUntilNextPurchased(item.dateNextPurchased) <= 7,
 	);
-	const next_week = data.filter(
+	const next_week = searchResults.filter(
 		(item) =>
 			getDaysUntilNextPurchased(item.dateNextPurchased) > 7 &&
 			getDaysUntilNextPurchased(item.dateNextPurchased) <= 30,
 	);
-	const next_month = data.filter(
+	const next_month = searchResults.filter(
 		(item) =>
 			getDaysUntilNextPurchased(item.dateNextPurchased) > 30 &&
 			getDaysUntilNextPurchased(item.dateNextPurchased) <= 60,
 	);
-	let inactive_array = data.filter(
+	const inactive_array = searchResults.filter(
 		(item) => getDaysUntilNextPurchased(item.dateNextPurchased) < 0,
 	);
 
@@ -220,7 +220,7 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 											</section>
 										);
 									})} */}
-									{this_week && (
+									{this_week.length > 0 && (
 										<div className="this-week-container" id="week-container">
 											<h2>THIS WEEK</h2>
 											{this_week.map((item) => (
@@ -233,7 +233,7 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 											))}
 										</div>
 									)}
-									{next_week && (
+									{next_week.length > 0 && (
 										<div className="this-week-container" id="week-container">
 											<h2>NEXT WEEK</h2>
 											{next_week.map((item) => (
@@ -246,7 +246,7 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 											))}
 										</div>
 									)}
-									{next_month !== [] && (
+									{next_month.length > 0 && (
 										<div className="this-week-container" id="week-container">
 											<h2>NEXT MONTH</h2>
 											{next_month.map((item) => (
@@ -259,7 +259,7 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 											))}
 										</div>
 									)}
-									{inactive_array !== [] && (
+									{inactive_array.length > 0 && (
 										<div className="this-week-container" id="week-container">
 											<h2>INACTIVE</h2>
 											{inactive_array.map((item) => (
