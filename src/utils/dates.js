@@ -19,3 +19,12 @@ export function getDaysBetweenDates(lastTransaction) {
 	let dayDifference = Math.ceil(timeDifference / ONE_DAY_IN_MILLISECONDS);
 	return Math.abs(dayDifference);
 }
+
+export function getDaysUntilNextPurchased(dateNextPurchased) {
+	let today = new Date();
+	// get both dates in milliseconds
+	let timeDifference = dateNextPurchased.toMillis() - today.getTime();
+	// change milliseconds into days, rounding up
+	let dayDifference = Math.ceil(timeDifference / ONE_DAY_IN_MILLISECONDS);
+	return dayDifference;
+}
