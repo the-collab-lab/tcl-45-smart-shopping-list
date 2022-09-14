@@ -22,9 +22,8 @@ export function Layout({
 		navigateTo('/list');
 	};
 
-	console.log('about', about);
 	return (
-		<>
+		<div className="Layout">
 			<div className="Layout">
 				{!listToken && (
 					<main className="Layout-main">
@@ -39,11 +38,6 @@ export function Layout({
 									<h3>Your list name: </h3>
 									<h3>{listToken}</h3>
 								</div>
-								<div className="header-home">
-									<button className="home-button" onClick={handleList}>
-										List
-									</button>
-								</div>
 								<div className="header-center">
 									<button onClick={handleCopy} className="copy-button">
 										{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
@@ -56,12 +50,19 @@ export function Layout({
 										confirmAction={confirmLogOut}
 									/>
 								</div>
-								<div>
-									{' '}
-									<button className="copy-button" onClick={handleAbout}>
-										About
-									</button>
-								</div>
+								{!about ? (
+									<div>
+										<button className="copy-button" onClick={handleAbout}>
+											About
+										</button>
+									</div>
+								) : (
+									<div className="header-home">
+										<button className="home-button" onClick={handleList}>
+											List
+										</button>
+									</div>
+								)}
 							</header>
 							<main className="Layout-main">
 								<Outlet />
@@ -80,6 +81,6 @@ export function Layout({
 					)}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

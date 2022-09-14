@@ -1,12 +1,19 @@
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { findToken } from '../api/firebase';
 import redBlinky from '../../src/assets/red-blinky.png';
 import blueBlinky from '../../src/assets/blue-blinky.png';
+import questionMark from '../../src/assets/question-mark.png';
 import logo from '../../src/assets/shop-ade.png';
 
-export function Home({ handleClick, listToken, setListToken }) {
+export function Home({
+	handleClick,
+	listToken,
+	setListToken,
+	about,
+	setAbout,
+}) {
 	const navigateTo = useNavigate();
 	const [joinListName, setJoinListName] = useState('');
 	const [error, setError] = useState(false);
@@ -21,6 +28,11 @@ export function Home({ handleClick, listToken, setListToken }) {
 		} else if (querySnapshot.empty) {
 			setError(true);
 		}
+	};
+
+	const handleAbout = () => {
+		navigateTo('/about');
+		setAbout(true);
 	};
 
 	return (
@@ -78,15 +90,17 @@ export function Home({ handleClick, listToken, setListToken }) {
 								</button>
 							</div>
 						</div>
-						<div>
-							<button
-								className="existing-list-button"
-								onClick={() => {
-									navigateTo('/about');
-								}}
-							>
-								ABOUT
-							</button>
+						<div className="about-container">
+							<img
+								src={questionMark}
+								alt="question mark"
+								className="question-mark"
+							/>
+							<div className="about">
+								<button onClick={handleAbout} className="about-button">
+									ABOUT
+								</button>
+							</div>
 						</div>
 					</div>
 				</>
