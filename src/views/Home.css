@@ -4,6 +4,7 @@
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	gap: 3em;
 }
 
 .home-header {
@@ -11,6 +12,7 @@
 	text-align: center;
 	top: 0;
 	background-color: var(--blue);
+	margin-bottom: 3em;
 }
 
 .home-header > h1 > img {
@@ -34,7 +36,6 @@
 
 .character {
 	height: 9vh;
-	width: 6vw;
 }
 
 .join-list {
@@ -72,7 +73,7 @@
 	background: var(--yellow);
 	color: var(--blue);
 	height: 5vh;
-	width: 10vw;
+	min-width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;
@@ -100,4 +101,34 @@
 
 .existing-list > p {
 	margin: 0px;
+}
+
+.about-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 60px;
+}
+
+.about {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 4rem;
+	margin: 2rem;
+}
+
+.question-mark {
+	height: 8vh;
+}
+
+.about-button {
+	background: var(--blue);
+	color: var(--yellow);
+	height: 5vh;
+	min-width: 10vw;
+	font-family: 'VT323', monospace;
+	font-size: 2rem;
+	cursor: pointer;
 }
