@@ -91,36 +91,40 @@ export function ListItemMobileView({
 
 	if (isEditing) {
 		itemDisplay = (
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					if (compareDuplicate(updatedName)) {
-						return;
-					}
-					setIsEditing(false);
-					try {
-						updateItemName(listToken, item, updatedName);
-					} catch (error) {
-						console.log('error', error);
-					}
-				}}
-			>
-				<label>
-					Edit
-					<input
-						type="text"
-						placeholder="Edit Item"
-						value={updatedName}
-						onChange={(e) => {
-							setUpdatedName(e.target.value);
-						}}
-					/>
-				</label>
-				<button type="button" onClick={handleCancelEditItem}>
-					Cancel
-				</button>
-				<button type="submit">Submit</button>
-			</form>
+			<>
+				<img src={image} alt={item.name} style={{ width: '4em' }} />
+
+				<form
+					onSubmit={(e) => {
+						e.preventDefault();
+						if (compareDuplicate(updatedName)) {
+							return;
+						}
+						setIsEditing(false);
+						try {
+							updateItemName(listToken, item, updatedName);
+						} catch (error) {
+							console.log('error', error);
+						}
+					}}
+				>
+					<label>
+						Edit
+						<input
+							type="text"
+							placeholder="Edit Item"
+							value={updatedName}
+							onChange={(e) => {
+								setUpdatedName(e.target.value);
+							}}
+						/>
+					</label>
+					<button type="button" onClick={handleCancelEditItem}>
+						Cancel
+					</button>
+					<button type="submit">Submit</button>
+				</form>
+			</>
 		);
 	} else {
 		itemDisplay = (
@@ -144,7 +148,11 @@ export function ListItemMobileView({
 						onChange={handleCheckItem}
 						checked={isPurchased}
 					/>
-					<button type="button" onClick={() => setIsEditing(true)}>
+					<button
+						className="button-mobile"
+						type="button"
+						onClick={() => setIsEditing(true)}
+					>
 						Edit
 					</button>
 					<ConfirmDialogWindow
