@@ -3,10 +3,10 @@
 	display: flex;
 	flex-direction: column;
 	font-size: 1.2em;
-	gap: 50px;
+	gap: 1em;
 	width: 100%;
 	justify-content: space-evenly;
-	padding: 3px;
+	margin-top: 1.5em;
 }
 
 .delete-container {
@@ -19,7 +19,7 @@
 }
 
 .list-item-label {
-	font-size: 5rem;
+	font-size: 2.5rem;
 }
 
 .list-item-input-container {
@@ -30,12 +30,13 @@
 	padding: 2px;
 	gap: 2rem;
 	justify-content: center;
+	align-items: center;
 }
 
 input[type='checkbox'] {
 	font: inherit;
-	min-width: 1.15em;
-	min-height: 1.15em;
+	min-width: 2.15em;
+	min-height: 2.15em;
 	appearance: none;
 	background-color: var(--white);
 	border: 0.15em solid var(--yellow);
@@ -55,7 +56,6 @@ input[type='checkbox']::before {
 input[type='checkbox']:checked {
 	transform: scale(1);
 	background-color: var(--yellow);
-	border: 0.15em solid var(--blue);
 	background-image: url(../assets/checkmark.png);
 	background-position: center;
 	background-size: cover;
@@ -64,4 +64,10 @@ input[type='checkbox']:checked {
 .top {
 	display: flex;
 	align-items: center;
+}
+
+.button-mobile {
+	max-width: fit-content;
+	height: 1.5em;
+	font-size: 2.5rem;
 }
