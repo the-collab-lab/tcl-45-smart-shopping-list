@@ -98,11 +98,6 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 		}
 	};
 
-	// console.log('this_week', this_week);
-	// console.log('next_week', next_week);
-	// console.log('next_month', next_month);
-	// console.log('inactive', inactive_array);
-
 	return (
 		<>
 			{loading ? (
