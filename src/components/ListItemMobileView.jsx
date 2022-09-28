@@ -119,10 +119,16 @@ export function ListItemMobileView({
 							}}
 						/>
 					</label>
-					<button type="button" onClick={handleCancelEditItem}>
+					<button
+						className="edit-action-button"
+						type="button"
+						onClick={handleCancelEditItem}
+					>
 						Cancel
 					</button>
-					<button type="submit">Submit</button>
+					<button className="edit-action-button" type="submit">
+						Submit
+					</button>
 				</form>
 			</>
 		);
@@ -135,6 +141,9 @@ export function ListItemMobileView({
 					<label
 						className="list-item-label"
 						htmlFor={`${item.id}-${item.name}-checkbox`}
+						style={{
+							textDecorationLine: isPurchased ? 'line-through' : 'none',
+						}}
 					>
 						{item.name}
 					</label>

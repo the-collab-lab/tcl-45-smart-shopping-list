@@ -1,7 +1,6 @@
 .list-item-container {
 	align-items: center;
 	display: flex;
-	flex-direction: column;
 	font-size: 1.2em;
 	gap: 1em;
 	width: 100%;
@@ -70,4 +69,25 @@ input[type='checkbox']:checked {
 	max-width: fit-content;
 	height: 1.5em;
 	font-size: 2.5rem;
+}
+
+input[type='text'] {
+	padding-left: 0.5em;
+	margin: auto 1em;
+	font-size: 1.1em;
+	margin: 1em auto;
+}
+
+form {
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.edit-action-button {
+	margin: auto 0.5em;
+}
+@media screen and (min-width: 960) {
+	.list-item-container {
+		flex-direction: column;
+	}
 }
