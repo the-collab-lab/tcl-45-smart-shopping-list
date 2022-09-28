@@ -6,8 +6,14 @@
 	width: 100%;
 	justify-content: space-evenly;
 	margin-top: 1.5em;
+	flex-direction: row;
 }
 
+@media screen and (max-width: 640px) {
+	.list-item-container {
+		flex-direction: column;
+	}
+}
 .delete-container {
 	text-align: center;
 	width: 10vw;
@@ -85,9 +91,4 @@ form {
 
 .edit-action-button {
 	margin: auto 0.5em;
-}
-@media screen and (min-width: 960) {
-	.list-item-container {
-		flex-direction: column;
-	}
 }
