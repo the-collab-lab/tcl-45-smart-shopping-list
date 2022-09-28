@@ -145,3 +145,7 @@ section {
 	gap: 25px;
 	align-items: center;
 }
+
+.time-frame-name {
+	text-align: center;
+}

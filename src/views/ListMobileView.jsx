@@ -141,7 +141,9 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 								<div className="group-container">
 									{group_this_week.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>{group_this_week.timeFrame}</h2>
+											<h2 className="time-frame-name">
+												{group_this_week.timeFrame}
+											</h2>
 											{group_this_week.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
@@ -156,7 +158,9 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 									)}
 									{group_next_week.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>{group_next_week.timeFrame}</h2>
+											<h2 className="time-frame-name">
+												{group_next_week.timeFrame}
+											</h2>
 											{group_next_week.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
@@ -171,7 +175,9 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 									)}
 									{group_next_month.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>{group_next_month.timeFrame}</h2>
+											<h2 className="time-frame-name">
+												{group_next_month.timeFrame}
+											</h2>
 											{group_next_month.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
@@ -186,7 +192,9 @@ export function ListMobileView({ data, listToken, loading, confirmLogOut }) {
 									)}
 									{group_inactive.array.length > 0 && (
 										<div className="this-week-container" id="week-container">
-											<h2>{group_inactive.timeFrame}</h2>
+											<h2 className="time-frame-name">
+												{group_inactive.timeFrame}
+											</h2>
 											{group_inactive.array.map((item) => (
 												<ListItemMobileView
 													compareDuplicate={compareDuplicate}
