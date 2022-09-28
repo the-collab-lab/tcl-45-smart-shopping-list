@@ -39,8 +39,8 @@ export function Layout({
 									<h3>{listToken}</h3>
 								</div>
 								<div className="button-block header-right">
-									<button onClick={handleCopy} className="copy-button ">
-										{!copy ? <span>Copy List Name</span> : <span>Copied!</span>}
+									<button onClick={handleCopy} className="copy-button">
+										{!copy ? 'Copy List Name' : 'Copied!'}
 									</button>
 									<ConfirmDialogWindow
 										text={`If you're ready to log out, make sure to write down your list name before you click ok! It is "${listToken}".`}
