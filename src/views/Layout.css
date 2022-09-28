@@ -114,7 +114,7 @@
 .header-right > button {
 	background: var(--yellow);
 	color: var(--blue);
-	height: 7vh;
+	height: 10vh;
 	width: 15vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
@@ -174,7 +174,7 @@
 	}
 
 	.header-right > button {
-		width: fit-content;
-		height: fit-content;
+		min-width: fit-content;
+		min-height: fit-content;
 	}
 }
