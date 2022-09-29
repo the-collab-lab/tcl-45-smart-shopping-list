@@ -4,6 +4,7 @@
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	gap: 3em;
 }
 
 .home-header {
@@ -11,6 +12,7 @@
 	text-align: center;
 	top: 0;
 	background-color: var(--blue);
+	margin-bottom: 3em;
 }
 
 .home-header > h1 > img {
@@ -71,7 +73,7 @@
 	background: var(--yellow);
 	color: var(--blue);
 	height: 5vh;
-	width: 10vw;
+	min-width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;
@@ -114,7 +116,7 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 4rem;
-	margin: 20px;
+	margin: 2rem;
 }
 
 .question-mark {
@@ -125,7 +127,7 @@
 	background: var(--blue);
 	color: var(--yellow);
 	height: 5vh;
-	width: 10vw;
+	min-width: 10vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;

@@ -49,9 +49,14 @@ const ConfirmDialogWindow = ({ text, title, confirmAction }) => {
 
 	return (
 		<>
-			<button type="button" onClick={() => instance.show()}>
-				{title === 'Log Out' ? 'Log Out' : 'x'}
+			<button
+				className="button-mobile"
+				type="button"
+				onClick={() => instance.show()}
+			>
+				{title === 'Log Out' ? 'Log Out' : 'Delete'}
 			</button>
+
 			{dialog}
 		</>
 	);

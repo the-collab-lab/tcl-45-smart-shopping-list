@@ -3,15 +3,18 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import { AddItem, Home, Layout, List, About } from './views';
+import { AddItem, Home, Layout, List, About, ListMobileView } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
+import { useMediaQuery } from './utils';
+
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import toast from 'react-hot-toast';
 
 export function App() {
 	const navigateTo = useNavigate();
+	const isDesktop = useMediaQuery('(min-width: 960px)');
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [confirmLogOut, setConfirmLogOut] = useState(false);
@@ -88,17 +91,31 @@ export function App() {
 							/>
 						}
 					/>
-					<Route
-						path="/list"
-						element={
-							<List
-								data={data}
-								loading={loading}
-								listToken={listToken}
-								confirmLogOut={setConfirmLogOut}
-							/>
-						}
-					/>
+					{isDesktop ? (
+						<Route
+							path="/list"
+							element={
+								<List
+									data={data}
+									loading={loading}
+									listToken={listToken}
+									confirmLogOut={setConfirmLogOut}
+								/>
+							}
+						/>
+					) : (
+						<Route
+							path="/list"
+							element={
+								<ListMobileView
+									data={data}
+									loading={loading}
+									listToken={listToken}
+									confirmLogOut={setConfirmLogOut}
+								/>
+							}
+						/>
+					)}
 
 					<Route
 						path="/add-item"

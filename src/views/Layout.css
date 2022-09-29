@@ -21,6 +21,9 @@
 	max-width: 95vw;
 	width: 95%;
 	height: 80vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .header {
@@ -30,11 +33,30 @@
 	background-color: var(--blue);
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	justify-content: space-around;
+	flex-wrap: wrap;
+	align-items: center;
 	width: 95vw;
 	height: 15vh;
 	border-bottom: 1px var(--yellow) solid;
+}
+
+@media only screen and (max-width: 600px) {
+	.header {
+		justify-content: flex-start;
+		gap: 0.2em;
+	}
+}
+.header {
+	justify-content: space-around;
+	gap: 0.2em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.2em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .header-left {
@@ -48,7 +70,7 @@
 	margin: 0px;
 }
 
-.header-center {
+/* .header-center {
 	background: var(--yellow);
 	color: var(--blue);
 	height: 7vh;
@@ -56,13 +78,14 @@
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;
-}
+} */
 
 .copy-button {
 	background: var(--yellow);
 	color: var(--blue);
-	height: 7vh;
-	width: 15vw;
+	min-height: 7vh;
+	max-height: fit-content;
+	width: fit-content;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
 	cursor: pointer;
@@ -91,7 +114,7 @@
 .header-right > button {
 	background: var(--yellow);
 	color: var(--blue);
-	height: 7vh;
+	height: 10vh;
 	width: 15vw;
 	font-family: 'VT323', monospace;
 	font-size: 2rem;
@@ -133,4 +156,25 @@
 	display: flex;
 	height: 100px;
 	justify-content: space-evenly;
+}
+.about-button {
+	width: fit-content;
+}
+
+.button-block {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5em;
+}
+
+@media only screen and (max-width: 364px) {
+	.header {
+		padding-bottom: 8em;
+		margin-bottom: 2rem;
+	}
+
+	.header-right > button {
+		min-width: fit-content;
+		min-height: fit-content;
+	}
 }
