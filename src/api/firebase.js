@@ -17,14 +17,13 @@ import {
 import { getDaysBetweenDates, getFutureDate } from '../utils';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAKhXStVolfPKwMsQCo7KiSePpC_zcJY-4',
-	authDomain: 'tcl-45-smart-shopping-list.firebaseapp.com',
-	projectId: 'tcl-45-smart-shopping-list',
-	storageBucket: 'tcl-45-smart-shopping-list.appspot.com',
-	messagingSenderId: '190905054675',
-	appId: '1:190905054675:web:f970100be58de6cfaeeb26',
+	apiKey: import.meta.env.VITE_API_KEY,
+	authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_APP_ID,
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
