@@ -6,6 +6,7 @@ import redBlinky from '../../src/assets/red-blinky.png';
 import blueBlinky from '../../src/assets/blue-blinky.png';
 import questionMark from '../../src/assets/question-mark.png';
 import logo from '../../src/assets/shop-ade.png';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 export function Home({
 	handleClick,
@@ -85,7 +86,10 @@ export function Home({
 							/>
 							<div className="existing-list">
 								<p>Don't have a list?</p>
-								<button onClick={handleClick} className="existing-list-button">
+								<button
+									onClick={() => console.log('Creating new lists is disabled')}
+									className="existing-list-button"
+								>
 									CREATE
 								</button>
 							</div>
@@ -105,6 +109,7 @@ export function Home({
 					</div>
 				</>
 			)}
+			<ArchivalNoticeModal />
 		</div>
 	);
 }
