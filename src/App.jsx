@@ -11,6 +11,7 @@ import { useMediaQuery } from './utils';
 
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import toast from 'react-hot-toast';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 export function App() {
 	const navigateTo = useNavigate();
@@ -82,13 +83,16 @@ export function App() {
 					<Route
 						index
 						element={
-							<Home
-								handleClick={handleClick}
-								listToken={listToken}
-								setListToken={setListToken}
-								about={about}
-								setAbout={setAbout}
-							/>
+							<>
+								<Home
+									handleClick={handleClick}
+									listToken={listToken}
+									setListToken={setListToken}
+									about={about}
+									setAbout={setAbout}
+								/>
+								<ArchivalNoticeModal />
+							</>
 						}
 					/>
 					{isDesktop ? (
