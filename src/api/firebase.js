@@ -17,14 +17,14 @@ import {
 import { getDaysBetweenDates, getFutureDate } from '../utils';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAieH45bdV9C9hCL0XaAi4JSlQgbPq9cos',
-	authDomain: 'tcl-45-shop-ade-app.firebaseapp.com',
-	projectId: 'tcl-45-shop-ade-app',
-	storageBucket: 'tcl-45-shop-ade-app.appspot.com',
-	messagingSenderId: '387528764275',
-	appId: '1:387528764275:web:d4f5f8092fbe006e327306',
-	measurementId: 'G-0M1MQ8GDFB',
+	apiKey: 'AIzaSyAKhXStVolfPKwMsQCo7KiSePpC_zcJY-4',
+	authDomain: 'tcl-45-smart-shopping-list.firebaseapp.com',
+	projectId: 'tcl-45-smart-shopping-list',
+	storageBucket: 'tcl-45-smart-shopping-list.appspot.com',
+	messagingSenderId: '190905054675',
+	appId: '1:190905054675:web:f970100be58de6cfaeeb26',
 };
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
